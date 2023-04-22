@@ -1,5 +1,6 @@
 package test.domain.contrasenias;
 
+import domain.algoritmo.Configuracion;
 import domain.algoritmo.GestorContrasenias;
 import domain.usuarios.Usuario;
 import org.junit.jupiter.api.Assertions;
@@ -10,10 +11,9 @@ import org.junit.jupiter.api.Test;
 public class ContraseniasTests {
   private Usuario usuarioGenerico;
   private GestorContrasenias gestorContrasenias;
-
   @BeforeEach
   public void init(){
-    gestorContrasenias = new GestorContrasenias("10k-worst-passwords.txt");
+    gestorContrasenias = new GestorContrasenias();
   }
 
   @Test
@@ -33,10 +33,18 @@ public class ContraseniasTests {
   }
 
   @Test
-  @DisplayName("Usuario tiene una contraseña comun")
+  @DisplayName("Usuario tiene una contraseña de las peores 10000")
   public void usuarioTieneContraseniaComun(){
     this.usuarioGenerico = new Usuario("Enzo","chelsea");
 
     Assertions.assertTrue(gestorContrasenias.estaEnLasPeores10000Contrasenias(usuarioGenerico.getPassword()));
+  }
+
+  @Test
+  @DisplayName("Usuario tiene una contraseña que no está en las peores 10000")
+  public void usuarioTieneContraseniaPocoComun(){
+    this.usuarioGenerico = new Usuario("Enzo","fernandezz");
+
+    Assertions.assertFalse(gestorContrasenias.estaEnLasPeores10000Contrasenias(usuarioGenerico.getPassword()));
   }
 }

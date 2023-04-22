@@ -2,18 +2,9 @@ package domain.algoritmo;
 
 import domain.usuarios.Usuario;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 
 public class GestorContrasenias {
-  private List<String> peoresContrasenias;
-
-  public GestorContrasenias(String archivoPeoresContrasenias) {
-    leerPeoresContrasenias(archivoPeoresContrasenias);
-  }
-
   public Boolean usuarioTieneContraSegura(Usuario usuario) {
     String contrasenia = usuario.getPassword();
     return esValida(contrasenia);
@@ -37,11 +28,18 @@ public class GestorContrasenias {
   }
 
   public Boolean estaEnLasPeores10000Contrasenias(String contrasenia) {
-    return peoresContrasenias.contains(contrasenia);
+    var listaPeoresContrasenias = peoresContrasenias();
+
+    return listaPeoresContrasenias.contains(contrasenia);
   }
 
-  public void leerPeoresContrasenias(String archivo) {
-    InputStream archivoComoStream = this.getClass().getClassLoader().getResourceAsStream(archivo);
-    peoresContrasenias = new BufferedReader(new InputStreamReader(archivoComoStream)).lines().toList();
+  public List<String> peoresContrasenias() {
+    var configuracion = Configuracion.obtenerInstancia();
+    var archivoPeoresContrasenias = configuracion.getRutaPeoresContrasenias();
+    var biblioteca = new BibliotecaAuxiliar();
+
+    var listaPeoresContrasenias = biblioteca.obtenerLista(archivoPeoresContrasenias);
+
+    return listaPeoresContrasenias;
   }
 }
