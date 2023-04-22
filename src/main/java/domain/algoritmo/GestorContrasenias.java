@@ -1,7 +1,6 @@
 package domain.algoritmo;
 
 import domain.usuarios.Usuario;
-
 import java.util.List;
 
 public class GestorContrasenias {
@@ -12,7 +11,7 @@ public class GestorContrasenias {
 
   public Boolean esValida(String contrasenia) {
     //TODO
-    // Hay varias cosas para chequear pero por ahora solo pongo longitud y si está en las peores 10.000
+    // Hay varias cosas para chequear, por ahora chequeamos longitud y peores 10k
     boolean esValida;
     esValida = cumpleMinimoDeCaracteres(contrasenia)
             && !estaEnLasPeores10000Contrasenias(contrasenia);
@@ -34,8 +33,7 @@ public class GestorContrasenias {
   }
 
   public List<String> peoresContrasenias() {
-    var configuracion = Configuracion.obtenerInstancia();
-    var archivoPeoresContrasenias = configuracion.getRutaPeoresContrasenias();
+    var archivoPeoresContrasenias = Configuracion.getRutaPeoresContrasenias();
     var biblioteca = new BibliotecaAuxiliar();
 
     var listaPeoresContrasenias = biblioteca.obtenerLista(archivoPeoresContrasenias);
