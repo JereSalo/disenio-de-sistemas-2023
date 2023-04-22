@@ -1,7 +1,6 @@
 package domain.algoritmo;
 
 import lombok.Getter;
-import lombok.Setter;
 
 // Patrón de diseño singleton. Para tener una única instancia de la clase Configuración.
 // No se si es el adecuado para un Config, probablemente no.
@@ -33,4 +32,13 @@ public class Configuracion {
 public class Configuracion {
   @Getter
   private static String rutaPeoresContrasenias = "./src/main/resources/10k-worst-passwords.txt";
+
+  @Getter
+  private static String rutaContraseniasEspaniol = "./src/main/resources/palabrasEspaniol.txt";
+  
+  @Getter
+  private static String listaCaracteresEspeciales = "!@#$%&*()'+,-./:;<=>?[]^_`{|}";
+
+  @Getter
+  private static String listaNumeros = "0123456789";
 }

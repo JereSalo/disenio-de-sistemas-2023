@@ -12,13 +12,13 @@ public class ContraseniasTests {
   private Usuario usuarioGenerico;
   private GestorContrasenias gestorContrasenias;
   @BeforeEach
-  public void init(){
+  public void init() {
     gestorContrasenias = new GestorContrasenias();
   }
 
   @Test
   @DisplayName("Usuario tiene contraseña larga y variada, por ende, segura")
-  public void usuarioTieneContraseniaSegura(){
+  public void usuarioTieneContraseniaSegura() {
     this.usuarioGenerico = new Usuario("Juan","+bqJKcD5ftyxJNq3");
 
     Assertions.assertTrue(gestorContrasenias.usuarioTieneContraSegura(usuarioGenerico));
@@ -26,7 +26,7 @@ public class ContraseniasTests {
 
   @Test
   @DisplayName("Usuario tiene contraseña corta, por ende, insegura")
-  public void usuarioTieneContraseniaInsegura(){
+  public void usuarioTieneContraseniaInsegura() {
     this.usuarioGenerico = new Usuario("Juancito","bqJKc");
 
     Assertions.assertFalse(gestorContrasenias.usuarioTieneContraSegura(usuarioGenerico));
@@ -34,17 +34,21 @@ public class ContraseniasTests {
 
   @Test
   @DisplayName("Usuario tiene una contraseña de las peores 10000")
-  public void usuarioTieneContraseniaComun(){
+  public void usuarioTieneContraseniaComun() {
     this.usuarioGenerico = new Usuario("Enzo","chelsea");
-
-    Assertions.assertTrue(gestorContrasenias.estaEnLasPeores10000Contrasenias(usuarioGenerico.getPassword()));
+    String archivo = Configuracion.getRutaPeoresContrasenias();
+    
+    Assertions.assertTrue(gestorContrasenias.perteneceAArchivo(archivo, usuarioGenerico.getPassword()));
   }
 
   @Test
   @DisplayName("Usuario tiene una contraseña que no está en las peores 10000")
-  public void usuarioTieneContraseniaPocoComun(){
+  public void usuarioTieneContraseniaPocoComun() {
     this.usuarioGenerico = new Usuario("Enzo","fernandezz");
+    String archivo = Configuracion.getRutaPeoresContrasenias();
 
-    Assertions.assertFalse(gestorContrasenias.estaEnLasPeores10000Contrasenias(usuarioGenerico.getPassword()));
+    Assertions.assertFalse(gestorContrasenias.perteneceAArchivo(archivo, usuarioGenerico.getPassword()));
   }
+
+
 }
