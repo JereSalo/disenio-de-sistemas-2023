@@ -13,7 +13,7 @@ public class ContraseniasTests {
 
   @BeforeEach
   public void init(){
-    gestorContrasenias = new GestorContrasenias();
+    gestorContrasenias = new GestorContrasenias("10k-worst-passwords.txt");
   }
 
   @Test
@@ -32,4 +32,11 @@ public class ContraseniasTests {
     Assertions.assertFalse(gestorContrasenias.usuarioTieneContraSegura(usuarioGenerico));
   }
 
+  @Test
+  @DisplayName("Usuario tiene una contraseña comun")
+  public void usuarioTieneContraseniaComun(){
+    this.usuarioGenerico = new Usuario("Enzo","chelsea");
+
+    Assertions.assertTrue(gestorContrasenias.estaEnLasPeores10000Contrasenias(usuarioGenerico.getPassword()));
+  }
 }
