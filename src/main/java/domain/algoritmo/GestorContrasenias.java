@@ -1,47 +1,118 @@
 package domain.algoritmo;
 
 import domain.usuarios.Usuario;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.List;
 
 public class GestorContrasenias {
-  private List<String> peoresContrasenias;
 
-  public GestorContrasenias(String archivoPeoresContrasenias) {
-    leerPeoresContrasenias(archivoPeoresContrasenias);
-  }
+  private int MINIMO_CARACTERES = 8;
+  private int MAXIMO_CARACTERES = 64;
+  private int MAXIMO_CARACTERES_REPETIDOS = 3;
+  private BibliotecaAuxiliar biblioteca = new BibliotecaAuxiliar();
 
+  
   public Boolean usuarioTieneContraSegura(Usuario usuario) {
     String contrasenia = usuario.getPassword();
-    return esValida(contrasenia);
+    return esValida(contrasenia) && contraseniaNoContieneUsername(usuario);
+  }
+
+  public Boolean contraseniaNoContieneUsername(Usuario usuario) {
+    String contrasenia = usuario.getPassword(); 
+    String nombreUsuario = usuario.getUsername();
+    
+    return !contrasenia.contains(nombreUsuario);
   }
 
   public Boolean esValida(String contrasenia) {
     //TODO
-    // Hay varias cosas para chequear pero por ahora solo pongo longitud y si está en las peores 10.000
     boolean esValida;
-    esValida = cumpleMinimoDeCaracteres(contrasenia)
-            && !estaEnLasPeores10000Contrasenias(contrasenia);
+    esValida = cumpleCondicionesDeLongitud(contrasenia) && 
+                cumpleCondicionesDeCaracteres(contrasenia) &&
+                noEsFrecuente(contrasenia);
+    // Juntar las que tienen que ver con Longitud, Caracteres Contenidos, Si están en archivos específicos...
+
+    // esValida = cumpleCondicionesDeLongitud() && cumpleCondicionesDeCaracteres() && CumpleCondicionesDeSeguridad()
 
     return esValida;
   }
 
+  public boolean cumpleCondicionesDeLongitud(String contrasenia) {
+    return cumpleMinimoDeCaracteres(contrasenia) && cumpleMaximoDeCaracteres(contrasenia);
+  }
+
+  public boolean cumpleCondicionesDeCaracteres(String contrasenia) {  
+    return tieneNumeros(contrasenia) && 
+     tieneCaracteresEspeciales(contrasenia) && 
+      this.biblioteca.noTieneSecuencias(contrasenia) && 
+      !tieneRepetidosSeguidos(contrasenia);
+  }
+
+
+
+  // CONDICIONES DE LONGITUD
   public Boolean cumpleMinimoDeCaracteres(String contrasenia) {
-    int minimoCaracteres = 8;
+    
     int longitudContrasenia = contrasenia.length();
 
-    return longitudContrasenia >= minimoCaracteres;
+    return longitudContrasenia >= this.MINIMO_CARACTERES;
   }
 
-  public Boolean estaEnLasPeores10000Contrasenias(String contrasenia) {
-    return peoresContrasenias.contains(contrasenia);
+  public boolean cumpleMaximoDeCaracteres(String contrasenia) {
+    int longitudContrasenia = contrasenia.length();
+    
+    return longitudContrasenia <= this.MAXIMO_CARACTERES;
+  }
+  
+  // CONDICIONES DE CARACTARES
+  
+  // CONDICIONES DE CARACTARES
+  public boolean tieneNumeros(String contrasenia) {
+    return this.stringContieneAlgunCaracter(contrasenia,Configuracion.getListaNumeros());
   }
 
-  public void leerPeoresContrasenias(String archivo) {
-    InputStream archivoComoStream = this.getClass().getClassLoader().getResourceAsStream(archivo);
-    peoresContrasenias = new BufferedReader(new InputStreamReader(archivoComoStream)).lines().toList();
+  public boolean tieneCaracteresEspeciales(String contrasenia) {
+    return stringContieneAlgunCaracter(contrasenia, Configuracion.getListaCaracteresEspeciales());
+  }
+
+public boolean tieneRepetidosSeguidos(String contrasenia) {
+    
+    for (int i = 0; i < contrasenia.length(); i++){
+      
+      char caracterActual = contrasenia.charAt(i);
+
+      if (contrasenia.contains(obtenerCaracterRepetidoNVeces(caracterActual, this.MAXIMO_CARACTERES_REPETIDOS))) 
+        return true;
+      
+    }
+
+    return false;
+    
+  }
+
+  public String obtenerCaracterRepetidoNVeces(char caracter, int n) {
+    return String.valueOf(caracter).repeat(n);
+  }
+
+   public boolean stringContieneAlgunCaracter(String s1, String s2) {
+    
+    for (int i = 0; i < s2.length(); i++){
+      if (s1.contains(String.valueOf(s2.charAt(i)))) return true;
+ 
+    }
+    return false;
+  }
+  
+  // CONDICIONES DE CONTRASEÑA FRECUENTE
+
+  public boolean perteneceAArchivo(String ruta, String contrasenia) {
+    var listaContrasenias = biblioteca.obtenerLista(ruta);
+    return listaContrasenias.contains(contrasenia);
+  }
+  
+  public boolean noEsFrecuente(String contrasenia) {
+    var rutaContraseniasEspaniol = Configuracion.getRutaContraseniasEspaniol();
+    var rutaPeoresContrasenias = Configuracion.getRutaPeoresContrasenias();
+
+    return !perteneceAArchivo(rutaContraseniasEspaniol,contrasenia) && !perteneceAArchivo(rutaPeoresContrasenias,contrasenia);
   }
 }

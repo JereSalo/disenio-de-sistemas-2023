@@ -14,7 +14,6 @@ public class UsuariosMainTest {
     this.usuarioGenerico = new Usuario("Juan123","123");
   }
 
-
   @Test
   @DisplayName("Usuario algo")
   public void usuarioTest(){
