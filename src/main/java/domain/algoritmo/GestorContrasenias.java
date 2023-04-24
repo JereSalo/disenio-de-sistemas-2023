@@ -24,14 +24,10 @@ public class GestorContrasenias {
   }
 
   public Boolean esValida(String contrasenia) {
-    //TODO
     boolean esValida;
     esValida = cumpleCondicionesDeLongitud(contrasenia) && 
                 cumpleCondicionesDeCaracteres(contrasenia) &&
                 noEsFrecuente(contrasenia);
-    // Juntar las que tienen que ver con Longitud, Caracteres Contenidos, Si están en archivos específicos...
-
-    // esValida = cumpleCondicionesDeLongitud() && cumpleCondicionesDeCaracteres() && CumpleCondicionesDeSeguridad()
 
     return esValida;
   }
@@ -47,6 +43,12 @@ public class GestorContrasenias {
       !tieneRepetidosSeguidos(contrasenia);
   }
 
+  public boolean noEsFrecuente(String contrasenia) {
+    var rutaContraseniasEspaniol = Configuracion.getRutaContraseniasEspaniol();
+    var rutaPeoresContrasenias = Configuracion.getRutaPeoresContrasenias();
+
+    return !perteneceAArchivo(rutaContraseniasEspaniol,contrasenia) && !perteneceAArchivo(rutaPeoresContrasenias,contrasenia);
+  }
 
 
   // CONDICIONES DE LONGITUD
@@ -64,8 +66,6 @@ public class GestorContrasenias {
   }
   
   // CONDICIONES DE CARACTARES
-  
-  // CONDICIONES DE CARACTARES
   public boolean tieneNumeros(String contrasenia) {
     return this.stringContieneAlgunCaracter(contrasenia,Configuracion.getListaNumeros());
   }
@@ -74,45 +74,30 @@ public class GestorContrasenias {
     return stringContieneAlgunCaracter(contrasenia, Configuracion.getListaCaracteresEspeciales());
   }
 
-public boolean tieneRepetidosSeguidos(String contrasenia) {
-    
-    for (int i = 0; i < contrasenia.length(); i++){
-      
-      char caracterActual = contrasenia.charAt(i);
-
-      if (contrasenia.contains(obtenerCaracterRepetidoNVeces(caracterActual, this.MAXIMO_CARACTERES_REPETIDOS))) 
-        return true;
-      
-    }
-
-    return false;
-    
+  public boolean tieneRepetidosSeguidos(String contrasenia) {
+      for (int i = 0; i < contrasenia.length(); i++){
+        char caracterActual = contrasenia.charAt(i);
+        if (contrasenia.contains(obtenerCaracterRepetidoNVeces(caracterActual, this.MAXIMO_CARACTERES_REPETIDOS)))
+          return true;
+      }
+      return false;
   }
+
+  // METODOS AUXILIARES
 
   public String obtenerCaracterRepetidoNVeces(char caracter, int n) {
     return String.valueOf(caracter).repeat(n);
   }
 
-   public boolean stringContieneAlgunCaracter(String s1, String s2) {
-    
-    for (int i = 0; i < s2.length(); i++){
-      if (s1.contains(String.valueOf(s2.charAt(i)))) return true;
- 
+  public boolean stringContieneAlgunCaracter(String string, String caracteres) {
+    for (int i = 0; i < caracteres.length(); i++){
+      if (string.contains(String.valueOf(caracteres.charAt(i)))) return true;
     }
     return false;
   }
-  
-  // CONDICIONES DE CONTRASEÑA FRECUENTE
 
   public boolean perteneceAArchivo(String ruta, String contrasenia) {
     var listaContrasenias = biblioteca.obtenerLista(ruta);
     return listaContrasenias.contains(contrasenia);
-  }
-  
-  public boolean noEsFrecuente(String contrasenia) {
-    var rutaContraseniasEspaniol = Configuracion.getRutaContraseniasEspaniol();
-    var rutaPeoresContrasenias = Configuracion.getRutaPeoresContrasenias();
-
-    return !perteneceAArchivo(rutaContraseniasEspaniol,contrasenia) && !perteneceAArchivo(rutaPeoresContrasenias,contrasenia);
   }
 }
