@@ -50,5 +50,20 @@ public class ContraseniasTests {
     Assertions.assertFalse(gestorContrasenias.perteneceAArchivo(archivo, usuarioGenerico.getPassword()));
   }
 
+  @Test
+  @DisplayName("Usuario tiene contraseña que incluye su nombre, por ende, insegura")
+  public void usuarioTieneContraseniaQueIncluyeSuNombre() {
+    this.usuarioGenerico = new Usuario("Juancito","Juancito2003");
+
+    Assertions.assertFalse(gestorContrasenias.usuarioTieneContraSegura(usuarioGenerico));
+  }
+
+  @Test
+  @DisplayName("Usuario tiene contraseña que incluye una secuencia de caracteres seguidos, por ende, insegura")
+  public void usuarioTieneContraseniaQueIncluyeSecuenciaDeCaracteres() {
+    this.usuarioGenerico = new Usuario("Juancito","afegABCvDholaX@1");
+
+    Assertions.assertFalse(gestorContrasenias.usuarioTieneContraSegura(usuarioGenerico));
+  }
 
 }
