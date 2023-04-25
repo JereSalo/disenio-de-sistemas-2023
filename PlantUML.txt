@@ -1,0 +1,103 @@
+@startuml
+class ValidadorDeContrasenias{
+    +esValida(String contrasenia, String nombreUsuario)
+}
+
+class Linea{
+    -nombre: String
+    -listaEstaciones: List<Estacion>
+    -tipoTransporte: TipoTransporte
+    
+    +estacionInicial(): Estacion
+    +estacionFinal(): Estacion
+}
+
+enum TipoTransporte{
+    Ferrocarril
+    Subterraneo
+}
+
+class Estacion{
+    -nombre: String
+    -ubicacion: Ubicacion
+    -serviciosNoHabilitados: List<Servicio>
+    -serviciosHabilitados: List<Servicio>
+
+    +habilitarServicio(Servicio: servicio): void
+    +deshabilitarServicio(Servicio: servicio): void
+    +eliminarServicio(Servicio: servicio): void
+}
+
+class Ubicacion {
+    -calle: String
+    -altura: Integer
+    -ciudad: String
+    -provincia: String
+}
+
+class Servicio{
+    -descripcion: String
+}
+
+class Comunidad{
+    -nombre: String
+    -miembros: List<Miembro>
+    -administradores: List<Administrador>
+}
+
+class Miembro{
+    -usuario: Usuario
+    -comunidad: Comunidad
+}
+
+class AdministradorComunidad{
+    -usuario: Usuario
+    -comunidad: Comunidad
+    
+    +altaMiembro(Usuario: usuario): void
+    +bajaMiembro(Usuario: usuario): void
+}
+
+class AdministradorServicios{
+    -{static}serviciosDelSistema: List<Servicio> 
+    -usuario: Usuario
+    
+    +crearServicio( String: descripcion): Void
+    +eliminarServicio( String: descripcion): Void
+    +habilitarServicioEnEstacion(String: descripcion, Estacion: estacion): Void
+    +deshabilitarServicioEnEstacion(String: descripcion, Estacion: estacion): Void
+    +eliminarServicioEnEstacion(String: descripcion, Estacion: estacion): Void
+}
+
+class Usuario{
+    -nombre: String
+    -apellido: String
+    -mail: String
+    -username: String
+    -password: String
+}
+
+class Configuracion{
+    -{static} rutaPeoresContrasenias: String
+    -{static} rutaContraseniasEspaniol: String
+    -{static} listaCaracteresEspeciales: String
+    -{static} listaNumeros: String
+}
+
+Linea *--"*" Estacion
+Linea --> TipoTransporte
+
+Estacion *--"1" Ubicacion
+Estacion *--"*" Servicio
+
+Comunidad *--"*" Miembro
+Comunidad *--"*" AdministradorComunidad
+
+Usuario o--"*" Miembro
+Usuario o--"*" AdministradorComunidad
+Usuario o--"*" AdministradorServicios
+
+AdministradorServicios ..> Estacion
+AdministradorServicios -->"*" Servicio
+
+@enduml
