@@ -1,8 +1,9 @@
 package test.domain.contrasenias;
 
 import domain.algoritmo.Configuracion;
-import domain.algoritmo.GestorContrasenias;
+import domain.algoritmo.ValidadorContrasenias;
 import domain.usuarios.Usuario;
+import domain.validadoresAuxiliares.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -10,10 +11,10 @@ import org.junit.jupiter.api.Test;
 
 public class ContraseniasTests {
   private Usuario usuarioGenerico;
-  private GestorContrasenias gestorContrasenias;
+  private ValidadorContrasenias validadorContrasenias;
   @BeforeEach
   public void init() {
-    gestorContrasenias = new GestorContrasenias();
+    validadorContrasenias = new ValidadorContrasenias();
   }
 
   @Test
@@ -21,7 +22,10 @@ public class ContraseniasTests {
   public void usuarioTieneContraseniaSegura() {
     this.usuarioGenerico = new Usuario("Juan","+bqJKcD5ftyxJNq3");
 
-    Assertions.assertTrue(gestorContrasenias.usuarioTieneContraSegura(usuarioGenerico));
+    var nombreUsuario = usuarioGenerico.getUsername();
+    var contrasenia = usuarioGenerico.getPassword();
+
+    Assertions.assertTrue(validadorContrasenias.usuarioTieneContraSegura(nombreUsuario, contrasenia));
   }
 
   @Test
@@ -29,25 +33,26 @@ public class ContraseniasTests {
   public void usuarioTieneContraseniaInsegura() {
     this.usuarioGenerico = new Usuario("Juancito","bqJKc");
 
-    Assertions.assertFalse(gestorContrasenias.usuarioTieneContraSegura(usuarioGenerico));
+    var nombreUsuario = usuarioGenerico.getUsername();
+    var contrasenia = usuarioGenerico.getPassword();
+
+    Assertions.assertFalse(validadorContrasenias.usuarioTieneContraSegura(nombreUsuario, contrasenia));
   }
 
   @Test
   @DisplayName("Usuario tiene una contraseña de las peores 10000")
   public void usuarioTieneContraseniaComun() {
     this.usuarioGenerico = new Usuario("Enzo","chelsea");
-    String archivo = Configuracion.getRutaPeoresContrasenias();
-    
-    Assertions.assertTrue(gestorContrasenias.perteneceAArchivo(archivo, usuarioGenerico.getPassword()));
+
+    Assertions.assertFalse(new ValidadorFrecuencia().superaValidacion(usuarioGenerico.getPassword()));
   }
 
   @Test
   @DisplayName("Usuario tiene una contraseña que no está en las peores 10000")
   public void usuarioTieneContraseniaPocoComun() {
     this.usuarioGenerico = new Usuario("Enzo","fernandezz");
-    String archivo = Configuracion.getRutaPeoresContrasenias();
 
-    Assertions.assertFalse(gestorContrasenias.perteneceAArchivo(archivo, usuarioGenerico.getPassword()));
+    Assertions.assertTrue(new ValidadorFrecuencia().superaValidacion(usuarioGenerico.getPassword()));
   }
 
   @Test
@@ -55,7 +60,10 @@ public class ContraseniasTests {
   public void usuarioTieneContraseniaQueIncluyeSuNombre() {
     this.usuarioGenerico = new Usuario("Juancito","Juancito2003");
 
-    Assertions.assertFalse(gestorContrasenias.usuarioTieneContraSegura(usuarioGenerico));
+    var nombreUsuario = usuarioGenerico.getUsername();
+    var contrasenia = usuarioGenerico.getPassword();
+
+    Assertions.assertFalse(validadorContrasenias.usuarioTieneContraSegura(nombreUsuario, contrasenia));
   }
 
   @Test
@@ -63,7 +71,10 @@ public class ContraseniasTests {
   public void usuarioTieneContraseniaQueIncluyeSecuenciaDeCaracteres() {
     this.usuarioGenerico = new Usuario("Juancito","afegABCvDholaX@1");
 
-    Assertions.assertFalse(gestorContrasenias.usuarioTieneContraSegura(usuarioGenerico));
+    var nombreUsuario = usuarioGenerico.getUsername();
+    var contrasenia = usuarioGenerico.getPassword();
+
+    Assertions.assertFalse(validadorContrasenias.usuarioTieneContraSegura(nombreUsuario, contrasenia));
   }
 
 }
