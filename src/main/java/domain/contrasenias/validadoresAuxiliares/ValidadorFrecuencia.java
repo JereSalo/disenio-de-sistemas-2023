@@ -1,31 +1,19 @@
-package domain.validadoresAuxiliares;
+package domain.contrasenias.validadoresAuxiliares;
 
-import domain.algoritmo.Configuracion;
-import domain.algoritmo.EstrategiaValidacion;
+import domain.contrasenias.Configuracion;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ValidadorFrecuencia implements EstrategiaValidacion {
-    private String rutaContraseniasEspaniol;
-    private String rutaPeoresContrasenias;
-
     private List<String> listaContraseniasEspaniol;
     private List<String> listaPeoresContrasenias;
 
     public ValidadorFrecuencia() {
-        this.rutaPeoresContrasenias = Configuracion.getRutaPeoresContrasenias();
-        this.rutaContraseniasEspaniol = Configuracion.getRutaContraseniasEspaniol();
-
-        this.listaContraseniasEspaniol = new ArrayList<>();
-        this.listaContraseniasEspaniol = this.obtenerLista(rutaContraseniasEspaniol);
-
-        this.listaPeoresContrasenias = new ArrayList<>();
-        this.listaPeoresContrasenias = this.obtenerLista(rutaPeoresContrasenias);
+        this.listaContraseniasEspaniol = this.obtenerLista(Configuracion.getRutaContraseniasEspaniol());
+        this.listaPeoresContrasenias = this.obtenerLista(Configuracion.getRutaPeoresContrasenias());
     }
 
     public List<String> obtenerLista(String archivo) {

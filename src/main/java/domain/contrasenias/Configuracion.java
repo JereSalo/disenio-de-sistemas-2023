@@ -1,4 +1,4 @@
-package domain.algoritmo;
+package domain.contrasenias;
 
 import lombok.Getter;
 

@@ -1,9 +1,8 @@
 package test.domain.contrasenias;
 
-import domain.algoritmo.Configuracion;
-import domain.algoritmo.ValidadorContrasenias;
+import domain.contrasenias.ValidadorContrasenias;
+import domain.contrasenias.validadoresAuxiliares.ValidadorFrecuencia;
 import domain.usuarios.Usuario;
-import domain.validadoresAuxiliares.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

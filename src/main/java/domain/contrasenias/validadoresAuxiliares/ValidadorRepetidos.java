@@ -1,6 +1,4 @@
-package domain.validadoresAuxiliares;
-
-import domain.algoritmo.EstrategiaValidacion;
+package domain.contrasenias.validadoresAuxiliares;
 
 public class ValidadorRepetidos implements EstrategiaValidacion {
   private int MAXIMO_CARACTERES_REPETIDOS = 3;

@@ -1,6 +1,4 @@
-package domain.validadoresAuxiliares;
-
-import domain.algoritmo.EstrategiaValidacion;
+package domain.contrasenias.validadoresAuxiliares;
 
 public class ValidadorMaximoCaracteres implements EstrategiaValidacion {
   int MAXIMO_CARACTERES = 64;

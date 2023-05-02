@@ -1,7 +1,6 @@
-package domain.algoritmo;
+package domain.contrasenias;
 
-import domain.validadoresAuxiliares.*;
-
+import domain.contrasenias.validadoresAuxiliares.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,8 +25,6 @@ public class ValidadorContrasenias {
   }
 
   public Boolean esValida(String contrasenia) {
-    boolean esValida = this.estrategias.stream().allMatch(estrategia -> estrategia.superaValidacion(contrasenia));
-
-    return esValida;
+    return this.estrategias.stream().allMatch(estrategia -> estrategia.superaValidacion(contrasenia));
   }
 }

@@ -1,6 +1,4 @@
-package domain.validadoresAuxiliares;
-
-import domain.algoritmo.EstrategiaValidacion;
+package domain.contrasenias.validadoresAuxiliares;
 
 public class ValidadorMinimoCaracteres implements EstrategiaValidacion {
   int MINIMO_CARACTERES = 8;
