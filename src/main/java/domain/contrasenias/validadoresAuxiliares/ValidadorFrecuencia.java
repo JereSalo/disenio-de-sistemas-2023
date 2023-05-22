@@ -30,7 +30,7 @@ public class ValidadorFrecuencia implements EstrategiaValidacion {
     }
 
     @Override
-    public Boolean superaValidacion(String contrasenia) {
+    public Boolean esValida(String contrasenia) {
         // Supera la validacion si la contraseña no está incluida en ninguna de las 2 listas de contraseñas más usadas
         return !listaContraseniasEspaniol.contains(contrasenia) && !listaPeoresContrasenias.contains(contrasenia);
     }

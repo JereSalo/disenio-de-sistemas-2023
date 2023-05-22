@@ -43,7 +43,7 @@ public class ContraseniasTests {
   public void usuarioTieneContraseniaComun() {
     this.usuarioGenerico = new Usuario("Enzo","chelsea");
 
-    Assertions.assertFalse(new ValidadorFrecuencia().superaValidacion(usuarioGenerico.getPassword()));
+    Assertions.assertFalse(new ValidadorFrecuencia().esValida(usuarioGenerico.getPassword()));
   }
 
   @Test
@@ -51,7 +51,7 @@ public class ContraseniasTests {
   public void usuarioTieneContraseniaPocoComun() {
     this.usuarioGenerico = new Usuario("Enzo","fernandezz");
 
-    Assertions.assertTrue(new ValidadorFrecuencia().superaValidacion(usuarioGenerico.getPassword()));
+    Assertions.assertTrue(new ValidadorFrecuencia().esValida(usuarioGenerico.getPassword()));
   }
 
   @Test

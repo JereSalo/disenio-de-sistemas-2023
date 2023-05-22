@@ -1,0 +1,91 @@
+@startuml
+
+class Entidad{
+ -nombre: String
+}
+
+enum TipoEntidad{
+ Ferrocarril
+ Subterraneo
+ RedSucursales
+}
+
+
+class Establecimiento{
+ -nombre: String
+
+    +habilitarServicio(Servicio: servicio): void
+    +deshabilitarServicio(Servicio: servicio): void
+    +eliminarServicio(Servicio: servicio): void
+}
+
+enum TipoEstablecimiento{
+ Estacion
+ Sucursal
+}
+
+
+class Localizacion {
+ -nombre: String
+}
+
+enum TipoLocalizacion{
+ Municipio
+ Departamento
+ Provincia
+}
+
+class Servicio{
+    -descripcion: String
+}
+
+class PrestacionDeServicio{
+    +servicio(): Servicio
+    +estado(): EstadoServicio
+}
+
+enum EstadoServicio{
+    Disponible
+    NoDisponible
+}
+
+
+class Comunidad{
+    -nombre: String
+}
+
+' Y si llamamos miembro a la persona que usa el sistema? No se que otro nombre ponerle
+class Miembro{
+    -usuario: Usuario
+    -localizacionesDeInteres: List<Localizacion>
+    -entidadesDeInteres: List<Entidad>
+    -serviciosDeInteres: List<Servicio>
+}
+
+
+class Usuario{
+    -username: String
+    -password: String
+
+}
+
+PrestacionDeServicio --> Servicio
+PrestacionDeServicio --> EstadoServicio
+
+Comunidad *--"*" Miembro
+
+Usuario o--"*" Miembro
+
+Entidad --> TipoEntidad
+Entidad -->"1" Localizacion
+Entidad -->"*" Establecimiento
+Localizacion --> TipoLocalizacion
+Establecimiento --> TipoEstablecimiento
+Establecimiento -->"1" Localizacion
+Establecimiento -->"*" PrestacionDeServicio
+
+Miembro -->"*" Localizacion
+Miembro -->"*" Entidad
+Miembro -->"*" Servicio
+
+@enduml

@@ -9,7 +9,9 @@ public class PrestacionDeServicio {
         this.servicio = servicio;
     }
 
-    public String nombreServicio(Servicio servicio){
+    /*public String nombreServicio(Servicio servicio){
         return servicio.nombre();
     }
+
+     */
 }

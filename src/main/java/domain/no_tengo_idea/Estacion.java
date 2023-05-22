@@ -12,6 +12,7 @@ public class Estacion {
         this.prestacionDeServicios = new ArrayList<>();
     }
 
+    /*
     private void crearServicioSiEsNecesario(Servicio servicio){
         if (!existeServicio(servicio)){
             this.prestacionDeServicios.add(new PrestacionDeServicio(servicio));
@@ -29,11 +30,12 @@ public class Estacion {
     }
     public void deshabilitarServicio(Servicio servicio){
         // TODO
-        servicio.estado = NoDisponible;
+        // servicio.estado = NoDisponible;
     }
     public void eliminarServicio(Servicio servicio){
         // TODO
         prestacionDeServicios.remove(servicio);
     }
+    */
 
 }

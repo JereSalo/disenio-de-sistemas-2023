@@ -1,0 +1,36 @@
+@startuml
+class ValidadorContrasenias{
+    -estrategias: List<EstrategiaValidacion>
+    
+    +esValida(String contrasenia)
+}
+
+interface EstrategiaValidacion{
+    +esValida(String contrasenia)
+}
+
+class ValidadorCaracteresEspeciales
+class ValidadorFrecuencia
+class ValidadorMaximoCaracteres
+class ValidadorMinimoCaracteres
+class ValidadorNumeros
+class ValidadorRepetidos
+class ValidadorSecuencias
+
+class Configuracion{
+    -{static} rutaPeoresContrasenias: String
+    -{static} rutaContraseniasEspaniol: String
+}
+
+ValidadorFrecuencia ..> Configuracion
+
+ValidadorCaracteresEspeciales ..|> EstrategiaValidacion
+ValidadorFrecuencia ..|> EstrategiaValidacion
+ValidadorMaximoCaracteres ..|> EstrategiaValidacion
+ValidadorMinimoCaracteres ..|> EstrategiaValidacion
+ValidadorNumeros ..|> EstrategiaValidacion
+ValidadorRepetidos ..|> EstrategiaValidacion
+ValidadorSecuencias ..|> EstrategiaValidacion
+
+ValidadorContrasenias -->"*" EstrategiaValidacion
+@enduml

@@ -3,7 +3,7 @@ package domain.contrasenias.validadoresAuxiliares;
 public class ValidadorRepetidos implements EstrategiaValidacion {
   private int MAXIMO_CARACTERES_REPETIDOS = 3;
   @Override
-  public Boolean superaValidacion(String contrasenia) {
+  public Boolean esValida(String contrasenia) {
     int contador = 0;
     for (int i = 0; i < contrasenia.length(); i++) {
       for (int j = 0; j < contrasenia.length(); j++) {

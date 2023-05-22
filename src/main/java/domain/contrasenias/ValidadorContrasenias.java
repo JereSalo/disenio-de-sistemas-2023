@@ -25,6 +25,6 @@ public class ValidadorContrasenias {
   }
 
   public Boolean esValida(String contrasenia) {
-    return this.estrategias.stream().allMatch(estrategia -> estrategia.superaValidacion(contrasenia));
+    return this.estrategias.stream().allMatch(estrategia -> estrategia.esValida(contrasenia));
   }
 }
