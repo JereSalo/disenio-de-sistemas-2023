@@ -1,18 +1,34 @@
 @startuml
 
-class Entidad{
+abstract class Entidad{
  -nombre: String
+ -usuario: Usuario
+ -localizacion: Localizacion
+ -establecimientos: List<Establecimiento>
 }
 
-enum TipoEntidad{
+enum TipoLinea{
  Ferrocarril
  Subterraneo
- RedSucursales
+}
+
+class Linea{
+ -tipo: TipoLinea
+
+ +estacionInicial(): Establecimiento
+ +estacionFinal(): Establecimiento
+}
+
+class Organizacion{
+ 
 }
 
 
 class Establecimiento{
  -nombre: String
+ -tipo: TipoEstablecimiento
+ -localizacion: Localizacion
+ -servicios: List<PrestacionDeServicio>
 
     +habilitarServicio(Servicio: servicio): void
     +deshabilitarServicio(Servicio: servicio): void
@@ -52,10 +68,26 @@ enum EstadoServicio{
 
 class Comunidad{
     -nombre: String
+    -listaAdministradores: Administrador
+    -listaMiembros: Miembro
 }
 
-' Y si llamamos miembro a la persona que usa el sistema? No se que otro nombre ponerle
+class Administrador{
+ -persona: Persona
+
+}
+
 class Miembro{
+ -persona: Persona
+}
+
+class Designado{
+ -usuario: Usuario
+ -entidad: Entidad
+}
+
+
+class Persona{
     -usuario: Usuario
     -localizacionesDeInteres: List<Localizacion>
     -entidadesDeInteres: List<Entidad>
@@ -66,26 +98,40 @@ class Miembro{
 class Usuario{
     -username: String
     -password: String
-
 }
 
 PrestacionDeServicio --> Servicio
 PrestacionDeServicio --> EstadoServicio
 
 Comunidad *--"*" Miembro
+Comunidad *--"*" Administrador
 
-Usuario o--"*" Miembro
+Miembro --> Persona
+Administrador --> Persona
 
-Entidad --> TipoEntidad
+Persona --> Usuario
+
+
 Entidad -->"1" Localizacion
 Entidad -->"*" Establecimiento
+Entidad --> Usuario
+
 Localizacion --> TipoLocalizacion
+
 Establecimiento --> TipoEstablecimiento
 Establecimiento -->"1" Localizacion
 Establecimiento -->"*" PrestacionDeServicio
 
-Miembro -->"*" Localizacion
-Miembro -->"*" Entidad
-Miembro -->"*" Servicio
+Persona -->"*" Localizacion
+Persona -->"*" Entidad
+Persona -->"*" Servicio
+
+Designado --> Entidad
+Designado --> Usuario
+
+Entidad <|-- Linea
+Entidad <|-- Organizacion
+
+Linea --> TipoLinea
 
 @enduml
