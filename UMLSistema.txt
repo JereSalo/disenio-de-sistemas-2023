@@ -1,8 +1,6 @@
 @startuml
-
 abstract class Entidad{
  -nombre: String
- -usuario: Usuario
  -localizacion: Localizacion
  -establecimientos: List<Establecimiento>
 }
@@ -20,9 +18,40 @@ class Linea{
 }
 
 class Organizacion{
- 
+
 }
 
+abstract class Localizacion{
+ nombre: String
+ perteneceA(Localizacion): Bool
+}
+
+class Municipio{
+ departamento: Localizacion
+}
+
+class Departamento{
+ provincia: Localizacion
+}
+
+class Provincia{
+ pais: Pais
+}
+
+class Pais{}
+
+
+class EmpresaDuenia{
+ -usuario: Usuario
+ -designado: Designado
+ -entidades: List<Entidad>
+}
+
+class OrgControl{
+ -usuario: Usuario
+ -designado: Designado
+ -entidades: List<Entidad>
+}
 
 class Establecimiento{
  -nombre: String
@@ -38,11 +67,6 @@ class Establecimiento{
 enum TipoEstablecimiento{
  Estacion
  Sucursal
-}
-
-
-class Localizacion {
- -nombre: String
 }
 
 enum TipoLocalizacion{
@@ -111,10 +135,8 @@ Administrador --> Persona
 
 Persona --> Usuario
 
-
 Entidad -->"1" Localizacion
 Entidad -->"*" Establecimiento
-Entidad --> Usuario
 
 Localizacion --> TipoLocalizacion
 
@@ -126,7 +148,12 @@ Persona -->"*" Localizacion
 Persona -->"*" Entidad
 Persona -->"*" Servicio
 
-Designado --> Entidad
+OrgControl --> Usuario
+OrgControl --> Designado
+OrgControl -->"*" Entidad
+
+EmpresaDuenia --> Usuario
+EmpresaDuenia --> Designado
 Designado --> Usuario
 
 Entidad <|-- Linea
@@ -134,4 +161,10 @@ Entidad <|-- Organizacion
 
 Linea --> TipoLinea
 
+EmpresaDuenia -->"*" Entidad
+
+Municipio --|> Localizacion
+Departamento --|> Localizacion
+Provincia --|> Localizacion
+Pais --|> Localizacion
 @enduml
