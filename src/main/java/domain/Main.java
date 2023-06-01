@@ -1,24 +1,18 @@
 package domain;
 
+import domain.servicios.georef.Georef;
+import domain.servicios.georef.entidades.ListadoDeDepartamentos;
+
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] argc) {
-        System.out.println("Hola");
+    public static void main(String[] argc) throws IOException {
 
+        Georef georefAPI = Georef.getInstancia();
 
-        //ValidadorContrasenias aux = new ValidadorContrasenias();
-        //BibliotecaAuxiliar biblioteca = new BibliotecaAuxiliar();
-        //String contrasenia = "mayonesaa78312+3abababaaaaaaaaaaaaaaaa";
-        
-        //System.out.println(aux.cumpleCondicionesDeLongitud(contrasenia));
+        ListadoDeDepartamentos listadoDedepartamentos = georefAPI.getDepartamento(22112);
 
-        //System.out.println(aux.tieneNumeros(contrasenia));
-        //System.out.println(aux.tieneCaracteresEspeciales(contrasenia));
-        //System.out.println(biblioteca.noTieneSecuencias(contrasenia));
-        //System.out.println(aux.tieneRepetidosSeguidos(contrasenia));
-        
-        //System.out.println(aux.noEsFrecuente(contrasenia));
-
-
+        System.out.println("Nombre: " + listadoDedepartamentos.departamentos.get(0).nombre);
     }
 }
