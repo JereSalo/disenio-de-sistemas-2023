@@ -1,6 +1,6 @@
-package domain.nuevo;
+package domain.csv;
 
-import domain.Organizaciones.Persona;
+import domain.Persona;
 
 import java.io.*;
 import java.nio.file.Files;

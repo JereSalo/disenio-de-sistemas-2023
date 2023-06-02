@@ -1,63 +1,55 @@
 @startuml
-abstract class Entidad{
+
+class Entidad{
  -nombre: String
  -localizacion: Localizacion
  -establecimientos: List<Establecimiento>
+ -tipoEntidad : TipoEntidad
 }
 
-enum TipoLinea{
- Ferrocarril
- Subterraneo
+enum TipoEntidad{
+    LINEA_SUBTERRANEO
+    LINEA_FERROCARRIL
+    ORGANIZACION
 }
 
-class Linea{
- -tipo: TipoLinea
-
- +estacionInicial(): Establecimiento
- +estacionFinal(): Establecimiento
-}
-
-class Organizacion{
-
-}
-
-abstract class Localizacion{
- nombre: String
- perteneceA(Localizacion): Bool
+class Localizacion{
+ +provincia: Provincia
+ +departamento: Departamento
+ +municipio: Municipio
 }
 
 class Municipio{
- departamento: Localizacion
+ +nombre: String
 }
 
 class Departamento{
- provincia: Localizacion
+ +nombre: String
+ +municipios: List<Municipio>
 }
 
 class Provincia{
- pais: Pais
+ +nombre: String
+ +departamentos: List<Departamento>
 }
 
-class Pais{}
-
-
-class EmpresaDuenia{
+class PrestadoraDeServicio{
  -usuario: Usuario
  -designado: Designado
  -entidades: List<Entidad>
 }
 
-class OrgControl{
+class OrganismoDeControl{
  -usuario: Usuario
  -designado: Designado
- -entidades: List<Entidad>
+ -prestadorasDeServicio: List<PrestadoraDeServicio>
 }
 
 class Establecimiento{
  -nombre: String
  -tipo: TipoEstablecimiento
  -localizacion: Localizacion
- -servicios: List<PrestacionDeServicio>
+ -servicios: List<Servicio>
 
     +habilitarServicio(Servicio: servicio): void
     +deshabilitarServicio(Servicio: servicio): void
@@ -65,30 +57,20 @@ class Establecimiento{
 }
 
 enum TipoEstablecimiento{
- Estacion
- Sucursal
-}
-
-enum TipoLocalizacion{
- Municipio
- Departamento
- Provincia
+ ESTACION
+ SUCURSAL
 }
 
 class Servicio{
     -descripcion: String
-}
-
-class PrestacionDeServicio{
-    +servicio(): Servicio
-    +estado(): EstadoServicio
+    -estado: EstadoServicio
 }
 
 enum EstadoServicio{
-    Disponible
-    NoDisponible
+    DISPONIBLE
+    NO_DISPONIBLE
+    MANTENIMIENTO
 }
-
 
 class Comunidad{
     -nombre: String
@@ -107,7 +89,6 @@ class Miembro{
 
 class Designado{
  -usuario: Usuario
- -entidad: Entidad
 }
 
 
@@ -124,9 +105,6 @@ class Usuario{
     -password: String
 }
 
-PrestacionDeServicio --> Servicio
-PrestacionDeServicio --> EstadoServicio
-
 Comunidad *--"*" Miembro
 Comunidad *--"*" Administrador
 
@@ -137,34 +115,34 @@ Persona --> Usuario
 
 Entidad -->"1" Localizacion
 Entidad -->"*" Establecimiento
+Entidad --> TipoEntidad
 
-Localizacion --> TipoLocalizacion
 
 Establecimiento --> TipoEstablecimiento
 Establecimiento -->"1" Localizacion
-Establecimiento -->"*" PrestacionDeServicio
+Establecimiento -->"*" Servicio
 
 Persona -->"*" Localizacion
 Persona -->"*" Entidad
 Persona -->"*" Servicio
 
-OrgControl --> Usuario
-OrgControl --> Designado
-OrgControl -->"*" Entidad
+OrganismoDeControl --> Usuario
+OrganismoDeControl --> Designado
+OrganismoDeControl -->"*" PrestadoraDeServicio
 
-EmpresaDuenia --> Usuario
-EmpresaDuenia --> Designado
+PrestadoraDeServicio --> Usuario
+PrestadoraDeServicio --> Designado
 Designado --> Usuario
 
-Entidad <|-- Linea
-Entidad <|-- Organizacion
+PrestadoraDeServicio -->"*" Entidad
 
-Linea --> TipoLinea
+Localizacion --> Provincia
+Localizacion --> Departamento
+Localizacion --> Municipio
 
-EmpresaDuenia -->"*" Entidad
+Provincia -->"*" Departamento
+Departamento -->"*" Municipio
 
-Municipio --|> Localizacion
-Departamento --|> Localizacion
-Provincia --|> Localizacion
-Pais --|> Localizacion
+Servicio -->"1" EstadoServicio
+
 @enduml

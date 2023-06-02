@@ -1,4 +1,4 @@
-package domain.Organizaciones;
+package domain;
 
 import lombok.Getter;
 import lombok.Setter;

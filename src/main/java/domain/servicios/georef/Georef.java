@@ -47,21 +47,21 @@ public class Georef {
       return response.body();
     }
 
-  public ListadoDeDepartamentos obtenerDepartamentos() throws IOException {
-    GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
+    public ListadoDeDepartamentos obtenerDepartamentos() throws IOException {
+      GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
 
-    Call<ListadoDeDepartamentos> request = georefRequests.departamentos();
-    Response<ListadoDeDepartamentos> response = request.execute();
+      Call<ListadoDeDepartamentos> request = georefRequests.departamentos();
+      Response<ListadoDeDepartamentos> response = request.execute();
 
-    return response.body();
-  }
+      return response.body();
+    }
 
-  public ListadoDeDepartamentos getDepartamento(int id) throws IOException {
-    GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
+    public ListadoDeDepartamentos getDepartamento(int id) throws IOException {
+      GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
 
-    Call<ListadoDeDepartamentos> request = georefRequests.departamentos(id);
-    Response<ListadoDeDepartamentos> response = request.execute();
+      Call<ListadoDeDepartamentos> request = georefRequests.departamentos(id);
+      Response<ListadoDeDepartamentos> response = request.execute();
 
-    return response.body();
-  }
+      return response.body();
+    }
 }

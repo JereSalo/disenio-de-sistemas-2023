@@ -2,7 +2,7 @@ package test.domain.contrasenias;
 
 import domain.contrasenias.ValidadorContrasenias;
 import domain.contrasenias.validadoresAuxiliares.ValidadorFrecuencia;
-import domain.usuarios.Usuario;
+import domain.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
