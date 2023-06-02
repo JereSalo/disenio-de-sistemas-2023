@@ -21,7 +21,10 @@ public interface GeorefRequests {
 
   @GET("municipios")
   Call<ListadoDeMunicipios> municipios();
+
+  // Creo que no debería llamarse municipios la call si vas a ponerle el id del municipio.
+  // Yo pondría en vez de id de municipio el id de la provincia en este GET.
   @GET("municipios")
-  Call<ListadoDeMunicipios> municipios(@Query("id") int id);
+  Call<ListadoDeMunicipios> municipios(@Query("provincia") int idProvincia);
 
 }

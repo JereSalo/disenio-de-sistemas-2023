@@ -4,4 +4,5 @@ import java.util.List;
 
 public class ListadoDeProvincias {
     public List<Provincia> provincias;
+    public int id;
 }

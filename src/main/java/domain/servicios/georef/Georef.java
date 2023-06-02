@@ -1,6 +1,8 @@
 package domain.servicios.georef;
 import domain.servicios.georef.entidades.Departamento;
 import domain.servicios.georef.entidades.ListadoDeDepartamentos;
+import domain.servicios.georef.entidades.ListadoDeMunicipios;
+import domain.servicios.georef.entidades.ListadoDeProvincias;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -25,12 +27,41 @@ public class Georef {
       return instancia;
     }
 
-    public ListadoDeDepartamentos getDepartamento(int id) throws IOException {
+
+
+    public ListadoDeProvincias obtenerProvincias() throws IOException {
       GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
 
-      Call<ListadoDeDepartamentos> request = georefRequests.departamentos(id);
-      Response<ListadoDeDepartamentos> response = request.execute();
+      Call<ListadoDeProvincias> request = georefRequests.provincias();
+      Response<ListadoDeProvincias> response = request.execute();
 
       return response.body();
     }
+
+    public ListadoDeMunicipios obtenerMunicipios(int id) throws IOException {
+      GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
+
+      Call<ListadoDeMunicipios> request = georefRequests.municipios(id);
+      Response<ListadoDeMunicipios> response = request.execute();
+
+      return response.body();
+    }
+
+  public ListadoDeDepartamentos obtenerDepartamentos() throws IOException {
+    GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
+
+    Call<ListadoDeDepartamentos> request = georefRequests.departamentos();
+    Response<ListadoDeDepartamentos> response = request.execute();
+
+    return response.body();
+  }
+
+  public ListadoDeDepartamentos getDepartamento(int id) throws IOException {
+    GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
+
+    Call<ListadoDeDepartamentos> request = georefRequests.departamentos(id);
+    Response<ListadoDeDepartamentos> response = request.execute();
+
+    return response.body();
+  }
 }
