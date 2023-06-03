@@ -1,5 +1,4 @@
 @startuml
-
 class Entidad{
  -nombre: String
  -localizacion: Localizacion
@@ -105,6 +104,32 @@ class Usuario{
     -password: String
 }
 
+class ListadoDeProvincias{
+    +provincias: List<Provincia>
+}
+
+class ListadoDeDepartamentos{
+    +departamentos: List<Departamento>
+}
+
+class ListadoDeMunicipios{
+    +municipios: List<Municipio>
+}
+
+class Georef{
+    +obtenerTodasLasProvincias(): ListadoDeProvincias
+    +obtenerTodosLasDepartamentos(): ListadoDeDepartamentos
+    +obtenerTodosLosMunicipios(): ListadoDeMunicipios
+}
+
+Georef ..> ListadoDeProvincias
+Georef ..> ListadoDeDepartamentos
+Georef ..> ListadoDeMunicipios
+
+ListadoDeProvincias -->"*" Provincia
+ListadoDeDepartamentos -->"*" Departamento
+ListadoDeMunicipios -->"*" Municipio
+
 Comunidad *--"*" Miembro
 Comunidad *--"*" Administrador
 
@@ -144,5 +169,4 @@ Provincia -->"*" Departamento
 Departamento -->"*" Municipio
 
 Servicio -->"1" EstadoServicio
-
 @enduml

@@ -1,5 +1,4 @@
 package domain.servicios.georef;
-import domain.servicios.georef.entidades.Departamento;
 import domain.servicios.georef.entidades.ListadoDeDepartamentos;
 import domain.servicios.georef.entidades.ListadoDeMunicipios;
 import domain.servicios.georef.entidades.ListadoDeProvincias;
@@ -27,41 +26,32 @@ public class Georef {
       return instancia;
     }
 
-
-
-    public ListadoDeProvincias obtenerProvincias() throws IOException {
+    public ListadoDeProvincias obtenerTodasLasProvincias() throws IOException {
       GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
 
-      Call<ListadoDeProvincias> request = georefRequests.provincias();
+      Call<ListadoDeProvincias> request = georefRequests.todasLasProvincias();
       Response<ListadoDeProvincias> response = request.execute();
 
       return response.body();
     }
 
-    public ListadoDeMunicipios obtenerMunicipios(int id) throws IOException {
+    public ListadoDeDepartamentos obtenerTodosLosDepartamentos() throws IOException {
+    GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
+
+
+    Call<ListadoDeDepartamentos> request = georefRequests.todosLosDepartamentos();
+    Response<ListadoDeDepartamentos> response = request.execute();
+
+    return response.body();
+  }
+
+    public ListadoDeMunicipios obtenerTodosLosMunicipios() throws IOException {
       GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
 
-      Call<ListadoDeMunicipios> request = georefRequests.municipios(id);
+      Call<ListadoDeMunicipios> request = georefRequests.todosLosMunicipios();
       Response<ListadoDeMunicipios> response = request.execute();
 
       return response.body();
     }
 
-    public ListadoDeDepartamentos obtenerDepartamentos() throws IOException {
-      GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
-
-      Call<ListadoDeDepartamentos> request = georefRequests.departamentos();
-      Response<ListadoDeDepartamentos> response = request.execute();
-
-      return response.body();
-    }
-
-    public ListadoDeDepartamentos getDepartamento(int id) throws IOException {
-      GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
-
-      Call<ListadoDeDepartamentos> request = georefRequests.departamentos(id);
-      Response<ListadoDeDepartamentos> response = request.execute();
-
-      return response.body();
-    }
 }
