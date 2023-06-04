@@ -2,6 +2,7 @@ package domain.servicios.georef.entidades;
 
 import domain.servicios.georef.entidades.Departamento;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListadoDeDepartamentos {

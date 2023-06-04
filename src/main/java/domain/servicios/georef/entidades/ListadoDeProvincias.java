@@ -1,7 +1,6 @@
 package domain.servicios.georef.entidades;
 
-import domain.servicios.georef.entidades.Provincia;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class ListadoDeProvincias {
