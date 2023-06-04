@@ -10,26 +10,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import java.io.IOException;
 
 public class Georef {
-  public static void main(String[] args) throws IOException {
-    Georef georefAPI = Georef.getInstancia();
-
-    ListadoDeMunicipios listadoDeMunicipios = georefAPI.obtenerTodosLosMunicipios();
-
-    // Deberia eliminar los que tienen id = 0, ya sea id de departamento o de municipio.
-    for (int i = 0; i < listadoDeMunicipios.localidades.size(); i++) {
-      if(listadoDeMunicipios.localidades.get(i).municipio_id == 0 || listadoDeMunicipios.localidades.get(i).departamento_id == 0){
-        listadoDeMunicipios.localidades.remove(i);
-      }
-      // Borrar municipios con id repetido de la lista. Estoy recorriendo un montón de veces la lista, pero me parece la forma más sencilla por ahora.
-      for (int j = 0; j < listadoDeMunicipios.localidades.size(); j++) {
-        if(listadoDeMunicipios.localidades.get(i).municipio_id == listadoDeMunicipios.localidades.get(j).municipio_id && i != j){
-          listadoDeMunicipios.localidades.remove(j);
-        }
-      }
-      System.out.println(listadoDeMunicipios.localidades.get(i).municipio_nombre + ") " + listadoDeMunicipios.localidades.get(i).municipio_id + " Pertenece a Departamento con ID " + listadoDeMunicipios.localidades.get(i).departamento_id);
-    }
-
-  }
 
     private static Georef instancia = null;
     private static final String urlAPI = "https://apis.datos.gob.ar/georef/api/";
@@ -66,13 +46,31 @@ public class Georef {
     return response.body();
   }
 
-    public ListadoDeMunicipios obtenerTodosLosMunicipios() throws IOException {
+  private ListadoDeMunicipios filtrarMunicipios(ListadoDeMunicipios listado){
+
+    // Deberia eliminar los que tienen id = 0, ya sea id de departamento o de municipio.
+    for (int i = 0; i < listado.localidades.size(); i++) {
+      if (listado.localidades.get(i).municipio_id == 0 || listado.localidades.get(i).departamento_id == 0) {
+        listado.localidades.remove(i);
+      }
+      // Borrar municipios con id repetido de la lista. Estoy recorriendo un montón de veces la lista, pero me parece la forma más sencilla por ahora.
+      for (int j = 0; j < listado.localidades.size(); j++) {
+        if (listado.localidades.get(i).municipio_id == listado.localidades.get(j).municipio_id && i != j) {
+          listado.localidades.remove(j);
+        }
+      }
+    }
+
+    return listado;
+  }
+
+  public ListadoDeMunicipios obtenerTodosLosMunicipios() throws IOException {
       GeorefRequests georefRequests = this.retrofit.create(GeorefRequests.class);
 
       Call<ListadoDeMunicipios> request = georefRequests.todosLosMunicipios(5000, "municipio,departamento.id", "id" ,true);
       Response<ListadoDeMunicipios> response = request.execute();
 
-      return response.body();
+      return filtrarMunicipios(response.body());
     }
 
 }
