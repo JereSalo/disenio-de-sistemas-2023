@@ -8,6 +8,7 @@ public class Departamento {
   public List<Municipio> municipios;
 
   public Departamento(String nombre, List<Municipio> municipios){
+    this.nombre = nombre;
     this.municipios = new ArrayList<Municipio>();
     this.municipios.addAll(municipios);
   }
