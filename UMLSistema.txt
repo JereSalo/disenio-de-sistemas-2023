@@ -1,7 +1,9 @@
 @startuml
 class Entidad{
  -nombre: String
- -localizacion: Localizacion
+ -provincia: Provincia
+ -departamento: Departamento
+ -municipio: Municipio
  -establecimientos: List<Establecimiento>
  -tipoEntidad : TipoEntidad
 }
@@ -12,24 +14,20 @@ enum TipoEntidad{
     ORGANIZACION
 }
 
-class Localizacion{
- +provincia: Provincia
- +departamento: Departamento
- +municipio: Municipio
-}
 
 class Municipio{
  +nombre: String
+ +departamento: Departamento
+ +provincia: Provincia
 }
 
 class Departamento{
  +nombre: String
- +municipios: List<Municipio>
+ +provincia: Provincia
 }
 
 class Provincia{
  +nombre: String
- +departamentos: List<Departamento>
 }
 
 class PrestadoraDeServicio{
@@ -47,12 +45,8 @@ class OrganismoDeControl{
 class Establecimiento{
  -nombre: String
  -tipo: TipoEstablecimiento
- -localizacion: Localizacion
+ -municipio: Municipio
  -servicios: List<Servicio>
-
-    +habilitarServicio(Servicio: servicio): void
-    +deshabilitarServicio(Servicio: servicio): void
-    +eliminarServicio(Servicio: servicio): void
 }
 
 enum TipoEstablecimiento{
@@ -93,7 +87,9 @@ class Designado{
 
 class Persona{
     -usuario: Usuario
-    -localizacionesDeInteres: List<Localizacion>
+    -provinciasDeInteres: List<Provincia>
+    -departamentosDeInteres: List<Departamento>
+    -municipiosDeInteres: List<Municipio>
     -entidadesDeInteres: List<Entidad>
     -serviciosDeInteres: List<Servicio>
 }
@@ -113,16 +109,20 @@ Administrador --> Persona
 
 Persona --> Usuario
 
-Entidad -->"1" Localizacion
+Entidad -->"1" Provincia
+Entidad -->"1" Departamento
+Entidad -->"1" Municipio
 Entidad -->"*" Establecimiento
 Entidad --> TipoEntidad
 
 
 Establecimiento --> TipoEstablecimiento
-Establecimiento -->"1" Localizacion
+Establecimiento -->"1" Municipio
 Establecimiento -->"*" Servicio
 
-Persona -->"*" Localizacion
+Persona -->"*" Provincia
+Persona -->"*" Departamento
+Persona -->"*" Municipio
 Persona -->"*" Entidad
 Persona -->"*" Servicio
 
@@ -136,12 +136,9 @@ Designado --> Usuario
 
 PrestadoraDeServicio -->"*" Entidad
 
-Localizacion --> Provincia
-Localizacion --> Departamento
-Localizacion --> Municipio
-
-Provincia -->"*" Departamento
-Departamento -->"*" Municipio
+Departamento --> Provincia
+Municipio --> Departamento
+Municipio --> Provincia
 
 Servicio -->"1" EstadoServicio
 @enduml
