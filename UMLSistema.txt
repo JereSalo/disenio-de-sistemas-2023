@@ -39,7 +39,7 @@ class PrestadoraDeServicio{
 class OrganismoDeControl{
  -usuario: Usuario
  -designado: Designado
- -prestadorasDeServicio: List<PrestadoraDeServicio>
+ -prestadorasDeServicio: List<Entidad>
 }
 
 class Establecimiento{
@@ -128,7 +128,7 @@ Persona -->"*" Servicio
 
 OrganismoDeControl --> Usuario
 OrganismoDeControl --> Designado
-OrganismoDeControl -->"*" PrestadoraDeServicio
+OrganismoDeControl -->"*" Entidad
 
 PrestadoraDeServicio --> Usuario
 PrestadoraDeServicio --> Designado
