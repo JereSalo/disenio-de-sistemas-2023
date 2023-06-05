@@ -1,9 +1,7 @@
 @startuml
 class Entidad{
  -nombre: String
- -provincia: Provincia
- -departamento: Departamento
- -municipio: Municipio
+ -localizacion: Localizacion
  -establecimientos: List<Establecimiento>
  -tipoEntidad : TipoEntidad
 }
@@ -39,13 +37,13 @@ class PrestadoraDeServicio{
 class OrganismoDeControl{
  -usuario: Usuario
  -designado: Designado
- -prestadorasDeServicio: List<Entidad>
+ -entidades: List<Entidad>
 }
 
 class Establecimiento{
  -nombre: String
  -tipo: TipoEstablecimiento
- -municipio: Municipio
+ -localizacion: Localizacion
  -servicios: List<Servicio>
 }
 
@@ -87,10 +85,7 @@ class Designado{
 
 class Persona{
     -usuario: Usuario
-    -provinciasDeInteres: List<Provincia>
-    -departamentosDeInteres: List<Departamento>
-    -municipiosDeInteres: List<Municipio>
-    -entidadesDeInteres: List<Entidad>
+    -localizacionesDeInteres: List<Localizacion>
     -serviciosDeInteres: List<Servicio>
 }
 
@@ -100,6 +95,16 @@ class Usuario{
     -password: String
 }
 
+class Localizacion{
+ provincia: Provincia
+ departamento: Departamento
+ municipio: Municipio
+}
+
+Localizacion --> Provincia
+Localizacion --> Departamento
+Localizacion --> Municipio
+
 
 Comunidad *--"*" Miembro
 Comunidad *--"*" Administrador
@@ -108,23 +113,19 @@ Miembro --> Persona
 Administrador --> Persona
 
 Persona --> Usuario
+Persona -->"*" Localizacion
+Persona -->"*" Servicio
 
-Entidad -->"1" Provincia
-Entidad -->"1" Departamento
-Entidad -->"1" Municipio
+
+Entidad -->"1" Localizacion
 Entidad -->"*" Establecimiento
 Entidad --> TipoEntidad
 
 
 Establecimiento --> TipoEstablecimiento
-Establecimiento -->"1" Municipio
+Establecimiento -->"1" Localizacion
 Establecimiento -->"*" Servicio
 
-Persona -->"*" Provincia
-Persona -->"*" Departamento
-Persona -->"*" Municipio
-Persona -->"*" Entidad
-Persona -->"*" Servicio
 
 OrganismoDeControl --> Usuario
 OrganismoDeControl --> Designado
