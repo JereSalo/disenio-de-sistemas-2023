@@ -101,6 +101,17 @@ class Localizacion{
  municipio: Municipio
 }
 
+abstract class GestorEntidades{
+    -usuario: Usuario
+    -designado: Designado
+    -entidades: List<Entidades>
+}
+
+enum TipoGestor{
+ Organismo
+ Prestadora
+}
+
 Localizacion --> Provincia
 Localizacion --> Departamento
 Localizacion --> Municipio
@@ -142,4 +153,8 @@ Municipio --> Departamento
 Municipio --> Provincia
 
 Servicio -->"1" EstadoServicio
+
+GestorEntidades <|-- PrestadoraDeServicio
+GestorEntidades <|-- OrganismoDeControl
+
 @enduml

@@ -1,5 +1,6 @@
-nombre;tipo
-Trenes Argentinos;prestadora
-CNRT;organismo
-Santander Rio;prestadora
-Banco Central;organismo
+tipo;nombre;
+1;Trenes Argentinos
+0;CNRT
+1;Santander Rio
+0;Banco Central
+
