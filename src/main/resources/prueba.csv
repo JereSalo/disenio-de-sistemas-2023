@@ -1,6 +1,6 @@
 tipo;nombre;
-1;Trenes Argentinos
-0;CNRT
-1;Santander Rio
-0;Banco Central
+Prestadora;Trenes Argentinos
+Organismo;CNRT
+Prestadora;Santander Rio
+Organismo;Banco Central
 

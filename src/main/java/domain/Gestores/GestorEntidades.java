@@ -8,17 +8,25 @@ import lombok.Setter;
 
 import java.util.List;
 
-public abstract class GestorEntidades {
+public class GestorEntidades {
 
     @Getter @Setter
-    protected String nombre;
+    private String nombre;
 
     @Getter @Setter
-    protected Usuario usuario;
+    private Usuario usuario;
 
     @Getter @Setter
-    protected Designado designado;
+    private Designado designado;
 
     @Getter @Setter
-    protected List<Entidad> entidades;
+    private List<Entidad> entidades;
+
+    @Getter @Setter
+    private TipoGestor tipo;
+
+    public GestorEntidades(String nombre, TipoGestor tipo) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+    }
 }
