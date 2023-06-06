@@ -1,17 +1,24 @@
 package domain.servicios.georef;
 
-import domain.servicios.georef.entidades.ListadoDeDepartamentos;
-import domain.servicios.georef.entidades.ListadoDeProvincias;
-import domain.servicios.georef.entidades.ListadoDeMunicipios;
+import domain.servicios.georef.entidades.*;
 
 import java.io.IOException;
 
 public class EjemploDeUso {
   public static void main(String[] args) throws IOException {
+    /*
+      mostrarProvincias();
+      mostrarDepartamentos();
+      mostrarMunicipios();
+    */
 
-    mostrarProvincias();
-    mostrarDepartamentos();
-    mostrarMunicipios();
+    SincronizadorLocalizaciones sincronizadorLocalizaciones = SincronizadorLocalizaciones.getInstancia();
+
+    sincronizadorLocalizaciones.sincronizar();
+
+    for (int i = 0; i < sincronizadorLocalizaciones.getProvincias().size(); i++){
+      System.out.println("Nombre: " + sincronizadorLocalizaciones.getProvincias().get(i).getNombre());
+    }
 
   }
 

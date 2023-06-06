@@ -1,6 +1,6 @@
 package domain.servicios.georef.entidades;
 
-public class Provincia {
+public class ProvinciaAPI {
     public int id;
     public String nombre;
 }

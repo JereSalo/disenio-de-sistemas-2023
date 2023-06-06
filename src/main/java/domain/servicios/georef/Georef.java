@@ -1,7 +1,5 @@
 package domain.servicios.georef;
-import domain.servicios.georef.entidades.ListadoDeDepartamentos;
-import domain.servicios.georef.entidades.ListadoDeMunicipios;
-import domain.servicios.georef.entidades.ListadoDeProvincias;
+import domain.servicios.georef.entidades.*;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -33,6 +31,8 @@ public class Georef {
       Call<ListadoDeProvincias> request = georefRequests.todasLasProvincias("id,nombre", "id");
       Response<ListadoDeProvincias> response = request.execute();
 
+      comprobarErrorResponse(response);
+
       return response.body();
     }
 
@@ -42,6 +42,8 @@ public class Georef {
 
     Call<ListadoDeDepartamentos> request = georefRequests.todosLosDepartamentos(1000,"id,nombre,provincia.id", "id", true);
     Response<ListadoDeDepartamentos> response = request.execute();
+
+    comprobarErrorResponse(response);
 
     return response.body();
   }
@@ -70,7 +72,14 @@ public class Georef {
       Call<ListadoDeMunicipios> request = georefRequests.todosLosMunicipios(5000, "municipio,departamento.id", "id" ,true);
       Response<ListadoDeMunicipios> response = request.execute();
 
+      comprobarErrorResponse(response);
+
       return filtrarMunicipios(response.body());
     }
 
+    private void comprobarErrorResponse(Response response){
+      if(!response.isSuccessful()){
+        System.out.println("No anduvo bien la request. Seguramente sea que le hicimos muchas requests juntas");
+      }
+    }
 }

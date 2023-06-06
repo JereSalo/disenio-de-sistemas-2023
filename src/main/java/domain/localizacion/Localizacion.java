@@ -1,9 +1,14 @@
 package domain.localizacion;
 
+import lombok.Getter;
+
 public class Localizacion {
-  public Municipio municipio;
-  public Departamento departamento;
-  public Provincia provincia;
+  @Getter
+  private Municipio municipio;
+  @Getter
+  private Departamento departamento;
+  @Getter
+  private Provincia provincia;
 
   public Localizacion (Municipio municipio, Departamento departamento, Provincia provincia) {
     this.municipio = municipio;

@@ -1,11 +1,18 @@
 package domain.localizacion;
 
-public class Municipio {
-  public String nombre;
-  public Departamento departamento;
-  public Provincia provincia;
+import lombok.Getter;
 
-  public Municipio(String nombre){
+public class Municipio {
+  @Getter
+  private int id;
+  @Getter
+  private String nombre;
+  @Getter
+  private Departamento departamento;
+
+  public Municipio(int id, String nombre, Departamento departamento) {
     this.nombre = nombre;
+    this.id = id;
+    this.departamento = departamento;
   }
 }
