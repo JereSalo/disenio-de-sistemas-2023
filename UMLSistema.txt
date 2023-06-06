@@ -32,7 +32,7 @@ class Establecimiento{
  -nombre: String
  -tipo: TipoEstablecimiento
  -localizacion: Localizacion
- -servicios: List<Servicio>
+ -servicios: List<PrestacionServicio>
 }
 
 enum TipoEstablecimiento{
@@ -42,14 +42,9 @@ enum TipoEstablecimiento{
 
 class Servicio{
     -descripcion: String
-    -estado: EstadoServicio
 }
 
-enum EstadoServicio{
-    DISPONIBLE
-    NO_DISPONIBLE
-    MANTENIMIENTO
-}
+
 
 class Comunidad{
     -nombre: String
@@ -67,7 +62,7 @@ class Miembro{
 }
 
 class Designado{
- -usuario: Usuario
+    -usuario: Usuario
 }
 
 
@@ -75,6 +70,18 @@ class Persona{
     -usuario: Usuario
     -localizacionesDeInteres: List<Localizacion>
     -serviciosDeInteres: List<Servicio>
+    -entidadesDeInteres: List<Entidad>
+}
+
+class PrestacionServicio{
+    -servicio: Servicio
+    -estado: EstadoServicio
+}
+
+enum EstadoServicio{
+    DISPONIBLE
+    NO_DISPONIBLE
+    MANTENIMIENTO
 }
 
 
@@ -89,16 +96,16 @@ class Localizacion{
  municipio: Municipio
 }
 
-class GestorEntidades{
-    -usuario: Usuario
-    -designado: Designado
-    -entidades: List<Entidades>
-    -tipo : TipoGestor
+class PrestadoraDeServicio{
+ -usuario: Usuario
+ -designado: Designado
+ -entidades: List<Entidad>
 }
 
-enum TipoGestor{
- Organismo
- Prestadora
+class OrganismoDeControl{
+ -usuario: Usuario
+ -designado: Designado
+ -entidades: List<Entidad>
 }
 
 class LectorCSV{
@@ -113,9 +120,9 @@ class LectorCSV{
 class ParserDatos{
     -lector: LectorCSV
 
-    -parsearArchivo(lineas: List<String[]>): List<GestorEntidades>
-    -parsearLinea(linea: String[]): GestorEntidades
-    +getDatos(path: String, separator: Character): List<GestorEntidades>
+    -parsearArchivo(lineas: List<String[]>): List<?>
+    -parsearLinea(linea: String[]): ?
+    +getDatos(path: String, separator: Character): List<?>
 }
 
 Localizacion --> Provincia
@@ -132,33 +139,35 @@ Administrador --> Persona
 Persona --> Usuario
 Persona -->"*" Localizacion
 Persona -->"*" Servicio
-
+Persona -->"*" Entidad
 
 Entidad -->"1" Localizacion
 Entidad -->"*" Establecimiento
 Entidad --> TipoEntidad
 
-
 Establecimiento --> TipoEstablecimiento
 Establecimiento -->"1" Localizacion
-Establecimiento -->"*" Servicio
+Establecimiento -->"*" PrestacionServicio
 
-GestorEntidades --> Usuario
-GestorEntidades --> Designado
-Designado --> Usuario
+PrestadoraDeServicio --> Usuario
+PrestadoraDeServicio --> Designado
+PrestadoraDeServicio -->"*" Entidad
 
-GestorEntidades -->"*" Entidad
-GestorEntidades --> TipoGestor
-
+OrganismoDeControl --> Usuario
+OrganismoDeControl --> Designado
+OrganismoDeControl -->"*" Entidad
 
 Departamento --> Provincia
 Municipio --> Departamento
 Municipio --> Provincia
 
-Servicio -->"1" EstadoServicio
+Designado --> Usuario
+
+PrestacionServicio -->"1" EstadoServicio
+PrestacionServicio -->"1" Servicio
 
 ParserDatos --> LectorCSV
-ParserDatos ..> GestorEntidades
-ParserDatos ..> TipoGestor
+ParserDatos ..> PrestadoraDeServicio
+ParserDatos ..> OrganismoDeControl
 
 @enduml
