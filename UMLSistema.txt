@@ -112,6 +112,22 @@ enum TipoGestor{
  Prestadora
 }
 
+class LectorCSV{
+    -path: String
+    -separator: Character
+
+    +leerArchivo(): List<String>
+    +abrirArchivo(): FileReader
+
+}
+
+class ParserDatos{
+    -lector: LectorCSV
+
+    +parsearLinea(linea: String[]): GestorEntidades
+    +getDatos(): List<GestorEntidades>
+}
+
 Localizacion --> Provincia
 Localizacion --> Departamento
 Localizacion --> Municipio
@@ -156,5 +172,9 @@ Servicio -->"1" EstadoServicio
 
 GestorEntidades <|-- PrestadoraDeServicio
 GestorEntidades <|-- OrganismoDeControl
+
+ParserDatos --> LectorCSV
+ParserDatos ..> GestorEntidades
+ParserDatos ..> TipoGestor
 
 @enduml
