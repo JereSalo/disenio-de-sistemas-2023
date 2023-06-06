@@ -28,18 +28,6 @@ class Provincia{
  +nombre: String
 }
 
-class PrestadoraDeServicio{
- -usuario: Usuario
- -designado: Designado
- -entidades: List<Entidad>
-}
-
-class OrganismoDeControl{
- -usuario: Usuario
- -designado: Designado
- -entidades: List<Entidad>
-}
-
 class Establecimiento{
  -nombre: String
  -tipo: TipoEstablecimiento
@@ -101,10 +89,11 @@ class Localizacion{
  municipio: Municipio
 }
 
-abstract class GestorEntidades{
+class GestorEntidades{
     -usuario: Usuario
     -designado: Designado
     -entidades: List<Entidades>
+    -tipo : TipoGestor
 }
 
 enum TipoGestor{
@@ -124,8 +113,9 @@ class LectorCSV{
 class ParserDatos{
     -lector: LectorCSV
 
-    +parsearLinea(linea: String[]): GestorEntidades
-    +getDatos(): List<GestorEntidades>
+    -parsearArchivo(lineas: List<String[]>): List<GestorEntidades>
+    -parsearLinea(linea: String[]): GestorEntidades
+    +getDatos(path: String, separator: Character): List<GestorEntidades>
 }
 
 Localizacion --> Provincia
@@ -153,25 +143,19 @@ Establecimiento --> TipoEstablecimiento
 Establecimiento -->"1" Localizacion
 Establecimiento -->"*" Servicio
 
-
-OrganismoDeControl --> Usuario
-OrganismoDeControl --> Designado
-OrganismoDeControl -->"*" Entidad
-
-PrestadoraDeServicio --> Usuario
-PrestadoraDeServicio --> Designado
+GestorEntidades --> Usuario
+GestorEntidades --> Designado
 Designado --> Usuario
 
-PrestadoraDeServicio -->"*" Entidad
+GestorEntidades -->"*" Entidad
+GestorEntidades --> TipoGestor
+
 
 Departamento --> Provincia
 Municipio --> Departamento
 Municipio --> Provincia
 
 Servicio -->"1" EstadoServicio
-
-GestorEntidades <|-- PrestadoraDeServicio
-GestorEntidades <|-- OrganismoDeControl
 
 ParserDatos --> LectorCSV
 ParserDatos ..> GestorEntidades
