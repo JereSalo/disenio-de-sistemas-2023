@@ -11,17 +11,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SincronizadorLocalizaciones {
-
   private static SincronizadorLocalizaciones instancia = null;
 
   @Getter
-  private static List<Provincia> provincias = new ArrayList<>();
+  final private static List<Provincia> provincias = new ArrayList<>();
   @Getter
-  private static List<Departamento> departamentos = new ArrayList<>();
+  final private static List<Departamento> departamentos = new ArrayList<>();
   @Getter
-  private static List<Municipio> municipios = new ArrayList<>();
+  final private static List<Municipio> municipios = new ArrayList<>();
 
-  private static Georef georefAPI = Georef.getInstancia();
+  final private static Georef georefAPI = Georef.getInstancia();
   public static SincronizadorLocalizaciones getInstancia(){
     if (instancia == null){
       instancia = new SincronizadorLocalizaciones();
@@ -33,9 +32,7 @@ public class SincronizadorLocalizaciones {
   public void sincronizar() throws IOException {
 
     sincronizarProvincias();
-
     sincronizarDepartamentos();
-
     sincronizarMunicipios();
   }
 

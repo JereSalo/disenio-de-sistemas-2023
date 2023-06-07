@@ -16,8 +16,17 @@ public class EjemploDeUso {
 
     sincronizadorLocalizaciones.sincronizar();
 
+
     for (int i = 0; i < sincronizadorLocalizaciones.getProvincias().size(); i++){
-      System.out.println("Nombre: " + sincronizadorLocalizaciones.getProvincias().get(i).getNombre());
+      System.out.println("Nombre Provincia: " + sincronizadorLocalizaciones.getProvincias().get(i).getNombre());
+    }
+
+    for (int i = 0; i < sincronizadorLocalizaciones.getDepartamentos().size(); i++){
+      System.out.println("Nombre Departamento: " + sincronizadorLocalizaciones.getDepartamentos().get(i).getNombre());
+    }
+
+    for (int i = 0; i < sincronizadorLocalizaciones.getMunicipios().size(); i++){
+      System.out.println("Nombre Municipio: " + sincronizadorLocalizaciones.getMunicipios().get(i).getNombre());
     }
 
   }
