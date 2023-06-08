@@ -16,7 +16,6 @@ public class EjemploDeUso {
 
     sincronizadorLocalizaciones.sincronizar();
 
-
     for (int i = 0; i < sincronizadorLocalizaciones.getProvincias().size(); i++){
       System.out.println("Nombre Provincia: " + sincronizadorLocalizaciones.getProvincias().get(i).getNombre());
     }

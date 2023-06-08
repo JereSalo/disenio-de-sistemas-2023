@@ -60,12 +60,13 @@ public class Georef {
 
     private Response ejecutarRequest(Call request) throws IOException {
       for(int i = 0; i < intentosMaximos; i++){
-        Response response = request.execute();
+        Response response = request.clone().execute();
         if(response.isSuccessful()){
           return response;
         }
         System.out.println("Intento " + i + " fallido.");
       }
+
 
       throw new IOException("No se pudo obtener la respuesta deseada después de " + intentosMaximos + " intentos.");
     }
