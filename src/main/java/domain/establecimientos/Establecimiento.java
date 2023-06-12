@@ -1,4 +1,6 @@
-package domain;
+package domain.establecimientos;
+
+import domain.servicios.Servicio;
 
 import java.util.ArrayList;
 import java.util.List;

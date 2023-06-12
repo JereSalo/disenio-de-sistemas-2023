@@ -1,4 +1,4 @@
-package domain;
+package domain.usuarios;
 
 import lombok.Getter;
 import lombok.Setter;

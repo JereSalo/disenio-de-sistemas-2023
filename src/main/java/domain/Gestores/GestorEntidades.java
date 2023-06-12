@@ -1,8 +1,8 @@
 package domain.Gestores;
 
-import domain.Designado;
-import domain.Entidad;
-import domain.Usuario;
+import domain.usuarios.Designado;
+import domain.entidades.Entidad;
+import domain.usuarios.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 

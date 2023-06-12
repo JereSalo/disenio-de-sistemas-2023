@@ -1,6 +1,8 @@
-package domain.servicios.georef;
+package domain.georef;
 
-import domain.servicios.georef.entidades.*;
+import domain.georef.entidades.ListadoDeDepartamentos;
+import domain.georef.entidades.ListadoDeMunicipios;
+import domain.georef.entidades.ListadoDeProvincias;
 
 import java.io.IOException;
 

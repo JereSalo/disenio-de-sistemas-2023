@@ -1,9 +1,11 @@
-package domain.servicios.georef;
+package domain.georef;
 
+import domain.georef.entidades.ListadoDeDepartamentos;
+import domain.georef.entidades.ListadoDeMunicipios;
+import domain.georef.entidades.ListadoDeProvincias;
 import domain.localizacion.Departamento;
 import domain.localizacion.Municipio;
 import domain.localizacion.Provincia;
-import domain.servicios.georef.entidades.*;
 import lombok.Getter;
 
 import java.io.IOException;

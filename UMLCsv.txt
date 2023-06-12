@@ -1,0 +1,37 @@
+@startuml
+
+class ParserDatos{
+    -lector: LectorCSV
+
+    -parsearArchivo(lineas: List<String[]>): List<?>
+    -parsearLinea(linea: String[]): ?
+    +getDatos(path: String, separator: Character): List<?>
+}
+
+class LectorCSV{
+    -path: String
+    -separator: Character
+
+    +leerArchivo(): List<String>
+    +abrirArchivo(): FileReader
+}
+
+class PrestadoraDeServicio{
+ -usuario: Usuario
+ -designado: Designado
+ -entidades: List<Entidad>
+}
+
+class OrganismoDeControl{
+ -usuario: Usuario
+ -designado: Designado
+ -entidades: List<Entidad>
+}
+
+ParserDatos --> LectorCSV
+ParserDatos ..> PrestadoraDeServicio
+ParserDatos ..> OrganismoDeControl
+
+
+
+@enduml

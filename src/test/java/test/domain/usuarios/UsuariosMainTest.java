@@ -1,6 +1,6 @@
 package test.domain.usuarios;
 
-import domain.Usuario;
+import domain.usuarios.Usuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

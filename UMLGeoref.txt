@@ -1,0 +1,77 @@
+@startuml
+
+class ListadoDeProvincias{
+    +provincias: List<ProvinciaAPI>
+}
+
+class ListadoDeDepartamentos{
+    +departamentos: List<DepartamentoAPI>
+}
+
+class ListadoDeMunicipios{
+    +localidades: List<MunicipioAPI>
+}
+
+class ProvinciaAPI{
+ +id: Int
+ +nombre: String
+}
+
+class DepartamentoAPI{
+ +id: int
+ +nombre: String
+ +provincia_id: int
+}
+
+class MunicipioAPI{
+ +municipio_id: int
+ +municipio_nombre: String
+ +departamento_id: int
+}
+
+class Georef{
+    +obtenerTodasLasProvincias(): ListadoDeProvincias
+    +obtenerTodosLasDepartamentos(): ListadoDeDepartamentos
+    +obtenerTodosLosMunicipios(): ListadoDeMunicipios
+}
+
+class SincronizadorLocalizaciones{
+    -georefAPI : Georef
+    +provincias: List<Provincias>
+    +departamentos: List<Departamentos>
+    +municipios: List<Municipio>
+
+    +sincronizar()
+}
+
+class Municipio{
+ +nombre: String
+ +id: int
+ +departamento: Departamento
+}
+
+class Departamento{
+ +nombre: String
+ +id: int
+ +provincia: Provincia
+}
+
+class Provincia{
+ +nombre: String
+ +id: int
+}
+
+Georef --> ListadoDeProvincias
+Georef --> ListadoDeDepartamentos
+Georef --> ListadoDeMunicipios
+
+ListadoDeProvincias -->"*" ProvinciaAPI
+ListadoDeDepartamentos -->"*" DepartamentoAPI
+ListadoDeMunicipios -->"*" MunicipioAPI
+
+SincronizadorLocalizaciones --> Georef
+SincronizadorLocalizaciones -->"*" Provincia
+SincronizadorLocalizaciones -->"*" Departamento
+SincronizadorLocalizaciones -->"*" Municipio
+
+@enduml

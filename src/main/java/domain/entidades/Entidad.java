@@ -1,5 +1,6 @@
-package domain;
+package domain.entidades;
 
+import domain.establecimientos.Establecimiento;
 import domain.localizacion.Departamento;
 import domain.localizacion.Municipio;
 import domain.localizacion.Provincia;

@@ -1,11 +1,11 @@
-package domain.servicios.georef;
+package domain.georef;
 
-import domain.servicios.georef.entidades.*;
+import domain.georef.entidades.ListadoDeDepartamentos;
+import domain.georef.entidades.ListadoDeMunicipios;
+import domain.georef.entidades.ListadoDeProvincias;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-
-import java.util.List;
 
 public interface GeorefRequests {
   @GET("provincias")

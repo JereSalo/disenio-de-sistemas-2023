@@ -1,4 +1,4 @@
-package domain.servicios.georef.entidades;
+package domain.georef.entidades;
 
 public class MunicipioAPI {
   public int municipio_id;

@@ -1,4 +1,4 @@
-package domain;
+package domain.establecimientos;
 
 public enum TipoEstablecimiento {
   ESTACION,
