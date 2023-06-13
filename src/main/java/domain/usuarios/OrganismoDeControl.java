@@ -8,15 +8,15 @@ import java.util.List;
 
 public class OrganismoDeControl {
   @Setter @Getter
+  private String nombre;
+  @Setter @Getter
   private Usuario usuario;
   @Setter @Getter
   private Designado designado;
   @Setter @Getter
   private List<Entidad> entidades;
 
-  public OrganismoDeControl(Usuario usuario, Designado designado, List<Entidad> entidades) {
-    this.usuario = usuario;
-    this.designado = designado;
-    this.entidades = entidades;
+  public OrganismoDeControl(String nombre) {
+    this.nombre = nombre;
   }
 }
