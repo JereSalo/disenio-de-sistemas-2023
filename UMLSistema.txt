@@ -52,6 +52,10 @@ class Comunidad{
     -nombre: String
     -listaAdministradores: Administrador
     -listaMiembros: Miembro
+    -incidentes: List<Incidente>
+
+    +abrirIncidente(): void
+    +cerrarIncidente(): void
 }
 
 class Administrador{
@@ -73,6 +77,10 @@ class Persona{
     -localizacionesDeInteres: List<Localizacion>
     -serviciosDeInteres: List<Servicio>
     -entidadesDeInteres: List<Entidad>
+    -notificador: Notificador
+    -formaNotificacion: FormaNotificacion
+
+    +notificarIncidente(Incidente, ...)
 }
 
 class PrestacionServicio{
@@ -110,6 +118,66 @@ class OrganismoDeControl{
  -entidades: List<Entidad>
 }
 
+interface FormaNotificacion{
+ +recibirIncidente(Incidente)
+ +notificar(Incidente, ...)
+}
+
+class CuandoSuceden{
+ -persona: Persona
+ +recibirIncidente(Incidente): void
+ +notificar(Incidente, ...): void
+}
+
+class SinApuros{
+ -listaIncidentes: List<Incidente>
+ -listaHorarios: List<LocalTime>
+ -persona: Persona
+ +filtrarIncidentes(): List<Incidente>
+ +notificar(Incidente, ...)
+}
+
+class Incidente{
+ +prestacionDeServicio: PrestacionDeServicio
+ +establecimiento: Establecimiento
+ +creador: Creador
+ +fechaDeCreacion: date
+ +fechaDeCierre: date
+ +observaciones: String
+
+ +abierto(): bool
+}
+
+class RepositorioSinApuros{
+ +todosLosSinApuros: List<SinApuros>
+}
+
+interface Notificador{
+ -enviar(Persona, notificacion): void
+ -armarNotificacion(Incidente, ...) : notificacion
+ +notificarIncidente(Incidente, ...) : void
+}
+
+class WhatsApp{
+
+}
+
+class Mail{
+
+}
+
+CuandoSuceden ..|> FormaNotificacion
+CuandoSuceden -->"1" Persona
+
+SinApuros ..|> FormaNotificacion
+SinApuros -->"*" Incidente
+SinApuros -->"1" Persona
+
+WhatsApp ..|> Notificador
+
+Mail ..|> Notificador
+
+RepositorioSinApuros -->"*" SinApuros
 
 Localizacion --> Provincia
 Localizacion --> Departamento
@@ -118,6 +186,7 @@ Localizacion --> Municipio
 
 Comunidad *--"*" Miembro
 Comunidad *--"*" Administrador
+Comunidad -->"*" Incidente
 
 Miembro --> Persona
 Administrador --> Persona
@@ -126,6 +195,8 @@ Persona --> Usuario
 Persona -->"*" Localizacion
 Persona -->"*" Servicio
 Persona -->"*" Entidad
+Persona -->"1" FormaNotificacion
+Persona -->"1" Notificador
 
 Entidad -->"1" Localizacion
 Entidad -->"*" Establecimiento
