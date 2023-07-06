@@ -140,7 +140,7 @@ class SinApuros{
 class Incidente{
  +prestacionDeServicio: PrestacionDeServicio
  +establecimiento: Establecimiento
- +creador: Creador
+ +creador: Persona
  +fechaDeCreacion: date
  +fechaDeCierre: date
  +observaciones: String
@@ -178,6 +178,10 @@ WhatsApp ..|> Notificador
 Mail ..|> Notificador
 
 RepositorioSinApuros -->"*" SinApuros
+
+Incidente -->"1" PrestacionServicio
+Incidente -->"1" Establecimiento
+Incidente -->"1" Persona
 
 Localizacion --> Provincia
 Localizacion --> Departamento
