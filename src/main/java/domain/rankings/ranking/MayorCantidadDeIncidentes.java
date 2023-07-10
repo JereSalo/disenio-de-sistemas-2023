@@ -20,5 +20,6 @@ public class MayorCantidadDeIncidentes implements Ranking{
   private float cantidadDeIncidentes (Entidad entidad){
 
   }
-  }
+
 }
+

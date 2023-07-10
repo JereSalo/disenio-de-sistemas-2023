@@ -1,5 +1,6 @@
 package domain.rankings.valorRanking;
 
 public interface ValorRanking {
-  public Object getSujeto();
+  public String getNombreSujeto();
+  public float getValor();
 }

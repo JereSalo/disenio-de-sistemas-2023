@@ -1,6 +1,7 @@
 package domain.rankings;
 
 import domain.entidades.Entidad;
+import domain.incidentes.Incidente;
 
 import java.util.List;
 

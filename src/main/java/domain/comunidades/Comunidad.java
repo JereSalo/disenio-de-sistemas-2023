@@ -1,5 +1,6 @@
 package domain.comunidades;
 
+import domain.servicios.PrestacionServicio;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,4 +13,6 @@ public class Comunidad {
   private List<Administrador> administradores;
   @Setter @Getter
   private List<Miembro> miembros;
+  @Setter @Getter
+  private List<PrestacionServicio> servicios;
 }

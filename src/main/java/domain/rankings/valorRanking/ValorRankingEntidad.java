@@ -1,9 +1,12 @@
 package domain.rankings.valorRanking;
 
 import domain.entidades.Entidad;
+import lombok.Getter;
+import lombok.Setter;
 
 public class ValorRankingEntidad implements ValorRanking{
   private Entidad entidad;
+  @Getter @Setter
   public float valor;
 
   public ValorRankingEntidad(Entidad entidad, float valor) {
@@ -11,7 +14,7 @@ public class ValorRankingEntidad implements ValorRanking{
     this.valor = valor;
   }
 
-  public Object getSujeto(){
-    return entidad;
+  public String getNombreSujeto(){
+    return this.entidad.getNombre();
   }
 }

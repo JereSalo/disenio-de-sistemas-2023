@@ -14,9 +14,6 @@ public class ParserDatos {
 
     private OrganismoDeControl parsearLineaArchivoOrg(String[] linea) {
         String nombre = linea[0];
-
-        //System.out.println("Nombre: " + nombre + ", tipo: " + tipo);
-
         return new OrganismoDeControl(nombre);
     }
 
@@ -33,9 +30,6 @@ public class ParserDatos {
 
     private PrestadoraDeServicio parsearLineaArchivoPrest(String[] linea) {
         String nombre = linea[0];
-
-        //System.out.println("Nombre: " + nombre + ", tipo: " + tipo);
-
         return new PrestadoraDeServicio(nombre);
     }
 
