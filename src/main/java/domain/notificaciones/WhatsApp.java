@@ -1,5 +1,5 @@
 package domain.notificaciones;
 
-public class WhatsApp extends Notificador{
-
-}
+//public class WhatsApp extends Notificador{
+//
+//}

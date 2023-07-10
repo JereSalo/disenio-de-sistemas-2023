@@ -2,7 +2,10 @@ package domain.notificaciones;
 
 import domain.incidentes.Incidente;
 import domain.params.RecepcionIncidenteParams;
+import domain.repositorios.RepositorioSinApuros;
 import domain.usuarios.Persona;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -13,13 +16,19 @@ import java.util.List;
 
 public class SinApuros implements FormaNotificacion {
   private LinkedHashSet<Incidente> incidentesANotificar;
-  private List<LocalTime> horarios;
+  @Getter private List<LocalTime> horarios;
   private Persona persona;
 
-  public SinApuros(Persona persona) {
+  private SinApuros(Persona persona) {
     this.persona = persona;
     this.incidentesANotificar = new LinkedHashSet<>();
     this.horarios = new ArrayList<>();
+  }
+
+  public static SinApuros crear(Persona persona) {
+    SinApuros sinApuros = new SinApuros(persona);
+    RepositorioSinApuros.agregarSinApuros(sinApuros);
+    return sinApuros;
   }
 
   public void recibirIncidente(RecepcionIncidenteParams params) {
@@ -29,6 +38,8 @@ public class SinApuros implements FormaNotificacion {
 
   public void notificarIncidentes() {
     Incidente[] incidentesFiltrados = filtrarIncidentes();
+    if(incidentesFiltrados.length == 0)
+      return;
 
     this.persona.notificarIncidente(incidentesFiltrados);
     incidentesANotificar.clear();
