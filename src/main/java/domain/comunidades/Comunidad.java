@@ -25,16 +25,18 @@ public class Comunidad {
   public void abrirIncidente(AperturaIncidenteParams params) {
     Incidente incidente = new Incidente(params);
     incidentes.add(incidente);
-    for(Miembro miembro : miembros) {
-      miembro.recibirIncidente(incidente);
-    }
+    informarIncidente(incidente);
   }
 
   public void cerrarIncidente(Incidente incidente) {
     incidente.cerrar();
-    for(Miembro miembro : miembros) {
-      miembro.recibirIncidente(incidente);
-    }
+    informarIncidente(incidente);
+  }
+
+  private void informarIncidente(Incidente incidente) {
+    miembros.stream()
+        .filter(miembro -> miembro != incidente.getCreador())
+        .forEach(miembro -> miembro.recibirIncidente(incidente));
   }
 
 }

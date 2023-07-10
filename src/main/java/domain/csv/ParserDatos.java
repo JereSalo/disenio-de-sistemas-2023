@@ -1,6 +1,5 @@
 package domain.csv;
 
-import domain.Gestores.GestorEntidades;
 import domain.Gestores.TipoGestor;
 import domain.usuarios.OrganismoDeControl;
 import domain.usuarios.PrestadoraDeServicio;

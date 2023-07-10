@@ -7,9 +7,8 @@ import domain.params.AperturaIncidenteParams;
 import domain.servicios.PrestacionServicio;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang3.ObjectUtils;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Incidente {
   @Setter @Getter
@@ -25,10 +24,10 @@ public class Incidente {
   private Miembro creador;
 
   @Getter @Setter
-  private LocalDate fechaDeCreacion;
+  private LocalDateTime fechaDeCreacion;
 
   @Getter @Setter
-  private LocalDate fechaDeCierre;
+  private LocalDateTime fechaDeCierre;
 
   @Getter @Setter
   private String observaciones;
@@ -38,12 +37,16 @@ public class Incidente {
     this.establecimiento = params.getEstablecimiento();
     this.prestacionDeServicio = params.getPrestacionDeServicio();
     this.creador = params.getCreador();
-    this.fechaDeCreacion = LocalDate.now();
+    this.fechaDeCreacion = LocalDateTime.now();
     this.fechaDeCierre = null;
     this.observaciones = params.getObservaciones();
   }
 
   public void cerrar() {
-    this.fechaDeCierre = LocalDate.now();
+    this.fechaDeCierre = LocalDateTime.now();
+  }
+
+  public boolean abierto(){
+    return this.fechaDeCierre == null;
   }
 }
