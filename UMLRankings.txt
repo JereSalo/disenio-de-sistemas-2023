@@ -4,15 +4,15 @@ interface Ranking {
     +calcularRanking(RepoDeSujetosRanking): List<ValorRanking>
 }
 
-class PromedioTiempoCierre {
+class MayorPromedioTiempoCierre {
     +calcularRanking(RepoDeSujetosRanking): List<ValorRanking>
 }
 
-class CantidadDeIncidentes {
+class MayorCantidadDeIncidentes {
     +calcularRanking(RepoDeSujetosRanking): List<ValorRanking>
 }
 
-class GradoDelImpacto {
+class MayorGradoDeImpacto {
     +calcularRanking(RepoDeSujetosRanking): List<ValorRanking>
 }
 
@@ -40,9 +40,9 @@ class CalculadorRanking {
 }
 
 class RepoDeResultadosRankings {
-    +promedioTiempoCierre: List<ValorRanking>
-    +cantidadDeIncidentes: List<ValorRanking>
-    +gradoDelImpacto: List<ValorRanking>
+    +mayorPromedioTiempoCierre: List<ValorRanking>
+    +mayorCantidadDeIncidentes: List<ValorRanking>
+    +mayorGradoDeImpacto: List<ValorRanking>
 }
 
 class RepoDeSujetosRanking{
@@ -53,9 +53,9 @@ class RepoDeSujetosRanking{
 Ranking ..> ValorRanking
 Ranking ..> RepoDeSujetosRanking
 
-PromedioTiempoCierre ..|> Ranking
-CantidadDeIncidentes ..|> Ranking
-GradoDelImpacto ..|> Ranking
+MayorPromedioTiempoCierre ..|> Ranking
+MayorCantidadDeIncidentes ..|> Ranking
+MayorGradoDelImpacto ..|> Ranking
 
 RepoDeResultadosRankings ..> ValorRanking
 
