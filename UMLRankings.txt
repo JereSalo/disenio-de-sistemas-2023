@@ -1,0 +1,69 @@
+@startuml
+
+interface Ranking {
+    +calcularRanking(RepoDeSujetosRanking): List<ValorRanking>
+}
+
+class PromedioTiempoCierre {
+    +calcularRanking(RepoDeSujetosRanking): List<ValorRanking>
+}
+
+class CantidadDeIncidentes {
+    +calcularRanking(RepoDeSujetosRanking): List<ValorRanking>
+}
+
+class GradoDelImpacto {
+    +calcularRanking(RepoDeSujetosRanking): List<ValorRanking>
+}
+
+interface ValorRanking {
+    +getSujeto(): Object
+}
+
+class ValorRankingEntidad {
+    -entidad: Entidad
+    +valor: float
+    +getSujeto(): Object
+}
+
+class ValorRankingIncidente {
+    -incidente: Incidente
+    +valor: float
+    +getSujeto(): Object
+}
+
+class CalculadorRanking {
+    -repoDeResultadosRankings: RepoDeRankings
+    -rankings : List<Ranking>
+    -repoDeSujetosRanking: RepoDeSujetosRanking
+    +generarRanking(): void
+}
+
+class RepoDeResultadosRankings {
+    +promedioTiempoCierre: List<ValorRanking>
+    +cantidadDeIncidentes: List<ValorRanking>
+    +gradoDelImpacto: List<ValorRanking>
+}
+
+class RepoDeSujetosRanking{
+    +entidades: List<Entidades>
+    +incidentes: List<Incidentes>
+}
+
+Ranking ..> ValorRanking
+Ranking ..> RepoDeSujetosRanking
+
+PromedioTiempoCierre ..|> Ranking
+CantidadDeIncidentes ..|> Ranking
+GradoDelImpacto ..|> Ranking
+
+RepoDeResultadosRankings ..> ValorRanking
+
+CalculadorRanking --> RepoDeResultadosRankings
+CalculadorRanking --> Ranking
+CalculadorRanking --> RepoDeSujetosRanking
+
+ValorRankingEntidad ..|> ValorRanking
+ValorRankingIncidente ..|> ValorRanking
+
+@enduml
