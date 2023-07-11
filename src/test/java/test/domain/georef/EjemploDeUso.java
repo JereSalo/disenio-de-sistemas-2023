@@ -1,5 +1,7 @@
-package domain.georef;
+package test.domain.georef;
 
+import domain.georef.Georef;
+import domain.georef.SincronizadorLocalizaciones;
 import domain.georef.entidades.ListadoDeDepartamentos;
 import domain.georef.entidades.ListadoDeMunicipios;
 import domain.georef.entidades.ListadoDeProvincias;

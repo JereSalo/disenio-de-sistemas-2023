@@ -8,7 +8,9 @@ public class Usuario {
 
   //@Setter @Getter private String apellido;
 
-  //@Setter @Getter private String mail;
+  @Setter @Getter private String mail;
+
+  @Setter @Getter private String telefono;
 
   @Setter @Getter private String username;
 

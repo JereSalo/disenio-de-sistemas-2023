@@ -1,6 +1,10 @@
 package domain.usuarios;
 
 import domain.entidades.Entidad;
+import domain.incidentes.Incidente;
+import domain.notificaciones.formaNotificacion.FormaNotificacion;
+import domain.notificaciones.notificador.Notificador;
+import domain.params.RecepcionIncidenteParams;
 import domain.servicios.Servicio;
 import domain.localizacion.Localizacion;
 import lombok.Getter;
@@ -17,11 +21,21 @@ public class Persona {
   private List<Servicio> serviciosDeInteres;
   @Setter @Getter
   private List<Entidad> entidadesDeInteres;
+  @Setter @Getter
+  private FormaNotificacion formaNotificacion;
+  @Setter @Getter
+  private Notificador notificador;
 
-  public Persona(Usuario usuario, List<Localizacion> localizacionesDeInteres, List<Servicio> serviciosDeInteres, List<Entidad> entidadesDeInteres) {
+  public Persona(Usuario usuario) {
     this.usuario = usuario;
-    this.localizacionesDeInteres = localizacionesDeInteres;
-    this.serviciosDeInteres = serviciosDeInteres;
-    this.entidadesDeInteres = entidadesDeInteres;
+  }
+
+  public void recibirIncidente(Incidente incidente) {
+    RecepcionIncidenteParams params = new RecepcionIncidenteParams(this, incidente);
+    this.formaNotificacion.recibirIncidente(params);
+  }
+
+  public void notificarIncidente(Incidente... incidentes) {
+    this.notificador.notificarIncidentes(this, incidentes);
   }
 }
