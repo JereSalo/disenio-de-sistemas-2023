@@ -1,19 +1,20 @@
 @startuml
 
-interface Ranking {
+abstract Ranking {
     +calcularRanking(RepoDeSujetosRanking): List<ValorRanking>
+    #calcularListaValorRanking(List<ValorRanking>, RepoDeSujetosRanking)
 }
 
 class MayorPromedioTiempoCierre {
-    +calcularRanking(RepoDeSujetosRanking): List<ValorRanking>
+    #calcularListaValorRanking(List<ValorRanking>, RepoDeSujetosRanking)
 }
 
 class MayorCantidadDeIncidentes {
-    +calcularRanking(RepoDeSujetosRanking): List<ValorRanking>
+    #calcularListaValorRanking(List<ValorRanking>, RepoDeSujetosRanking)
 }
 
 class MayorGradoDeImpacto {
-    +calcularRanking(RepoDeSujetosRanking): List<ValorRanking>
+    #calcularListaValorRanking(List<ValorRanking>, RepoDeSujetosRanking)
 }
 
 interface ValorRanking {
@@ -53,9 +54,9 @@ class RepoDeSujetosRanking{
 Ranking ..> ValorRanking
 Ranking ..> RepoDeSujetosRanking
 
-MayorPromedioTiempoCierre ..|> Ranking
-MayorCantidadDeIncidentes ..|> Ranking
-MayorGradoDelImpacto ..|> Ranking
+MayorPromedioTiempoCierre --|> Ranking
+MayorCantidadDeIncidentes --|> Ranking
+MayorGradoDelImpacto --|> Ranking
 
 RepoDeResultadosRankings ..> ValorRanking
 

@@ -6,20 +6,16 @@ import domain.rankings.valorRanking.ValorRanking;
 import domain.rankings.valorRanking.ValorRankingEntidad;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-public class MayorCantidadDeIncidentes implements Ranking{
-  public List<ValorRanking> calcularRanking(RepoDeSujetosRanking repoDeSujetosRanking){
-    ArrayList<ValorRanking> valorRankingResultante = new ArrayList<ValorRanking>();
-    repoDeSujetosRanking.entidades.forEach(entidad -> valorRankingResultante.add(calcularValorRanking(entidad)));
+public class MayorCantidadDeIncidentes extends Ranking{
+  protected void calcularListaValorRanking (List<ValorRanking> listaValorRanking, RepoDeSujetosRanking repoDeSujetosRanking){
+    repoDeSujetosRanking.entidades.forEach(entidad -> listaValorRanking.add(new ValorRankingEntidad(entidad, calcularValorEntidad(entidad))));
   }
 
-  private ValorRanking calcularValorRanking(Entidad entidad){
-    new ValorRankingEntidad(entidad, cantidadDeIncidentes(entidad));
-  }
-  private float cantidadDeIncidentes (Entidad entidad){
+  private float calcularValorEntidad(Entidad entidad){
 
   }
-
 }
 
