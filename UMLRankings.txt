@@ -1,20 +1,19 @@
 @startuml
 
-abstract Ranking {
-    +calcularRanking(RepoDeSujetosRanking): List<ValorRanking>
-    #calcularListaValorRanking(List<ValorRanking>, RepoDeSujetosRanking)
+interface Ranking {
+    +calcularValoresAsociados(List<ValorRanking>, RepoDeSujetosRanking): void
 }
 
-class MayorPromedioTiempoCierre {
-    #calcularListaValorRanking(List<ValorRanking>, RepoDeSujetosRanking)
+class PromedioTiempoCierre {
+    +calcularValoresAsociados(List<ValorRanking>, RepoDeSujetosRanking): void
 }
 
-class MayorCantidadDeIncidentes {
-    #calcularListaValorRanking(List<ValorRanking>, RepoDeSujetosRanking)
+class CantidadDeIncidentes {
+    +calcularValoresAsociados(List<ValorRanking>, RepoDeSujetosRanking): void
 }
 
-class MayorGradoDeImpacto {
-    #calcularListaValorRanking(List<ValorRanking>, RepoDeSujetosRanking)
+class GradoDeImpacto {
+    +calcularValoresAsociados(List<ValorRanking>, RepoDeSujetosRanking): void
 }
 
 interface ValorRanking {
@@ -34,31 +33,29 @@ class ValorRankingIncidente {
 }
 
 class CalculadorRanking {
-    -repoDeResultadosRankings: RepoDeRankings
+    -repoDeResultadosRankings: RepoDeResultadosRankings
     -rankings : List<Ranking>
-    -repoDeSujetosRanking: RepoDeSujetosRanking
-    +generarRanking(): void
+    -RepoDeSujetosRanking: repoDeSujetosRanking
+
+    +generarTodosLosRankings(): void
 }
 
 class RepoDeResultadosRankings {
-    +mayorPromedioTiempoCierre: List<ValorRanking>
-    +mayorCantidadDeIncidentes: List<ValorRanking>
-    +mayorGradoDeImpacto: List<ValorRanking>
+    +resultadosRankings: List<List<ValorRanking>>
 }
 
 class RepoDeSujetosRanking{
-    +entidades: List<Entidades>
     +incidentes: List<Incidentes>
 }
 
 Ranking ..> ValorRanking
 Ranking ..> RepoDeSujetosRanking
 
-MayorPromedioTiempoCierre --|> Ranking
-MayorCantidadDeIncidentes --|> Ranking
-MayorGradoDelImpacto --|> Ranking
+PromedioTiempoCierre ..|> Ranking
+CantidadDeIncidentes ..|> Ranking
+GradoDeImpacto ..|> Ranking
 
-RepoDeResultadosRankings ..> ValorRanking
+RepoDeSujetosRanking ..> ValorRanking
 
 CalculadorRanking --> RepoDeResultadosRankings
 CalculadorRanking --> Ranking
