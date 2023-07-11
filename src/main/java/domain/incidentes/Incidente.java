@@ -58,13 +58,17 @@ public class Incidente {
     return this.fechaDeCierre == null;
   }
 
-  public Boolean abiertoDentroDeLasUltimas24Horas(){
-    int diferenciaConFechaActualEnHoras = Math.round(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) - this.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC)) / 3600;
+  public Boolean diferenciaMenor24HorasMientrasSeguiaAbierto(Incidente otroIncidente){
+    int diferenciaFechasDeCreacionEnHoras = Math.round(this.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC) - otroIncidente.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC)) / 3600;
 
-    return diferenciaConFechaActualEnHoras < 24;
+    int diferenciaFechaCreacionConFechaDeCierreDelOtro = Math.round(this.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC) - otroIncidente.getFechaDeCierre().toEpochSecond(ZoneOffset.UTC));
+
+    return diferenciaFechasDeCreacionEnHoras > 0 && diferenciaFechasDeCreacionEnHoras < 24 && diferenciaFechaCreacionConFechaDeCierreDelOtro > 0;
   }
 
-
+  public int calcularTiempoCierreIncidenteEnHoras(){
+    return Math.round(((this.getFechaDeCierre().toEpochSecond(ZoneOffset.UTC) - this.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC)) / 3600));
+  }
   public Boolean abiertoEnSemanaAnterior(){
     LocalDateTime fechaLunesAnterior = obtenerLunesAnterior();
 

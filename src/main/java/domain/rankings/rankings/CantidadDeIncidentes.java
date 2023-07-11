@@ -14,7 +14,10 @@ public class CantidadDeIncidentes implements Ranking{
   }
 
   private float calcularValorEntidad(Entidad entidad, List<Incidente> listaIncidentes){
-      return listaIncidentes.stream().filter(incidente -> (incidente.abiertoEnSemanaAnterior() && (incidente.getEntidad() == entidad))).count();
+      return listaIncidentes.stream().filter(incidente -> (incidente.abiertoEnSemanaAnterior() && (incidente.getEntidad() == entidad))).filter(incidente -> !incidenteDuplicado(incidente, listaIncidentes)).count();
+  }
+  private Boolean incidenteDuplicado(Incidente incidente, List<Incidente> listaIncidentes){
+    return listaIncidentes.stream().anyMatch(incidenteActual -> incidente.diferenciaMenor24HorasMientrasSeguiaAbierto(incidenteActual));
   }
 }
 

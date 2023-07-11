@@ -6,7 +6,6 @@ import domain.repositorios.RepoDeSujetosRanking;
 import domain.rankings.valorRanking.ValorRanking;
 import domain.rankings.valorRanking.ValorRankingEntidad;
 
-import java.time.ZoneOffset;
 import java.util.List;
 
 public class PromedioTiempoCierre implements Ranking{
@@ -21,9 +20,7 @@ public class PromedioTiempoCierre implements Ranking{
   }
 
   private int sumarTiemposCierre(List<Incidente> listaIncidentes){
-    return listaIncidentes.stream().mapToInt(incidente -> calcularTiempoCierreIncidenteEnHoras(incidente)).sum();
+    return listaIncidentes.stream().mapToInt(incidente -> incidente.calcularTiempoCierreIncidenteEnHoras()).sum();
   }
-  private int calcularTiempoCierreIncidenteEnHoras(Incidente incidente){
-    return Math.round(((incidente.getFechaDeCierre().toEpochSecond(ZoneOffset.UTC) - incidente.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC)) / 3600));
-  }
+
 }
