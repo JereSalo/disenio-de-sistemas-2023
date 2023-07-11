@@ -24,4 +24,9 @@ public abstract class Notificador {
     return mensaje;
   }
 
+  public void notificarSugerencia(Persona persona, Incidente incidente){
+    String mensaje = "Podría informar si el incidente del servicio " + incidente.getPrestacionDeServicio().getServicio() + " en " + incidente.getEstablecimiento() + "se encuentra resuelto? Gracias!";
+    this.enviar(persona, mensaje);
+  }
+
 }

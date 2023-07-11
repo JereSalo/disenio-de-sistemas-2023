@@ -34,7 +34,5 @@ public class ProgramadorNotificacionesSinApuros {
 
     // La tarea se ejecuta cada media hora
     timer.scheduleAtFixedRate(tarea, tiempoInicial, 30 * 60 * 1000);
-
-    // LocalTime.now().getLong(ChronoField.MILLI_OF_SECOND) Usar eso en vez de tiempoInicial si quiero probarlo ahora
   }
 }

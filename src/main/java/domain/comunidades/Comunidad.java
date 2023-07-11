@@ -30,17 +30,17 @@ public class Comunidad {
                             .withObservaciones(params.getObservaciones())
                             .build();
     incidentes.add(incidente);
-    informarIncidente(incidente);
+    informarIncidente(incidente.getCreador(), incidente);
   }
 
-  public void cerrarIncidente(Incidente incidente) {
+  public void cerrarIncidente(Miembro miembro, Incidente incidente) {
     incidente.cerrar();
-    informarIncidente(incidente);
+    informarIncidente(miembro, incidente);
   }
 
-  private void informarIncidente(Incidente incidente) {
+  private void informarIncidente(Miembro miembroExcluido, Incidente incidente) {
     miembros.stream()
-        .filter(miembro -> miembro != incidente.getCreador())
+        .filter(miembro -> miembro != miembroExcluido)
         .forEach(miembro -> miembro.recibirIncidente(incidente));
   }
 

@@ -7,6 +7,7 @@ import domain.notificaciones.notificador.Notificador;
 import domain.params.RecepcionIncidenteParams;
 import domain.servicios.Servicio;
 import domain.localizacion.Localizacion;
+import domain.ubicacion.Ubicacion;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,5 +38,13 @@ public class Persona {
 
   public void notificarIncidente(Incidente... incidentes) {
     this.notificador.notificarIncidentes(this, incidentes);
+  }
+
+  public void notificarSugerencia(Incidente incidente){
+    this.notificador.notificarSugerencia(this, incidente);
+  }
+
+  public Ubicacion getUbicacionActual() {
+    return null;
   }
 }
