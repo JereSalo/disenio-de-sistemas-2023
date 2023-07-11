@@ -1,4 +1,4 @@
-package domain.rankings.ranking;
+package domain.rankings.rankings;
 
 import domain.rankings.RepoDeSujetosRanking;
 import domain.rankings.valorRanking.ValorRanking;

@@ -1,4 +1,4 @@
-package domain.rankings.ranking;
+package domain.rankings.rankings;
 
 import domain.incidentes.Incidente;
 import domain.rankings.RepoDeSujetosRanking;

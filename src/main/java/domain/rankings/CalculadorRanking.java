@@ -1,6 +1,6 @@
 package domain.rankings;
 
-import domain.rankings.ranking.Ranking;
+import domain.rankings.rankings.Ranking;
 import domain.rankings.valorRanking.ValorRanking;
 
 import java.util.ArrayList;
