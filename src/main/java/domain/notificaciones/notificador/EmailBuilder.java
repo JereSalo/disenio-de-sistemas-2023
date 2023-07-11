@@ -1,4 +1,4 @@
-package domain.notificaciones;
+package domain.notificaciones.notificador;
 
 import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;

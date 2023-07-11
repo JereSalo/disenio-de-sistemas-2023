@@ -2,8 +2,8 @@ package domain.usuarios;
 
 import domain.entidades.Entidad;
 import domain.incidentes.Incidente;
-import domain.notificaciones.FormaNotificacion;
-import domain.notificaciones.Notificador;
+import domain.notificaciones.formaNotificacion.FormaNotificacion;
+import domain.notificaciones.notificador.Notificador;
 import domain.params.RecepcionIncidenteParams;
 import domain.servicios.Servicio;
 import domain.localizacion.Localizacion;

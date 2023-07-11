@@ -1,4 +1,4 @@
-package domain.notificaciones;
+package domain.notificaciones.notificador;
 
 import domain.incidentes.Incidente;
 import domain.usuarios.Persona;

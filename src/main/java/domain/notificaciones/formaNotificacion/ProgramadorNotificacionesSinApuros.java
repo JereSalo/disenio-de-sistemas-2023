@@ -1,9 +1,8 @@
-package domain.notificaciones;
+package domain.notificaciones.formaNotificacion;
 
 import domain.repositorios.RepositorioSinApuros;
 
 import java.time.LocalTime;
-import java.time.temporal.ChronoField;
 import java.util.*;
 
 public class ProgramadorNotificacionesSinApuros {

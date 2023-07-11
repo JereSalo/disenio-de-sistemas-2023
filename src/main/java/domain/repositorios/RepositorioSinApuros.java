@@ -1,6 +1,6 @@
 package domain.repositorios;
 
-import domain.notificaciones.SinApuros;
+import domain.notificaciones.formaNotificacion.SinApuros;
 import lombok.Getter;
 
 import java.util.ArrayList;

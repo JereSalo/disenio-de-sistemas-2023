@@ -1,4 +1,4 @@
-package domain.notificaciones;
+package domain.notificaciones.notificador;
 
 import lombok.Getter;
 

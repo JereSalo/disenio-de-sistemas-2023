@@ -10,6 +10,8 @@ public class Usuario {
 
   @Setter @Getter private String mail;
 
+  @Setter @Getter private String telefono;
+
   @Setter @Getter private String username;
 
   @Setter @Getter private String password;

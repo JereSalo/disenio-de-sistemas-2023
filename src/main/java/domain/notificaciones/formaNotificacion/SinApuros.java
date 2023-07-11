@@ -1,11 +1,10 @@
-package domain.notificaciones;
+package domain.notificaciones.formaNotificacion;
 
 import domain.incidentes.Incidente;
 import domain.params.RecepcionIncidenteParams;
 import domain.repositorios.RepositorioSinApuros;
 import domain.usuarios.Persona;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
