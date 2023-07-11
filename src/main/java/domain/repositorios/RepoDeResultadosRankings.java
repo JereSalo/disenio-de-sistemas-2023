@@ -1,4 +1,4 @@
-package domain.rankings;
+package domain.repositorios;
 
 import domain.rankings.valorRanking.ValorRanking;
 import lombok.Getter;

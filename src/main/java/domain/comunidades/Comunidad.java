@@ -1,12 +1,8 @@
 package domain.comunidades;
 
-<<<<<<< HEAD
 import domain.incidentes.Incidente;
 import domain.incidentes.IncidenteBuilder;
 import domain.params.AperturaIncidenteParams;
-=======
-import domain.servicios.PrestacionServicio;
->>>>>>> Rankings
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,7 +15,6 @@ public class Comunidad {
   private List<Administrador> administradores;
   @Setter @Getter
   private List<Miembro> miembros;
-<<<<<<< HEAD
 
   @Setter @Getter
   private List<Incidente> incidentes;
@@ -49,8 +44,4 @@ public class Comunidad {
         .forEach(miembro -> miembro.recibirIncidente(incidente));
   }
 
-=======
-  @Setter @Getter
-  private List<PrestacionServicio> servicios;
->>>>>>> Rankings
 }

@@ -1,7 +1,7 @@
 package domain.rankings.rankings;
 
 import domain.incidentes.Incidente;
-import domain.rankings.RepoDeSujetosRanking;
+import domain.repositorios.RepoDeSujetosRanking;
 import domain.rankings.valorRanking.ValorRanking;
 import domain.rankings.valorRanking.ValorRankingIncidente;
 
@@ -13,6 +13,7 @@ public class GradoDeImpacto implements Ranking{
   }
 
   private float calcularGradoDeImpacto(Incidente incidente){
-
+    //NO IMPLEMENTADO
+    return 0;
   }
 }

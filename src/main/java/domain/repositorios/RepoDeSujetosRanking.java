@@ -1,4 +1,4 @@
-package domain.rankings;
+package domain.repositorios;
 
 import domain.entidades.Entidad;
 import domain.incidentes.Incidente;

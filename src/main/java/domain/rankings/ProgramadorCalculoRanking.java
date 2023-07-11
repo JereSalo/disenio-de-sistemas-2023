@@ -4,6 +4,8 @@ import domain.rankings.rankings.CantidadDeIncidentes;
 import domain.rankings.rankings.GradoDeImpacto;
 import domain.rankings.rankings.PromedioTiempoCierre;
 import domain.rankings.rankings.Ranking;
+import domain.repositorios.RepoDeResultadosRankings;
+import domain.repositorios.RepoDeSujetosRanking;
 
 import java.time.LocalTime;
 import java.util.ArrayList;

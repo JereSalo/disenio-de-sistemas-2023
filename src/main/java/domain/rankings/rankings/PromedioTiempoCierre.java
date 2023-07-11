@@ -2,7 +2,7 @@ package domain.rankings.rankings;
 
 import domain.entidades.Entidad;
 import domain.incidentes.Incidente;
-import domain.rankings.RepoDeSujetosRanking;
+import domain.repositorios.RepoDeSujetosRanking;
 import domain.rankings.valorRanking.ValorRanking;
 import domain.rankings.valorRanking.ValorRankingEntidad;
 
@@ -24,6 +24,6 @@ public class PromedioTiempoCierre implements Ranking{
     return listaIncidentes.stream().mapToInt(incidente -> calcularTiempoCierreIncidenteEnHoras(incidente)).sum();
   }
   private int calcularTiempoCierreIncidenteEnHoras(Incidente incidente){
-    return Math.round(((incidente.getFechaCierre().toEpochSecond(ZoneOffset.UTC) - incidente.getFechaApertura().toEpochSecond(ZoneOffset.UTC)) / 3600));
+    return Math.round(((incidente.getFechaDeCierre().toEpochSecond(ZoneOffset.UTC) - incidente.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC)) / 3600));
   }
 }

@@ -1,43 +1,51 @@
 package domain.incidentes;
 
-<<<<<<< HEAD
 import domain.comunidades.Comunidad;
 import domain.comunidades.Miembro;
 import domain.entidades.Entidad;
 import domain.establecimientos.Establecimiento;
-import domain.params.AperturaIncidenteParams;
 import domain.servicios.PrestacionServicio;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 
 public class Incidente {
-  @Setter @Getter
+  @Setter
+  @Getter
   private Entidad entidad;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private Establecimiento establecimiento;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private PrestacionServicio prestacionDeServicio;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private Miembro creador;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private Comunidad comunidad;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private LocalDateTime fechaDeCreacion;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private LocalDateTime fechaDeCierre;
 
-  @Getter @Setter
+  @Getter
+  @Setter
   private String observaciones;
 
-  public Incidente(){
+  public Incidente() {
     this.fechaDeCreacion = LocalDateTime.now();
     this.fechaDeCierre = null;
   }
@@ -46,88 +54,45 @@ public class Incidente {
     this.fechaDeCierre = LocalDateTime.now();
   }
 
-  public boolean abierto(){
+  public boolean abierto() {
     return this.fechaDeCierre == null;
   }
-=======
-import domain.entidades.Entidad;
-import domain.establecimientos.Establecimiento;
-import domain.servicios.PrestacionServicio;
-import domain.usuarios.Persona;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.ObjectUtils;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.util.Date;
+  public Boolean abiertoDentroDeLasUltimas24Horas(){
+    int diferenciaConFechaActualEnHoras = Math.round(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) - this.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC)) / 3600;
 
-public class Incidente {
-    @Getter @Setter
-    private PrestacionServicio prestacion;
+    return diferenciaConFechaActualEnHoras < 24;
+  }
 
-    @Getter @Setter
-    private Establecimiento establecimiento;
 
-    @Getter @Setter
-    private Persona creador;
-    @Getter @Setter
-    private Entidad entidad;
+  public Boolean abiertoEnSemanaAnterior(){
+    LocalDateTime fechaLunesAnterior = obtenerLunesAnterior();
 
-    @Getter @Setter
-    private LocalDateTime fechaApertura;
+    LocalDateTime fechaUltimoLunes = fechaLunesAnterior.plusWeeks(1);
 
-    @Getter @Setter
-    private LocalDateTime fechaCierre;
+    return (this.getFechaDeCreacion().isAfter(fechaLunesAnterior)) && (this.getFechaDeCreacion().isBefore(fechaUltimoLunes));
+  }
 
-    @Getter @Setter
-    private String observaciones;
+  public Boolean abiertoYCerradoEnSemanaAnterior(){
+    LocalDateTime fechaLunesAnterior = obtenerLunesAnterior();
 
-    public Incidente(PrestacionServicio prestacion, Establecimiento establecimiento, Persona creador){
-        this.prestacion = prestacion;
-        this.establecimiento = establecimiento;
-        this.creador = creador;
-        this.fechaCierre = null;
+    LocalDateTime fechaUltimoLunes = fechaLunesAnterior.plusWeeks(1);
+
+    return (!this.abierto() && this.getFechaDeCreacion().isAfter(fechaLunesAnterior)) && (this.getFechaDeCierre().isBefore(fechaUltimoLunes));
+  }
+
+  private LocalDateTime obtenerLunesAnterior(){
+    LocalDate fechaLunesAnterior = LocalDate.now();
+
+    int i = 0;
+
+    if (fechaLunesAnterior.getDayOfWeek().getValue() == 1) i += 1;
+
+    for(; i < 2 ; fechaLunesAnterior.minusDays(1) ){
+
+      if (fechaLunesAnterior.getDayOfWeek().getValue() == 1) i += 1;
     }
 
-    public Boolean abiertoDentroDeLasUltimas24Horas(){
-        int diferenciaConFechaActualEnHoras = Math.round(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) - this.getFechaApertura().toEpochSecond(ZoneOffset.UTC)) / 3600;
-
-        return diferenciaConFechaActualEnHoras < 24;
-    }
-
-
-    public Boolean abiertoEnSemanaAnterior(){
-        LocalDateTime fechaLunesAnterior = obtenerLunesAnterior();
-
-        LocalDateTime fechaUltimoLunes = fechaLunesAnterior.plusWeeks(1);
-
-        return (this.getFechaApertura().isAfter(fechaLunesAnterior)) && (this.getFechaApertura().isBefore(fechaUltimoLunes));
-    }
-
-    public Boolean abiertoYCerradoEnSemanaAnterior(){
-        LocalDateTime fechaLunesAnterior = obtenerLunesAnterior();
-
-        LocalDateTime fechaUltimoLunes = fechaLunesAnterior.plusWeeks(1);
-
-        return (!this.abierto() && this.getFechaApertura().isAfter(fechaLunesAnterior)) && (this.getFechaCierre().isBefore(fechaUltimoLunes));
-    }
-
-    private LocalDateTime obtenerLunesAnterior(){
-        LocalDate fechaLunesAnterior = LocalDate.now();
-
-        int i = 0;
-
-        if (fechaLunesAnterior.getDayOfWeek().getValue() == 1) i += 1;
-
-        for(; i < 2 ; fechaLunesAnterior.minusDays(1) ){
-
-            if (fechaLunesAnterior.getDayOfWeek().getValue() == 1) i += 1;
-        }
-
-        return fechaLunesAnterior.atStartOfDay();
-    }
-
->>>>>>> Rankings
+    return fechaLunesAnterior.atStartOfDay();
+  }
 }

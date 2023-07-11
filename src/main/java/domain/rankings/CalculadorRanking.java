@@ -2,6 +2,8 @@ package domain.rankings;
 
 import domain.rankings.rankings.Ranking;
 import domain.rankings.valorRanking.ValorRanking;
+import domain.repositorios.RepoDeResultadosRankings;
+import domain.repositorios.RepoDeSujetosRanking;
 
 import java.util.ArrayList;
 import java.util.List;
