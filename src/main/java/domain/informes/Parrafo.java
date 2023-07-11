@@ -11,20 +11,10 @@ public class Parrafo {
     @Getter @Setter
     private String titulo;
     @Getter @Setter
-    private List<String> cuerpo;
-    @Getter @Setter
-    private int puesto;
+    private List<ValorRanking> cuerpo;
 
-    public Parrafo(String titulo){
+    public Parrafo(String titulo, List<ValorRanking> ranking){
         this.titulo = titulo;
-        this.puesto = 0;
-    }
-
-    public void agregarAParrafo(ValorRanking valor){
-        String linea = Integer.toString(puesto) + " - " + valor.getNombreSujeto()
-                + " - "  + Float.toString(valor.getValor());
-        puesto++;
-
-        cuerpo.add(linea);
+        this.cuerpo = ranking;
     }
 }

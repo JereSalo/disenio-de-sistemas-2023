@@ -20,16 +20,12 @@ public class GeneradorDeInforme {
         this.crearParrafo(informe, "Ranking mayor cantidad de incidentes", resultadosRankings.get(1));
         this.crearParrafo(informe, "Ranking mayor impacto", resultadosRankings.get(2));
 
-
         return informe;
     }
 
 
     private void crearParrafo(Informe informe, String titulo, List<ValorRanking> ranking){
-        Parrafo parrafo = new Parrafo(titulo);
-
-        ranking.forEach(valor -> parrafo.agregarAParrafo(valor));
-
+        Parrafo parrafo = new Parrafo(titulo, ranking);
         informe.agregarParrafo(parrafo);
     }
 }
