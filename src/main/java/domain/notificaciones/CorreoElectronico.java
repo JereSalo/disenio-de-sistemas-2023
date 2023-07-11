@@ -1,12 +1,10 @@
 package domain.notificaciones;
 
-import domain.incidentes.Incidente;
 import domain.usuarios.Persona;
 import org.apache.commons.mail.Email;
-import org.apache.commons.mail.SimpleEmail;
-import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.EmailException;
 
+import java.io.ObjectInputFilter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -15,21 +13,18 @@ public class CorreoElectronico extends Notificador{
   // Para probar la funcionalidad usé mi cuenta personal. Funciona :)
   @Override
   protected void notificar(Persona persona, String mensaje) {
+    Email email = new EmailBuilder()
+        .withHostName(ConfiguracionCorreoElectronico.getHost())
+        .withSmtpPort(ConfiguracionCorreoElectronico.getPuerto())
+        .withAuthenticator(ConfiguracionCorreoElectronico.getRemitente(), ConfiguracionCorreoElectronico.getPassword())
+        .withSSLOnConnect(true)
+        .withSender(ConfiguracionCorreoElectronico.getRemitente())
+        .withSubject("Notificacion de incidente - " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")))
+        .withMessage(mensaje)
+        .withRecipient(persona.getUsuario().getMail())
+        .build();
+
     try{
-      Email email = new SimpleEmail();
-      email.setHostName("smtp.googlemail.com");
-      email.setSmtpPort(465);
-      email.setAuthenticator(new DefaultAuthenticator("remitente@mail.com", "contraseña"));
-      email.setSSLOnConnect(true);
-      email.setFrom("remitente@mail.com");
-
-      DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-      String fechaFormateada = LocalDateTime.now().format(formato);
-
-      email.setSubject("Notificacion de incidente - " + fechaFormateada);
-      email.setMsg(mensaje);
-      email.addTo(persona.getUsuario().getMail());
-
       email.send();
     }
     catch (EmailException e){
