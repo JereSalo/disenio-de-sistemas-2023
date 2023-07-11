@@ -1,0 +1,64 @@
+@startuml
+
+
+interface FormaNotificacion{
+ +recibirIncidente(RecepcionIncidenteParams): void
+}
+
+class CuandoSuceden{
+}
+
+class SinApuros{
+ -incidentesANotificar: LinkedHashSet<Incidente>
+ -listaHorarios: List<LocalTime>
+ -persona: Persona
+
+ +crear(Persona): SinApuros
+ -filtrarIncidentes(): Incidente[]
+ +notificarIncidentes(): void
+ +agregarHorario(int hora, int minutos): void
+}
+
+
+class RepositorioSinApuros{
+ +todosLosSinApuros: List<SinApuros>
+
+ +agregarSinApuros(SinApuros): void
+}
+
+abstract class Notificador{
+ #enviar(Persona, String): void
+ -armarMensaje(Incidente...): String
+ +notificarIncidentes(Incidente...): void
+}
+
+class WhatsApp{
+ #enviar(Persona,String)
+}
+
+class CorreoElectronico{
+ #enviar(Persona,String)
+}
+
+class EmailBuilder{
+ -email: Email
+ +build(): Email
+}
+
+CuandoSuceden ..|> FormaNotificacion
+
+SinApuros ..|> FormaNotificacion
+SinApuros -->"*" Incidente
+SinApuros -->"1" Persona
+
+WhatsApp ..|> Notificador
+
+CorreoElectronico..|> Notificador
+CorreoElectronico ..> EmailBuilder
+
+RepositorioSinApuros -->"*" SinApuros
+
+Persona --> FormaNotificacion
+Persona --> Notificador
+
+@enduml

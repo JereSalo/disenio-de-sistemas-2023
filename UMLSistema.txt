@@ -15,19 +15,16 @@ enum TipoEntidad{
 
 class Municipio{
  +nombre: String
- +id: int
  +departamento: Departamento
 }
 
 class Departamento{
  +nombre: String
- +id: int
  +provincia: Provincia
 }
 
 class Provincia{
  +nombre: String
- +id: int
 }
 
 class Establecimiento{
@@ -56,6 +53,7 @@ class Comunidad{
 
     +abrirIncidente(): void
     +cerrarIncidente(): void
+    -informarIncidente(Incidente): void
 }
 
 class Administrador{
@@ -65,6 +63,8 @@ class Administrador{
 
 class Miembro{
  -persona: Persona
+
+ +recibirIncidente(Incidente):void
 }
 
 class Designado{
@@ -80,7 +80,8 @@ class Persona{
     -notificador: Notificador
     -formaNotificacion: FormaNotificacion
 
-    +notificarIncidente(Incidente, ...)
+    +recibirIncidente(Incidente): void
+    +notificarIncidente(Incidente...): void
 }
 
 class PrestacionServicio{
@@ -118,66 +119,28 @@ class OrganismoDeControl{
  -entidades: List<Entidad>
 }
 
-interface FormaNotificacion{
- +recibirIncidente(Incidente)
- +notificar(Incidente, ...)
-}
-
-class CuandoSuceden{
- -persona: Persona
- +recibirIncidente(Incidente): void
- +notificar(Incidente, ...): void
-}
-
-class SinApuros{
- -listaIncidentes: List<Incidente>
- -listaHorarios: List<LocalTime>
- -persona: Persona
- +filtrarIncidentes(): List<Incidente>
- +notificar(Incidente, ...)
-}
 
 class Incidente{
- +prestacionDeServicio: PrestacionDeServicio
- +establecimiento: Establecimiento
- +creador: Persona
- +fechaDeCreacion: date
- +fechaDeCierre: date
- +observaciones: String
+ -entidad: Entidad
+ -establecimiento: Establecimiento
+ -prestacionDeServicio: PrestacionDeServicio
+ -creador: Miembro
+ -comunidad: Comunidad
+ -fechaDeCreacion: date
+ -fechaDeCierre: date
+ -observaciones: String
 
  +abierto(): bool
+ +cerrar(): void
 }
 
-class RepositorioSinApuros{
- +todosLosSinApuros: List<SinApuros>
+interface FormaNotificacion{
+ +recibirIncidente(Incidente): void
 }
 
-interface Notificador{
- -enviar(Persona, notificacion): void
- -armarNotificacion(Incidente, ...) : notificacion
- +notificarIncidente(Incidente, ...) : void
+abstract class Notificador{
+ +notificarIncidentes(Incidente...): void
 }
-
-class WhatsApp{
-
-}
-
-class Mail{
-
-}
-
-CuandoSuceden ..|> FormaNotificacion
-CuandoSuceden -->"1" Persona
-
-SinApuros ..|> FormaNotificacion
-SinApuros -->"*" Incidente
-SinApuros -->"1" Persona
-
-WhatsApp ..|> Notificador
-
-Mail ..|> Notificador
-
-RepositorioSinApuros -->"*" SinApuros
 
 Incidente -->"1" PrestacionServicio
 Incidente -->"1" Establecimiento

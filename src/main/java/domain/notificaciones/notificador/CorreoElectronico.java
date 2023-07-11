@@ -24,7 +24,7 @@ public class CorreoElectronico extends Notificador{
   // Lamentablemente la función de "contraseñas de aplicaciones" en Gmail no está disponible para cuentas sin autenticación de dos factores.
   // Para probar la funcionalidad usé mi cuenta personal. Funciona :)
   @Override
-  protected void notificar(Persona persona, String mensaje) {
+  protected void enviar(Persona persona, String mensaje) {
     Email email = this.construirEmail(persona, mensaje);
     try{
       email.send();

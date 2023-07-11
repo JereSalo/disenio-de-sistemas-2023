@@ -4,11 +4,11 @@ import domain.incidentes.Incidente;
 import domain.usuarios.Persona;
 
 public abstract class Notificador {
-  abstract protected void notificar(Persona persona, String mensaje);
+  abstract protected void enviar(Persona persona, String mensaje);
 
   public void notificarIncidentes(Persona persona, Incidente... incidentes){
     String mensaje = this.armarMensaje(incidentes);
-    this.notificar(persona, mensaje);
+    this.enviar(persona, mensaje);
   }
 
   private String armarMensaje(Incidente... incidentes) {

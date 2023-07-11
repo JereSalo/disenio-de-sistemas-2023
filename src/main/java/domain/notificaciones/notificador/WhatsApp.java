@@ -17,7 +17,8 @@ public class WhatsApp extends Notificador{
     return instancia;
   }
 
-  protected void notificar(Persona persona, String mensaje) {
+  @Override
+  protected void enviar(Persona persona, String mensaje) {
     Message message = Message.creator(
             new com.twilio.type.PhoneNumber("whatsapp:" + persona.getUsuario().getTelefono()), // Número de teléfono destinatario. En formato E164 (Ejemplo: +5491141690058)
             new com.twilio.type.PhoneNumber(ConfiguracionWhatsapp.FROM), // Número de teléfono origen
