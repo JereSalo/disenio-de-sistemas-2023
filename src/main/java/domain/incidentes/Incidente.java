@@ -36,15 +36,9 @@ public class Incidente {
   @Getter @Setter
   private String observaciones;
 
-  public Incidente (AperturaIncidenteParams params) {
-    this.entidad = params.getEntidad();
-    this.establecimiento = params.getEstablecimiento();
-    this.prestacionDeServicio = params.getPrestacionDeServicio();
-    this.creador = params.getCreador();
-    this.comunidad = params.getComunidad();
+  public Incidente(){
     this.fechaDeCreacion = LocalDateTime.now();
     this.fechaDeCierre = null;
-    this.observaciones = params.getObservaciones();
   }
 
   public void cerrar() {

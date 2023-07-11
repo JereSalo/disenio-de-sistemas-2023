@@ -1,6 +1,7 @@
 package domain.comunidades;
 
 import domain.incidentes.Incidente;
+import domain.incidentes.IncidenteBuilder;
 import domain.params.AperturaIncidenteParams;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,7 +24,11 @@ public class Comunidad {
   }
 
   public void abrirIncidente(AperturaIncidenteParams params) {
-    Incidente incidente = new Incidente(params);
+    Incidente incidente = new IncidenteBuilder()
+                            .withComunidad(this).withCreador(params.getCreador())
+                            .withEntidad(params.getEntidad()).withEstablecimiento(params.getEstablecimiento()).withPrestacionDeServicio(params.getPrestacionDeServicio())
+                            .withObservaciones(params.getObservaciones())
+                            .build();
     incidentes.add(incidente);
     informarIncidente(incidente);
   }
