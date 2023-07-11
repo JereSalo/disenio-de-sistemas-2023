@@ -32,8 +32,15 @@ public class Persona {
   }
 
   public void recibirIncidente(Incidente incidente) {
-    RecepcionIncidenteParams params = new RecepcionIncidenteParams(this, incidente);
-    this.formaNotificacion.recibirIncidente(params);
+    if(this.leInteresa(incidente)) {
+      RecepcionIncidenteParams params = new RecepcionIncidenteParams(this, incidente);
+      this.formaNotificacion.recibirIncidente(params);
+    }
+  }
+
+  private boolean leInteresa(Incidente incidente) {
+    return this.serviciosDeInteres.contains(incidente.getPrestacionDeServicio().getServicio()) ||
+      this.entidadesDeInteres.contains(incidente.getEntidad());
   }
 
   public void notificarIncidente(Incidente... incidentes) {
