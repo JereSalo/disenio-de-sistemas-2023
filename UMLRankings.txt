@@ -35,7 +35,7 @@ class ValorRankingIncidente {
 class CalculadorRanking {
     -repoDeResultadosRankings: RepoDeResultadosRankings
     -rankings : List<Ranking>
-    -RepoDeSujetosRanking: repoDeSujetosRanking
+    -repoDeSujetosRanking: RepoDeSujetosRanking
 
     +generarTodosLosRankings(): void
 }
@@ -46,6 +46,7 @@ class RepoDeResultadosRankings {
 
 class RepoDeSujetosRanking{
     +incidentes: List<Incidentes>
+    +entidades: List<Entidad>
 }
 
 Ranking ..> ValorRanking
