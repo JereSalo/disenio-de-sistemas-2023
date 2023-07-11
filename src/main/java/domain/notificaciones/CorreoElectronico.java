@@ -14,11 +14,11 @@ public class CorreoElectronico extends Notificador{
   @Override
   protected void notificar(Persona persona, String mensaje) {
     Email email = new EmailBuilder()
-        .withHostName(ConfiguracionCorreoElectronico.getHost())
-        .withSmtpPort(ConfiguracionCorreoElectronico.getPuerto())
-        .withAuthenticator(ConfiguracionCorreoElectronico.getRemitente(), ConfiguracionCorreoElectronico.getPassword())
+        .withHostName(ConfiguracionCorreoElectronico.host)
+        .withSmtpPort(ConfiguracionCorreoElectronico.puerto)
+        .withAuthenticator(ConfiguracionCorreoElectronico.remitente, ConfiguracionCorreoElectronico.password)
         .withSSLOnConnect(true)
-        .withSender(ConfiguracionCorreoElectronico.getRemitente())
+        .withSender(ConfiguracionCorreoElectronico.remitente)
         .withSubject("Notificacion de incidente - " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")))
         .withMessage(mensaje)
         .withRecipient(persona.getUsuario().getMail())

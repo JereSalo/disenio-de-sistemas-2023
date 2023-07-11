@@ -3,15 +3,11 @@ package domain.notificaciones;
 import lombok.Getter;
 
 public class ConfiguracionCorreoElectronico {
-  @Getter
-  private static String host = "smtp.gmail.com";
+  public static final String host = "smtp.gmail.com";
 
-  @Getter
-  private static Integer puerto = 587;
+  public static final int puerto = 587;
 
-  @Getter
-  private static String remitente = "usuario@gmail.com";
+  public static final String remitente = "usuario@gmail.com";
 
-  @Getter
-  private static String password = "contrasenia";
+  public static final String password = "contrasenia";
 }

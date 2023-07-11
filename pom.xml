@@ -59,6 +59,27 @@
       <version>1.5</version>
     </dependency>
 
+    <!-- https://mvnrepository.com/artifact/com.twilio.sdk/twilio -->
+    <dependency>
+      <groupId>com.twilio.sdk</groupId>
+      <artifactId>twilio</artifactId>
+      <version>9.8.0</version>
+    </dependency>
+
+
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+    <!-- Estas 2 dependencias son nada más para que el programa no tire un error cuando usamos Twilio Wpp -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>2.0.7</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-simple</artifactId>
+      <version>2.0.7</version>
+    </dependency>
 
   </dependencies>
 

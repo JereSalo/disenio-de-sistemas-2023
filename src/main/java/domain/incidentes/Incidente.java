@@ -1,5 +1,6 @@
 package domain.incidentes;
 
+import domain.comunidades.Comunidad;
 import domain.comunidades.Miembro;
 import domain.entidades.Entidad;
 import domain.establecimientos.Establecimiento;
@@ -24,6 +25,9 @@ public class Incidente {
   private Miembro creador;
 
   @Getter @Setter
+  private Comunidad comunidad;
+
+  @Getter @Setter
   private LocalDateTime fechaDeCreacion;
 
   @Getter @Setter
@@ -37,6 +41,7 @@ public class Incidente {
     this.establecimiento = params.getEstablecimiento();
     this.prestacionDeServicio = params.getPrestacionDeServicio();
     this.creador = params.getCreador();
+    this.comunidad = params.getComunidad();
     this.fechaDeCreacion = LocalDateTime.now();
     this.fechaDeCierre = null;
     this.observaciones = params.getObservaciones();
