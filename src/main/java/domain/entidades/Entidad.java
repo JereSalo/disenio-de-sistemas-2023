@@ -22,20 +22,4 @@ public class Entidad {
   private Departamento departamento;
   private Municipio municipio;
 
-  private Informe ConsultarInforme(){
-    Informe informe = RepoInformes.getInforme();
-    List<Parrafo> parrafos = informe.getParrafos();
-
-    for(int i=0; i< parrafos.size(); i++){
-      ManejadorDeParrafos manejaParrafos = new ManejadorDeParrafos();
-      Parrafo parrafoFiltrado = manejaParrafos.filtrarParrafo(parrafos.get(i), this.nombre);
-      parrafos.set(i,parrafoFiltrado);
-    }
-
-    Informe informeFiltrado = new Informe();
-    informeFiltrado.setParrafos(parrafos);
-
-    return informeFiltrado;
-  }
-
 }
