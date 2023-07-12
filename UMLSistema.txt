@@ -67,6 +67,11 @@ class Miembro{
  +recibirIncidente(Incidente):void
 }
 
+class RolMiembroServicio{
+ -servicio: Servicio
+ -afectado: bool
+}
+
 class Designado{
     -usuario: Usuario
 }
@@ -156,6 +161,7 @@ Comunidad *--"*" Administrador
 Comunidad -->"*" Incidente
 
 Miembro --> Persona
+Miembro -->"*" RolMiembroServicio
 Administrador --> Persona
 
 Persona --> Usuario
