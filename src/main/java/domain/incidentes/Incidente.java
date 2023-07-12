@@ -63,7 +63,7 @@ public class Incidente {
 
     int diferenciaFechaCreacionConFechaDeCierreDelOtro = Math.round(this.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC) - otroIncidente.getFechaDeCierre().toEpochSecond(ZoneOffset.UTC));
 
-    return diferenciaFechasDeCreacionEnHoras > 0 && diferenciaFechasDeCreacionEnHoras < 24 && diferenciaFechaCreacionConFechaDeCierreDelOtro > 0;
+    return diferenciaFechasDeCreacionEnHoras > 0 && diferenciaFechasDeCreacionEnHoras < 24 && (diferenciaFechaCreacionConFechaDeCierreDelOtro > 0 || otroIncidente.abierto());
   }
 
   public int calcularTiempoCierreIncidenteEnHoras(){

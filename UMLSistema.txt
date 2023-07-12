@@ -63,8 +63,9 @@ class Administrador{
 
 class Miembro{
  -persona: Persona
-
+ -rolesServicio: List<RolMiembroServicio>
  +recibirIncidente(Incidente):void
+ +estaAfectado(Servicio): bool
 }
 
 class RolMiembroServicio{
@@ -163,6 +164,8 @@ Comunidad -->"*" Incidente
 Miembro --> Persona
 Miembro -->"*" RolMiembroServicio
 Administrador --> Persona
+
+RolMiembroServicio --> Servicio
 
 Persona --> Usuario
 Persona -->"*" Localizacion

@@ -38,6 +38,10 @@ public class Comunidad {
     informarIncidente(miembro, incidente);
   }
 
+  public long cuantosAfectados(Incidente incidente){
+    return miembros.stream().filter(miembro -> miembro.estaAfectado(incidente.getPrestacionDeServicio().getServicio())).count();
+  }
+
   private void informarIncidente(Miembro miembroExcluido, Incidente incidente) {
     miembros.stream()
         .filter(miembro -> miembro != miembroExcluido)
