@@ -8,15 +8,24 @@ import lombok.Setter;
 
 import java.util.List;
 
-public class Comunidad {
-  @Setter @Getter
+import javax.persistence.*;
+
+@Entity
+@Table (name = "Comunidad")
+@Setter
+@Getter
+public class Comunidad extends Persistente{
+
+  @Column(name = "nombre")
   private String nombre;
-  @Setter @Getter
+
+  @ManyToMany
   private List<Administrador> administradores;
-  @Setter @Getter
+
+  @OneToMany(mappedBy = "comunidad")
   private List<Miembro> miembros;
 
-  @Setter @Getter
+  @OneToMany(mappedBy = "comunidad")
   private List<Incidente> incidentes;
 
   public Comunidad(String nombre) {

@@ -3,12 +3,22 @@ package domain.comunidades;
 import domain.servicios.Servicio;
 import lombok.Getter;
 import lombok.Setter;
+import javax.persistence.*;
 
-public class RolMiembroServicio {
+@Entity
+@Table (name = "RolMiembroServicio")
+@Setter
+@Getter
+public class RolMiembroServicio extends Persistente{
 
-    @Getter @Setter
+    @ManyToOne
+    @JoinColumn(name = "servicio_id", referencedColumnName = "id")
     private Servicio servicio;
 
-    @Getter @Setter
+    @ManyToOne
+    @JoinColumn(name = "miembro_id", referencedColumnName = "id")
+    private Miembro miembro;
+    
+    @Column( name = 'afectado')
     private Boolean afectado;
 }

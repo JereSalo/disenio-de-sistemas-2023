@@ -5,19 +5,32 @@ import domain.informes.Informe;
 import domain.informes.ManejadorDeParrafos;
 import domain.informes.Parrafo;
 import domain.informes.RepoInformes;
+import domain.Persistente;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import javax.persistence.*;
 
-public class OrganismoDeControl {
-  @Setter @Getter
+@Entity
+@Table (name = "organismo_de_control")
+@Setter@Getter
+public class OrganismoDeControl extends Persistente{
+
+  @Column(name = "nombre")
   private String nombre;
-  @Setter @Getter
+
+  @OneToOne
+  @JoinColumn(name = "usuario_id", referencedColumnName = "id")
   private Usuario usuario;
-  @Setter @Getter
+
+  @OneToOne
+  @JoinColumn(name = "designado_id", referencedColumnName = "id")
   private Designado designado;
-  @Setter @Getter
+
+  @OneToMany
+  @JoinColumn(name = "organismoDeControl")
   private List<Entidad> entidades;
 
   public OrganismoDeControl(String nombre) {

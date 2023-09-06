@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import javax.persistence.*;
 
-public class Provincia {
+@Entity
+@Table (name = "Provincia")
+@Setter@Getter
+public class Provincia extends Persistente{
 
-  @Getter
-  private int id;
-  @Getter
+  @Column(name = "nombre")
   private String nombre;
 
   public Provincia(int id, String nombre) {

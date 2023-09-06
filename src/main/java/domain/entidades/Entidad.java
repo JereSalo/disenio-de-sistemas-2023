@@ -2,24 +2,37 @@ package domain.entidades;
 
 import domain.establecimientos.Establecimiento;
 import domain.informes.*;
-import domain.localizacion.Departamento;
-import domain.localizacion.Municipio;
-import domain.localizacion.Provincia;
+import domain.localizacion.Localizacion;
+import domain.Persistente;
+
 import lombok.Getter;
 import lombok.Setter;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-
 import java.util.List;
+import javax.persistence.*;
 
-public class Entidad {
-  @Getter @Setter
+@Entity
+@Table(name = "entidad")
+@Setter
+@Getter
+public class Entidad extends Persistente{
+
+  @Column(name = "nombre")
   private String nombre;
+
+  @OneToMany(mappedBy = "entidad")
   private List<Establecimiento> establecimientos;
+
+  @Enumerated(EnumType.STRING)
+  @Column(name = "tipo")
   private TipoEntidad tipoEntidad;
-  private Provincia provincia;
-  private Departamento departamento;
-  private Municipio municipio;
+  
+  private 
+
+  private
+  
+  private Localizacion localizacion;
 
 }

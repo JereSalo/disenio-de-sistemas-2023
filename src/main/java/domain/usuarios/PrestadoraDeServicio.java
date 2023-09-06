@@ -5,19 +5,32 @@ import domain.informes.Informe;
 import domain.informes.ManejadorDeParrafos;
 import domain.informes.Parrafo;
 import domain.informes.RepoInformes;
+import domain.Persistente;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import javax.persistence.*;
 
-public class PrestadoraDeServicio {
-  @Setter @Getter
+@Entity
+@Table (name = "PrestadoraDeServicio")
+@Setter@Getter
+public class PrestadoraDeServicio extends Persistente{
+
+  @Column(name = "nombre")
   private String nombre;
-  @Setter @Getter
+
+  @OneToOne
+  @JoinColumnColumn(name = "usuario_id", referencedColumnName = "id")
   private Usuario usuario;
-  @Setter @Getter
+
+  @OneToOne
+  @JoinColumnColumn(name = "designado_id", referencedColumnName = "id")
   private Designado designado;
-  @Setter @Getter
+
+  @OneToMany
+  @JoinColumn(name = "prestadoraDeServicio")
   private List<Entidad> entidades;
 
   public PrestadoraDeServicio(String nombre) {
@@ -25,7 +38,7 @@ public class PrestadoraDeServicio {
   }
 
   private Informe ConsultarInforme(){
-    Informe informe = RepoInformes.getInforme();
+    Informe informe = RepoInformes.getInforme(); // Esta prohibida esta linea
     List<Parrafo> parrafos = informe.getParrafos();
 
     for(int i=0; i< parrafos.size(); i++){

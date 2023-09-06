@@ -5,44 +5,53 @@ import domain.comunidades.Miembro;
 import domain.entidades.Entidad;
 import domain.establecimientos.Establecimiento;
 import domain.servicios.PrestacionServicio;
+import domain.Persistente;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
+import javax.persistence.*;
 
-public class Incidente {
-  @Setter
-  @Getter
+@Entity
+@Table(name = "incidente")
+@Setter
+@Getter
+public class Incidente extends Persistente{
+  
+  @ManyToOne
+  @JoinColumn(name = "entidad_id", referencedColumnName = "id")
   private Entidad entidad;
 
-  @Getter
-  @Setter
+  @ManyToOne
+  @JoinColumn(name = "establecimiento_id", referencedColumnName = "id")
   private Establecimiento establecimiento;
 
-  @Getter
-  @Setter
+  @ManyToOne
+  @JoinColumn(name = "prestacion_servicio_id", referencedColumnName = "id")
   private PrestacionServicio prestacionDeServicio;
 
-  @Getter
-  @Setter
+  @ManyToOne
+  @JoinColumn(name = "creador_id", referencedColumnName = "id")
   private Miembro creador;
 
-  @Getter
-  @Setter
+  @ManyToOne
+  @JoinColumn(name = "cerrador_id", referencedColumnName = "id")
+  private Miembro cerrador;
+
+  @ManyToOne
+  @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   private Comunidad comunidad;
 
-  @Getter
-  @Setter
+  @Column(name = "fecha_creacion") // Agregar columnDefinition
   private LocalDateTime fechaDeCreacion;
 
-  @Getter
-  @Setter
+  @Column(name = "fecha_cierre") // Agregar columnDefinition
   private LocalDateTime fechaDeCierre;
 
-  @Getter
-  @Setter
+  @Column(name = "observaciones")
   private String observaciones;
 
   public Incidente() {

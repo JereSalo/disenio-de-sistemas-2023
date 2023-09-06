@@ -8,11 +8,25 @@ import lombok.Setter;
 
 import java.util.List;
 
-public class Miembro {
-  @Setter @Getter
+import javax.persistence.*;
+
+@Entity
+@Table (name = "Miembro")
+@Setter
+@Getter
+public class Miembro extends Persistente{
+  
+  @ManyToOne
+  @JoinColumn(name = "persona_id", referencedColumnName = "id")
   private Persona persona;
-  @Setter @Getter
+  
+  @OneToMany(mappedBy = "miembro")
   private List<RolMiembroServicio> rolesPorServicio;
+
+  @ManyToOne
+  @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
+  private Comunidad comunidad;
+
   public Miembro(Persona persona) {
     this.persona = persona;
   }

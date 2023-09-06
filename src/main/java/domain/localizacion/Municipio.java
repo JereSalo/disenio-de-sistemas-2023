@@ -1,13 +1,18 @@
 package domain.localizacion;
 
+import javax.persistence.*;
 import lombok.Getter;
 
-public class Municipio {
-  @Getter
-  private int id;
-  @Getter
+@Entity
+@Table (name = "Municipio")
+@Setter@Getter
+public class Municipio extends Persistente{
+  
+  @Column(name = "nombre")
   private String nombre;
-  @Getter
+
+  @ManyToOne
+  @JoinColumn(name = "departamento_id", referencedColumnName = "id")
   private Departamento departamento;
 
   public Municipio(int id, String nombre, Departamento departamento) {

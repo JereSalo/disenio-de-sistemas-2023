@@ -2,19 +2,24 @@ package domain.usuarios;
 
 import lombok.Getter;
 import lombok.Setter;
+import javax.persistence.*;
 
-public class Usuario {
-  //@Setter @Getter private String nombre;
+@Entity
+@Table (name = "Usuario")
+@Setter@Getter
+public class Usuario extends Persistente {
 
-  //@Setter @Getter private String apellido;
+  @Column(name = "mail")
+  private String mail;
 
-  @Setter @Getter private String mail;
+  @Column(name = "telefono")
+  private String telefono;
 
-  @Setter @Getter private String telefono;
+  @Column(name "username")
+  private String username;
 
-  @Setter @Getter private String username;
-
-  @Setter @Getter private String password;
+  @Column(name = "password")
+  private String password;
 
   public Usuario(String nombreusuario, String contrasenia) {
     this.username = nombreusuario;

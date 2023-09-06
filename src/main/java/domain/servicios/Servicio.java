@@ -2,9 +2,17 @@ package domain.servicios;
 
 import lombok.Getter;
 import lombok.Setter;
+import domain.Persistente;
 
-public class Servicio {
-    @Setter @Getter
+import javax.persistence.*;
+
+@Entity
+@Table(name = "servicio")
+@Setter
+@Getter
+public class Servicio extends Persistente{
+
+    @Column(name = "descripcion")
     private String descripcion;
 
     public Servicio(String descripcion){
