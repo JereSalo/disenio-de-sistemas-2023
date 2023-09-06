@@ -1,5 +1,6 @@
 package domain.comunidades;
 
+import domain.Persistente;
 import domain.usuarios.Persona;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Table (name = "Administrador")
 @Setter
 @Getter
-public class Administrador extends Persistente{
+public class Administrador extends Persistente {
   @ManyToOne
   @JoinColumn(name = "persona_id", referencedColumnName = "id")
   private Persona persona;

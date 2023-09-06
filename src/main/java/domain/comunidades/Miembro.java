@@ -1,5 +1,6 @@
 package domain.comunidades;
 
+import domain.Persistente;
 import domain.incidentes.Incidente;
 import domain.servicios.Servicio;
 import domain.usuarios.Persona;
@@ -14,7 +15,7 @@ import javax.persistence.*;
 @Table (name = "Miembro")
 @Setter
 @Getter
-public class Miembro extends Persistente{
+public class Miembro extends Persistente {
   
   @ManyToOne
   @JoinColumn(name = "persona_id", referencedColumnName = "id")

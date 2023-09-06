@@ -5,6 +5,7 @@ import domain.params.RecepcionIncidenteParams;
 import domain.repositorios.RepositorioSinApuros;
 import domain.usuarios.Persona;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -12,10 +13,17 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+import javax.persistence.*;
 
+@Entity
+@Table(name = "horarioSinApuros")
+@Setter
+@Getter
 public class SinApuros implements FormaNotificacion {
   private LinkedHashSet<Incidente> incidentesANotificar;
-  @Getter private List<LocalTime> horarios;
+
+  private List<LocalTime> horarios;
+
   private Persona persona;
 
   private SinApuros(Persona persona) {

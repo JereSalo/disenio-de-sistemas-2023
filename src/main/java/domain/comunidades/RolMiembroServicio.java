@@ -1,5 +1,6 @@
 package domain.comunidades;
 
+import domain.Persistente;
 import domain.servicios.Servicio;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,7 +10,7 @@ import javax.persistence.*;
 @Table (name = "RolMiembroServicio")
 @Setter
 @Getter
-public class RolMiembroServicio extends Persistente{
+public class RolMiembroServicio extends Persistente {
 
     @ManyToOne
     @JoinColumn(name = "servicio_id", referencedColumnName = "id")
