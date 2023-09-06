@@ -13,6 +13,7 @@ import persistence.converters.ConverterFormaNotificacion;
 
 import lombok.Getter;
 import lombok.Setter;
+import persistence.converters.ConverterNotificador;
 
 import java.util.List;
 import javax.persistence.*;
@@ -40,6 +41,8 @@ public class Persona extends Persistente{
   @Column(name = "forma_notificacion")
   private FormaNotificacion formaNotificacion;
 
+  @Convert(converter = ConverterNotificador.class)
+  @Column(name = "notificador")
   private Notificador notificador;
 
   public Persona(Usuario usuario) {
