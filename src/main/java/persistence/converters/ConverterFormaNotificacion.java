@@ -11,7 +11,7 @@ public class ConverterFormaNotificacion implements AttributeConverter<FormaNotif
     public String convertToDatabaseColumn(FormaNotificacion formaNotificacion) {
         String formaNotificacionString = null;
 
-        switch (dayOfWeek) {
+        switch (formaNotificacionString) {
             case MONDAY: formaNotificacionString = "CUANDO_SUCEDEN"; break;
             case TUESDAY: formaNotificacionString = "SIN_APUROS"; break;
         }
