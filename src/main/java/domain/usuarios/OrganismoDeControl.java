@@ -14,7 +14,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table (name = "organismo_de_control")
+@Table (name = "OrganismoDeControl")
 @Setter@Getter
 public class OrganismoDeControl extends Persistente{
 
@@ -29,8 +29,7 @@ public class OrganismoDeControl extends Persistente{
   @JoinColumn(name = "designado_id", referencedColumnName = "id")
   private Designado designado;
 
-  @OneToMany
-  @JoinColumn(name = "organismoDeControl")
+  @OneToMany(mappedBy = "organismo_de_control_id")
   private List<Entidad> entidades;
 
   public OrganismoDeControl(String nombre) {
