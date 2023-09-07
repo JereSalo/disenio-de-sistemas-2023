@@ -28,11 +28,7 @@ public class Entidad extends Persistente{
   @Enumerated(EnumType.STRING)
   @Column(name = "tipo")
   private TipoEntidad tipoEntidad;
-  
-  private 
 
-  private
-  
   private Localizacion localizacion;
 
 }
