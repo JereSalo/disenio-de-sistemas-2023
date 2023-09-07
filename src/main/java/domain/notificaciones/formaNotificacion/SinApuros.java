@@ -16,14 +16,19 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "horarioSinApuros")
+@Table(name = "SinApuros")
 @Setter
 @Getter
-public class SinApuros implements FormaNotificacion {
+public class SinApuros implements FormaNotificacion, extends Persistente{
+  
+  //TODO
   private LinkedHashSet<Incidente> incidentesANotificar;
 
+  //TODO
   private List<LocalTime> horarios;
 
+  @OneToOne
+  @JoinColumn(name = "persona_id", referencedColumnName = "id")
   private Persona persona;
 
   private SinApuros(Persona persona) {
@@ -32,12 +37,15 @@ public class SinApuros implements FormaNotificacion {
     this.horarios = new ArrayList<>();
   }
 
+  
+  /*
+  // No iria aca, este metodo iria en el repo
   public static SinApuros crear(Persona persona) {
     SinApuros sinApuros = new SinApuros(persona);
     RepositorioSinApuros.agregarSinApuros(sinApuros);
     return sinApuros;
   }
-
+  */
   public void recibirIncidente(RecepcionIncidenteParams params) {
     Incidente incidente = params.getIncidente();
     incidentesANotificar.add(incidente);
