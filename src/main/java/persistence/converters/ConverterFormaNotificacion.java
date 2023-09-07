@@ -12,16 +12,17 @@ public class ConverterFormaNotificacion implements AttributeConverter<FormaNotif
         String formaNotificacionString = null;
 
         switch (dayOfWeek) {
-            case MONDAY: dia = "Lunes"; break;
-            case TUESDAY: dia = "Martes"; break;
+            case MONDAY: formaNotificacionString = "CUANDO_SUCEDEN"; break;
+            case TUESDAY: formaNotificacionString = "SIN_APUROS"; break;
         }
-        
+
         return dia;
     }
 
     @Override
-    public DayOfWeek convertToEntityAttribute(String s) {
+    public FormaNotificacion convertToEntityAttribute(String s) {
         DayOfWeek dia = null;
+
         if(s != null) {
             switch (s) {
                 case "Lunes": dia = DayOfWeek.MONDAY; break;

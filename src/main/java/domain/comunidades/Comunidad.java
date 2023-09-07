@@ -1,6 +1,5 @@
 package domain.comunidades;
 
-import domain.Persistente;
 import domain.incidentes.Incidente;
 import domain.incidentes.IncidenteBuilder;
 import domain.params.AperturaIncidenteParams;
@@ -15,12 +14,12 @@ import javax.persistence.*;
 @Table (name = "Comunidad")
 @Setter
 @Getter
-public class Comunidad extends Persistente {
+public class Comunidad extends Persistente{
 
   @Column(name = "nombre")
   private String nombre;
 
-  @ManyToMany
+  @OneToMany(mappedBy = "comunidad")
   private List<Administrador> administradores;
 
   @OneToMany(mappedBy = "comunidad")
