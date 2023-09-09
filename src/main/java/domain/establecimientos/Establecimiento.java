@@ -5,12 +5,14 @@ import java.util.List;
 import domain.Persistente;
 import domain.entidades.Entidad;
 import domain.servicios.PrestacionServicio;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "establecimiento")
-@Setter 
+@Setter
 @Getter
 public class Establecimiento extends Persistente{
 
@@ -29,7 +31,7 @@ public class Establecimiento extends Persistente{
     private List<PrestacionServicio> prestaciones;
 
     public Establecimiento(){
-        this.servicios = new ArrayList<>();
+        this.prestaciones = new ArrayList<>();
     }
 
 }

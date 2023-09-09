@@ -18,7 +18,7 @@ import javax.persistence.*;
 @Setter@Getter
 public class OrganismoDeControl extends Persistente{
 
-  @Column(name = "nombre")
+  @Column(name = "nombre")  
   private String nombre;
 
   @OneToOne

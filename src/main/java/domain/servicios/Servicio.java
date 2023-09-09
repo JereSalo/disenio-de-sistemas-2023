@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Getter
 public class Servicio extends Persistente{
 
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", columnDefinition = "text")
     private String descripcion;
 
     public Servicio(String descripcion){

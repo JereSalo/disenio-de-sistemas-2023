@@ -29,7 +29,7 @@ public class PrestadoraDeServicio extends Persistente{
   @JoinColumn(name = "designado_id", referencedColumnName = "id")
   private Designado designado;
 
-  @OneToMany(mappedBy = "prestadora_de_servicio_id")
+  @OneToMany(mappedBy = "prestadoraDeServicio")
   private List<Entidad> entidades;
 
   public PrestadoraDeServicio(String nombre) {

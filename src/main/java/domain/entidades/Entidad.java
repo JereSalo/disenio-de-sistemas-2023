@@ -5,6 +5,9 @@ import domain.informes.*;
 import domain.localizacion.Localizacion;
 import domain.Persistente;
 
+import domain.servicios.PrestacionServicio;
+import domain.usuarios.OrganismoDeControl;
+import domain.usuarios.PrestadoraDeServicio;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,7 +31,17 @@ public class Entidad extends Persistente{
   @Enumerated(EnumType.STRING)
   @Column(name = "tipo")
   private TipoEntidad tipoEntidad;
-
+  
+  @OneToOne
+  @Column(name = "localizacion")
   private Localizacion localizacion;
+
+  @ManyToOne
+  @JoinColumn(name = "prestadora_de_servicio_id", referencedColumnName = "id")
+  private PrestadoraDeServicio prestadoraDeServicio;
+
+  @ManyToOne
+  @JoinColumn(name = "organismo_de_control_id", referencedColumnName = "id")
+  private OrganismoDeControl organismoDeControl;
 
 }

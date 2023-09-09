@@ -8,7 +8,7 @@ import domain.establecimientos.Establecimiento;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "prestacion_de_servicio")
+@Table(name = "PrestacionServicio")
 @Setter 
 @Getter
 public class PrestacionServicio extends Persistente{

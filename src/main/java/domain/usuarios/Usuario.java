@@ -15,7 +15,7 @@ public class Usuario extends Persistente {
   @Column(name = "telefono")
   private String telefono;
 
-  @Column(name "username")
+  @Column(name = "username")
   private String username;
 
   @Column(name = "password")

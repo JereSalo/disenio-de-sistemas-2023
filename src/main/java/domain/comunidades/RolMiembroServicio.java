@@ -19,7 +19,7 @@ public class RolMiembroServicio extends Persistente {
     @ManyToOne
     @JoinColumn(name = "miembro_id", referencedColumnName = "id")
     private Miembro miembro;
-    
-    @Column( name = 'afectado')
+
+    @Column( name = "afectado")
     private Boolean afectado;
 }
