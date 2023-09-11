@@ -3,27 +3,18 @@
 
 interface FormaNotificacion{
  +recibirIncidente(RecepcionIncidenteParams): void
+ +notificarIncidentesPendientes(Persona): void
 }
 
 class CuandoSuceden{
+ +recibirIncidente(RecepcionIncidenteParams): void
+ +notificarIncidentesPendientes(Persona): void
 }
 
 class SinApuros{
- -incidentesANotificar: LinkedHashSet<Incidente>
- -listaHorarios: List<LocalTime>
- -persona: Persona
 
- +crear(Persona): SinApuros
- -filtrarIncidentes(): Incidente[]
- +notificarIncidentes(): void
- +agregarHorario(int hora, int minutos): void
-}
-
-
-class RepositorioSinApuros{
- +todosLosSinApuros: List<SinApuros>
-
- +agregarSinApuros(SinApuros): void
+ +recibirIncidente(Incidente): void
+ +notificarIncidentesPendientes(Persona): void
 }
 
 abstract class Notificador{
@@ -48,15 +39,13 @@ class EmailBuilder{
 CuandoSuceden ..|> FormaNotificacion
 
 SinApuros ..|> FormaNotificacion
-SinApuros -->"*" Incidente
-SinApuros -->"1" Persona
+SinApuros ..> Incidente
+SinApuros ..> Persona
 
 WhatsApp ..|> Notificador
 
 CorreoElectronico..|> Notificador
 CorreoElectronico ..> EmailBuilder
-
-RepositorioSinApuros -->"*" SinApuros
 
 Persona --> FormaNotificacion
 Persona --> Notificador

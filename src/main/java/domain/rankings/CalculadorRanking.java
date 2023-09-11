@@ -4,8 +4,6 @@ import domain.entidades.Entidad;
 import domain.incidentes.Incidente;
 import domain.rankings.rankings.Ranking;
 import domain.rankings.valorRanking.ValorRanking;
-import domain.repositorios.RepoDeResultadosRankings;
-import domain.repositorios.RepoDeSujetosRanking;
 import persistence.repositories.FactoryRepositorios;
 import persistence.repositories.Repositorio;
 

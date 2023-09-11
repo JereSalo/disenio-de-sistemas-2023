@@ -1,19 +1,26 @@
 @startuml
 
 interface Ranking {
-    +calcularValoresAsociados(List<ValorRanking>, RepoDeSujetosRanking): void
+    +calcularValoresAsociados(List<ValorRanking>, SujetosRanking): void
 }
 
 class PromedioTiempoCierre {
-    +calcularValoresAsociados(List<ValorRanking>, RepoDeSujetosRanking): void
+    +calcularValoresAsociados(List<ValorRanking>, SujetosRanking): void
 }
 
 class CantidadDeIncidentes {
-    +calcularValoresAsociados(List<ValorRanking>, RepoDeSujetosRanking): void
+    +calcularValoresAsociados(List<ValorRanking>, SujetosRanking): void
 }
 
 class GradoDeImpacto {
-    +calcularValoresAsociados(List<ValorRanking>, RepoDeSujetosRanking): void
+    +calcularValoresAsociados(List<ValorRanking>, SujetosRanking): void
+}
+
+class SujetosRanking{
+
+    - entidades: List<Entidad>
+    - incidentes: List<Incidente>
+
 }
 
 interface ValorRanking {
@@ -33,34 +40,26 @@ class ValorRankingIncidente {
 }
 
 class CalculadorRanking {
-    -repoDeResultadosRankings: RepoDeResultadosRankings
-    -rankings : List<Ranking>
-    -repoDeSujetosRanking: RepoDeSujetosRanking
+    -rankings: List<Ranking>
 
     +generarTodosLosRankings(): void
 }
 
-class RepoDeResultadosRankings {
-    +resultadosRankings: List<List<ValorRanking>>
-}
+class MapperResultadoRanking{
 
-class RepoDeSujetosRanking{
-    +incidentes: List<Incidentes>
-    +entidades: List<Entidad>
+    +convertirAListValorRanking(List<ResultadoRanking>): List<List<ValorRanking>>
+    +convertirAResultadoRanking(List<ValorRanking>): List<ResultadoRanking>
 }
 
 Ranking ..> ValorRanking
-Ranking ..> RepoDeSujetosRanking
+Ranking ..> SujetosRanking
 
 PromedioTiempoCierre ..|> Ranking
 CantidadDeIncidentes ..|> Ranking
 GradoDeImpacto ..|> Ranking
 
-RepoDeSujetosRanking ..> ValorRanking
-
-CalculadorRanking --> RepoDeResultadosRankings
 CalculadorRanking --> Ranking
-CalculadorRanking --> RepoDeSujetosRanking
+CalculadorRanking ..> MapperResultadoRanking
 
 ValorRankingEntidad ..|> ValorRanking
 ValorRankingIncidente ..|> ValorRanking

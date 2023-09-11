@@ -85,9 +85,17 @@ class Persona{
     -entidadesDeInteres: List<Entidad>
     -notificador: Notificador
     -formaNotificacion: FormaNotificacion
+    -horariosSinApuros: List<HorarioSinApuros>
 
     +recibirIncidente(Incidente): void
     +notificarIncidente(Incidente...): void
+    +notificarIncidentesPendientes(): void
+}
+
+class HorarioSinApuros{
+
+    - persona: Persona
+    - horario: LocalTime
 }
 
 class PrestacionServicio{
@@ -142,6 +150,7 @@ class Incidente{
 
 interface FormaNotificacion{
  +recibirIncidente(Incidente): void
+ +notificarIncidentesPendientes(Persona): void
 }
 
 abstract class Notificador{
@@ -173,6 +182,7 @@ Persona -->"*" Servicio
 Persona -->"*" Entidad
 Persona -->"1" FormaNotificacion
 Persona -->"1" Notificador
+Persona -->"*" HorarioSinApuros
 
 Entidad -->"1" Localizacion
 Entidad -->"*" Establecimiento

@@ -7,9 +7,7 @@ import domain.rankings.rankings.CantidadDeIncidentes;
 import domain.rankings.rankings.GradoDeImpacto;
 import domain.rankings.rankings.PromedioTiempoCierre;
 import domain.rankings.rankings.Ranking;
-import domain.repositorios.RepoDeResultadosRankings;
 import domain.rankings.valorRanking.ValorRanking;
-import domain.repositorios.RepoDeSujetosRanking;
 import persistence.repositories.FactoryRepositorios;
 import persistence.repositories.Repositorio;
 

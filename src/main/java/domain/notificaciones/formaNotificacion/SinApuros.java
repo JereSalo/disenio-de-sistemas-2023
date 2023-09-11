@@ -4,7 +4,6 @@ import domain.incidentes.Incidente;
 import domain.params.RecepcionIncidenteParams;
 import domain.rankings.CalculadorRanking;
 import domain.rankings.rankings.Ranking;
-import domain.repositorios.RepositorioSinApuros;
 import domain.usuarios.Persona;
 import lombok.Getter;
 import lombok.Setter;

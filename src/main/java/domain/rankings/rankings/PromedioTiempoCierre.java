@@ -3,7 +3,6 @@ package domain.rankings.rankings;
 import domain.entidades.Entidad;
 import domain.incidentes.Incidente;
 import domain.rankings.SujetosRanking;
-import domain.repositorios.RepoDeSujetosRanking;
 import domain.rankings.valorRanking.ValorRanking;
 import domain.rankings.valorRanking.ValorRankingEntidad;
 
