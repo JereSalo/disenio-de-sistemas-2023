@@ -9,4 +9,5 @@ public interface Dao<T> {
     void modificar(Object unObjeto);
     void eliminar(Object unObjeto);
     List<T> ejecutarQuery(String query);
+    void eliminarTodo();
 }

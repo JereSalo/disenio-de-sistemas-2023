@@ -105,4 +105,9 @@ public class DaoHibernate<T> implements Dao<T> {
         
         return lista;
     }
+
+    public void eliminarTodo(){
+        //TODO
+        instanciarEntityManager();
+    }
 }
