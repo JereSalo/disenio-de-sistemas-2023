@@ -11,17 +11,14 @@ public class ConverterFormaNotificacion implements AttributeConverter<FormaNotif
     
     @Override
     public String convertToDatabaseColumn(FormaNotificacion formaNotificacion) {
-        /*String formaNotificacionString = null;
+        String formaNotificacionString = null;
 
-        switch (formaNotificacion) {
-            case  = 2: formaNotificacionString = "CUANDO_SUCEDEN"; break;
-            case  = 1: formaNotificacionString = "SIN_APUROS"; break;
-        }
+        if (formaNotificacion == CuandoSuceden.obtenerInstancia())
+            formaNotificacionString = "CUANDO_SUCEDEN";
+        else formaNotificacionString = "SIN_APUROS";
 
-        return formaNotificacionString;*/
+        return formaNotificacionString;
 
-        // return formaNotificacion.getName;
-        return null;
     }
 
     @Override

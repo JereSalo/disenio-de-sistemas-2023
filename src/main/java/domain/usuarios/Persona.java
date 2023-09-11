@@ -3,6 +3,8 @@ package domain.usuarios;
 import domain.entidades.Entidad;
 import domain.incidentes.Incidente;
 import domain.notificaciones.formaNotificacion.FormaNotificacion;
+import domain.notificaciones.formaNotificacion.HorarioSinApuros;
+import domain.notificaciones.formaNotificacion.SinApuros;
 import domain.notificaciones.notificador.Notificador;
 import domain.params.RecepcionIncidenteParams;
 import domain.servicios.Servicio;
@@ -40,11 +42,8 @@ public class Persona extends Persistente{
   @ManyToMany
   private List<Entidad> entidadesDeInteres;
 
-  @Convert(converter = ConverterHorarios.class)
-  @ElementCollection
-  @CollectionTable(name = "horarios_sin_apuros", joinColumns = @JoinColumn(name = "id"))
-  @Column(name = "horarios")
-  private List<LocalTime> horarios;
+  @OneToMany(mappedBy = "persona")
+  private List<HorarioSinApuros> horariosSinApuros;
 
   @ManyToMany
   private LinkedHashSet<Incidente> incidentesANotificar;
@@ -61,6 +60,10 @@ public class Persona extends Persistente{
     this.usuario = usuario;
   }
 
+  public List<LocalTime> getHorarios(){
+    return this.horariosSinApuros.stream().map(h -> h.getHorario()).toList();
+  }
+
   public void recibirIncidente(Incidente incidente) {
     if(this.leInteresa(incidente)) {
       RecepcionIncidenteParams params = new RecepcionIncidenteParams(this, incidente);
@@ -71,6 +74,10 @@ public class Persona extends Persistente{
   private boolean leInteresa(Incidente incidente) {
     return this.serviciosDeInteres.contains(incidente.getPrestacionDeServicio().getServicio()) ||
       this.entidadesDeInteres.contains(incidente.getEntidad());
+  }
+
+  public void notificarIncidentesPendientes() {
+    formaNotificacion.notificarIncidentesPendientes(this);
   }
 
   public void notificarIncidente(Incidente... incidentes) {
@@ -85,14 +92,4 @@ public class Persona extends Persistente{
     return null;
   }
 
-  public void agregarHorario(Integer hora, Integer minutos) {
-    if(hora < 0 || hora > 23 || minutos < 0 || minutos > 59)
-      throw new RuntimeException("Horario invalido");
-    if(horarios.contains(LocalTime.of(hora,minutos)))
-      throw new RuntimeException("Horario ya agregado");
-    if(minutos == 0 || minutos == 30)
-      throw new RuntimeException("Solo se pueden agregar horarios en punto o y media");
-
-    horarios.add(LocalTime.of(hora,minutos));
-  }
 }

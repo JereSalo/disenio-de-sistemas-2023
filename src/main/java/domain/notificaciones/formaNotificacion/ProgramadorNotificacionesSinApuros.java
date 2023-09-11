@@ -1,21 +1,30 @@
 package domain.notificaciones.formaNotificacion;
 
 import domain.repositorios.RepositorioSinApuros;
+import persistence.repositories.FactoryRepositorios;
+import persistence.repositories.Repositorio;
 
 import java.time.LocalTime;
 import java.util.*;
 
 public class ProgramadorNotificacionesSinApuros {
+
+  private static boolean coincideConHorarioActual(LocalTime horario){
+    return (horario.getHour() == LocalTime.now().getHour() && horario.getMinute() == LocalTime.now().getMinute());
+  }
   public static void main(String[] args) {
     TimerTask tarea = new TimerTask() {
       @Override
       public void run() {
         System.out.println("Tarea ejecutada a las " + LocalTime.now().getHour() + ":" + LocalTime.now().getMinute() + ":" + LocalTime.now().getSecond());
-        List<SinApuros> sinApurosANotificar = RepositorioSinApuros.getTodosLosSinApuros();
 
-        sinApurosANotificar.removeIf(sinApuros -> !sinApuros.getHorarios().contains(LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute())));
+        Repositorio<HorarioSinApuros> horarioSinApurosRepositorio = FactoryRepositorios.get(HorarioSinApuros.class);
 
-        sinApurosANotificar.forEach(sinApuros -> sinApuros.notificarIncidentes());
+        horarioSinApurosRepositorio.obtenerTodos().forEach(horarioSinApuros -> {
+          if (coincideConHorarioActual(horarioSinApuros.getHorario())){
+            horarioSinApuros.getPersona().notificarIncidentesPendientes();
+          }
+        });
       }
     };
 

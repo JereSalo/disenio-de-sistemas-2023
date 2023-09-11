@@ -19,4 +19,8 @@ public final class CuandoSuceden implements FormaNotificacion{
 
     persona.notificarIncidente(incidente);
   }
+
+  public void notificarIncidentesPendientes(Persona persona){
+
+  }
 }
