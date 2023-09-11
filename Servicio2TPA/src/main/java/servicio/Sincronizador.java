@@ -1,6 +1,7 @@
 package servicio;
 
 import servicio.entidades.Comunidad;
+import servicio.entidades.Datos;
 import servicio.entidades.Incidente;
 import servicio.entidades.Usuario;
 

@@ -1,7 +1,7 @@
-package calculadores;
+package calculadores.confianza;
 
 import servicio.entidades.Comunidad;
-import servicio.Datos;
+import servicio.entidades.Datos;
 import servicio.entidades.Usuario;
 
 import java.util.List;
@@ -11,24 +11,24 @@ public class ActualizadorGradoConfianza {
     private int PUNTAJE_MAXIMO_CON_RESERVAS = 3;
     private int PUNTAJE_MAXIMO_CONFIABLE_NIVEL_1 = 5;
 
-    public void calcularGradoConfianzaComunidades(){
+    public void actualizarGradoConfianzaComunidades(){
         List<Comunidad> comunidades = Datos.getInstance().getComunidades();
-        comunidades.forEach(this::calcularGradoConfianzaComunidad);
+        comunidades.forEach(this::actualizarGradoConfianzaComunidad);
     }
 
-    private void calcularGradoConfianzaComunidad(Comunidad comunidad){
+    private void actualizarGradoConfianzaComunidad(Comunidad comunidad){
         double puntaje = comunidad.getPuntajeDeConfianza();
 
         comunidad.establecerGradoDeConfianza(obtenerGradoConfianza(puntaje));
     }
 
-    public void calcularGradoConfianzaUsuarios(){
+    public void actualizarGradoConfianzaUsuarios(){
         List<Usuario> usuarios = Datos.getInstance().getUsuarios();
 
-        usuarios.forEach(this::calcularGradoConfianzaUsuario);
+        usuarios.forEach(this::actualizarGradoConfianzaUsuario);
     }
 
-    private void calcularGradoConfianzaUsuario(Usuario usuario){
+    private void actualizarGradoConfianzaUsuario(Usuario usuario){
         double puntaje = usuario.getPuntajeDeConfianza();
 
         usuario.establecerGradoDeConfianza(obtenerGradoConfianza(puntaje));
@@ -36,9 +36,9 @@ public class ActualizadorGradoConfianza {
 
     private String obtenerGradoConfianza(double puntaje){
         if (puntaje < PUNTAJE_MAXIMO_NO_CONFIABLE) {
-            return "No confiable";
+            return "No Confiable";
         } else if (puntaje <= PUNTAJE_MAXIMO_CON_RESERVAS) {
-            return "Con reservas";
+            return "Con Reservas";
         } else if (puntaje <= PUNTAJE_MAXIMO_CONFIABLE_NIVEL_1) {
             return "Confiable Nivel 1";
         } else {

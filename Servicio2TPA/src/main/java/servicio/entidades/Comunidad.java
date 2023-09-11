@@ -22,53 +22,16 @@ public class Comunidad {
     @JsonProperty("Puntaje de Confianza")
     private double puntajeDeConfianza;
 
-    // Getters y setters
     @JsonProperty("Grado de Confianza")
     private String gradoDeConfianza;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public List<Usuario> getUsuariosClase() {
-        return usuariosClase;
-    }
-
-    public void setUsuariosClase(List<Usuario> usuariosClase) {
-        this.usuariosClase = usuariosClase;
-    }
-
-    public double getPuntajeDeConfianza() {
-        return puntajeDeConfianza;
-    }
-
-    public void setPuntajeDeConfianza(double puntajeDeConfianza) {
-        this.puntajeDeConfianza = puntajeDeConfianza;
-    }
-
-    public String getGradoDeConfianza() {
-        return gradoDeConfianza;
-    }
-
-    public void setGradoDeConfianza(String gradoDeConfianza) {
-        this.gradoDeConfianza = gradoDeConfianza;
-    }
-
-    public Boolean getInactivado() {
-        return inactivado;
-    }
-
-    public void setInactivado(Boolean inactivado) {
-        this.inactivado = inactivado;
-    }
 
     @JsonProperty("Inactivado")
     private Boolean inactivado = false;
 
+
+
+
+    // Metodos
 
     @JsonProperty("Usuarios que la componen")
     public void setUsuariosQueLaComponen(List<Integer> usuariosQueLaComponen) {
@@ -90,3 +53,4 @@ public class Comunidad {
             inactivado = true;
     }
 }
+

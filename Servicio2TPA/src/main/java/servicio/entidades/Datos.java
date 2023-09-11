@@ -1,4 +1,4 @@
-package servicio;
+package servicio.entidades;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -6,31 +6,14 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.Setter;
-import servicio.entidades.Comunidad;
-import servicio.entidades.Incidente;
-import servicio.entidades.Usuario;
 
 import java.io.IOException;
 import java.util.List;
 
 
+@Getter
+@Setter
 public class Datos {
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    public void setUsuarios(List<Usuario> usuarios) {
-        this.usuarios = usuarios;
-    }
-
-    public List<Comunidad> getComunidades() {
-        return comunidades;
-    }
-
-    public void setComunidades(List<Comunidad> comunidades) {
-        this.comunidades = comunidades;
-    }
-
     // ATRIBUTOS
     @JsonProperty("usuarios")
     private List<Usuario> usuarios;
@@ -39,6 +22,7 @@ public class Datos {
 
     @JsonProperty("comunidades")
     private List<Comunidad> comunidades;
+
 
 
     // SINGLETON

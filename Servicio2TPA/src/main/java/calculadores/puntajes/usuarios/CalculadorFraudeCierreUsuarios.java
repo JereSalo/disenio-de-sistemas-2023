@@ -1,7 +1,7 @@
-package calculadores.usuarios;
+package calculadores.puntajes.usuarios;
 
-import calculadores.Calculador;
-import servicio.Datos;
+import calculadores.puntajes.Calculador;
+import servicio.entidades.Datos;
 import servicio.entidades.Incidente;
 import servicio.entidades.Usuario;
 

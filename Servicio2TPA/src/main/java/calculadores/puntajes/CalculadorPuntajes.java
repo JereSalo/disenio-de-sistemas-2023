@@ -1,9 +1,9 @@
-package calculadores;
+package calculadores.puntajes;
 
-import calculadores.comunidades.CalculadorPuntajeComunidad;
-import calculadores.usuarios.CalculadorAporteUsuarios;
-import calculadores.usuarios.CalculadorFraudeAperturaUsuarios;
-import calculadores.usuarios.CalculadorFraudeCierreUsuarios;
+import calculadores.puntajes.comunidades.CalculadorPuntajeComunidad;
+import calculadores.puntajes.usuarios.CalculadorAporteUsuarios;
+import calculadores.puntajes.usuarios.CalculadorFraudeAperturaUsuarios;
+import calculadores.puntajes.usuarios.CalculadorFraudeCierreUsuarios;
 
 import java.util.ArrayList;
 import java.util.Collections;

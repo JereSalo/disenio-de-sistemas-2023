@@ -1,8 +1,8 @@
-package calculadores.comunidades;
+package calculadores.puntajes.comunidades;
 
-import calculadores.Calculador;
+import calculadores.puntajes.Calculador;
 import servicio.entidades.Comunidad;
-import servicio.Datos;
+import servicio.entidades.Datos;
 import servicio.entidades.Usuario;
 
 import java.util.List;

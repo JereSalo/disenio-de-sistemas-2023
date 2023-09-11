@@ -9,61 +9,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Usuario {
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public double getPuntajeDeConfianza() {
-        return puntajeDeConfianza;
-    }
-
-    public void setPuntajeDeConfianza(double puntajeDeConfianza) {
-        this.puntajeDeConfianza = puntajeDeConfianza;
-    }
-
-    public String getGradoDeConfianza() {
-        return gradoDeConfianza;
-    }
-
-    public void setGradoDeConfianza(String gradoDeConfianza) {
-        this.gradoDeConfianza = gradoDeConfianza;
-    }
-
-    public Boolean getInactivado() {
-        return inactivado;
-    }
-
-    public void setInactivado(Boolean inactivado) {
-        this.inactivado = inactivado;
-    }
-
-    public Integer getCantAperturasYCierres() {
-        return cantAperturasYCierres;
-    }
-
-    public void setCantAperturasYCierres(Integer cantAperturasYCierres) {
-        this.cantAperturasYCierres = cantAperturasYCierres;
-    }
-
-    public Integer getCantFraudesAperturas() {
-        return cantFraudesAperturas;
-    }
-
-    public void setCantFraudesAperturas(Integer cantFraudesAperturas) {
-        this.cantFraudesAperturas = cantFraudesAperturas;
-    }
-
-    public Integer getCantFraudesCierres() {
-        return cantFraudesCierres;
-    }
-
-    public void setCantFraudesCierres(Integer cantFraudesCierres) {
-        this.cantFraudesCierres = cantFraudesCierres;
-    }
 
     @JsonProperty("id")
     private int id;

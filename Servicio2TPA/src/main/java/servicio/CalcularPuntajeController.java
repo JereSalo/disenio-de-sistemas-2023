@@ -1,18 +1,15 @@
 package servicio;
 
-import calculadores.ActualizadorGradoConfianza;
-import calculadores.CalculadorPuntajes;
+import calculadores.confianza.ActualizadorGradoConfianza;
+import calculadores.puntajes.CalculadorPuntajes;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
+import servicio.entidades.Datos;
 
 import java.io.IOException;
 
 public class CalcularPuntajeController implements Handler {
-    public CalcularPuntajeController() {
-        super();
-    }
-
     @Override
     public void handle(Context ctx) throws Exception {
         String json = ctx.body();
@@ -27,17 +24,16 @@ public class CalcularPuntajeController implements Handler {
             e.printStackTrace();
         }
 
-        Sincronizador sincronizador = new Sincronizador();
-        sincronizador.sincronizar();
+        new Sincronizador().sincronizar();
 
         CalculadorPuntajes calculadorPuntajes = new CalculadorPuntajes();
         ActualizadorGradoConfianza actualizadorGradoConfianza = new ActualizadorGradoConfianza();
 
         calculadorPuntajes.calcularPuntajesUsuarios();
-        actualizadorGradoConfianza.calcularGradoConfianzaUsuarios();
+        actualizadorGradoConfianza.actualizarGradoConfianzaUsuarios();
 
         calculadorPuntajes.calcularPuntajeComunidades();
-        actualizadorGradoConfianza.calcularGradoConfianzaComunidades();
+        actualizadorGradoConfianza.actualizarGradoConfianzaComunidades();
 
         Datos datos = Datos.getInstance();
         String json_respuesta = objectMapper.writeValueAsString(datos);
