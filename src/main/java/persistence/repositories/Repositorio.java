@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Repositorio<T> {
     @Getter @Setter
-    protected Dao<T> dao;
+    private Dao<T> dao;
 
     public Repositorio(Dao<T> dao) {
         this.dao = dao;
@@ -28,10 +28,6 @@ public class Repositorio<T> {
 
     public void agregar(Object unObjeto){
         this.dao.agregar(unObjeto);
-    }
-
-    public List<T> ejecutarQuery(String query){
-        return this.dao.ejecutarQuery(query);
     }
 
     public List<T> obtenerTodos(){

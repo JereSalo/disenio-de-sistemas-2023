@@ -95,17 +95,6 @@ public class DaoHibernate<T> implements Dao<T> {
         this.entityManager.close();
     }
 
-    public List<T> ejecutarQuery(String query){
-        
-        instanciarEntityManager();
-        
-        List<T> lista = this.entityManager.createQuery(query).getResultList();
-        
-        this.entityManager.close();
-        
-        return lista;
-    }
-
     public void eliminarTodo(){
         //TODO
         instanciarEntityManager();

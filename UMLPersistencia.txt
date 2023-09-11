@@ -1,0 +1,43 @@
+@startuml
+
+class Repositorio{
+   - dao: Dao
+
+   + modificar (Object): void
+   + eliminar (Object): void
+   + eliminarTodo(Object): void
+   + agregar(Object): void
+   + obtenerTodos(): List<T>
+   + buscarPorId(int): T
+
+}
+
+interface Dao{
+
+   + modificar (Object): void
+   + eliminar (Object): void
+   + eliminarTodo(Object): void
+   + agregar(Object): void
+   + obtenerTodos(): List<T>
+   + buscarPorId(int): T
+
+}
+
+class DaoHibernate{
+
+   - entityManager: EntityManager
+
+   + modificar (Object): void
+   + eliminar (Object): void
+   + eliminarTodo(Object): void
+   + agregar(Object): void
+   + obtenerTodos(): List<T>
+   + buscarPorId(int): T
+
+}
+
+Repositorio --> Dao
+
+DaoHibernate ..|> Dao
+
+@enduml
