@@ -22,7 +22,7 @@ public class FactoryRepositorios {
         else{
                 Dao<T> dao = new DaoHibernate<>(tipo);
                 repo = new Repositorio<>(dao);
-        }
+        } 
         hashMapRepos.put(tipo.toString(), repo);
         
         return repo;

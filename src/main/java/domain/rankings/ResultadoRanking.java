@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class ResultadoRanking extends Persistente{
 
   @Column (name = "id_ranking")
-  private Long id_ranking;
+  private Long idRanking;
 
   @Column (name = "posicion")
   private Long posicion;
@@ -29,4 +29,8 @@ public class ResultadoRanking extends Persistente{
 
   @Column (name = "valorPosicion")
   private float valorPosicion;
+
+  public ResultadoRanking(){
+    
+  }
 }

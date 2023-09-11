@@ -9,26 +9,42 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CalculadorRanking {
-  private RepoDeResultadosRankings repoDeResultadosRankings;
   private List<Ranking> rankings;
-  private RepoDeSujetosRanking repoDeSujetosRanking;
+  
+  private Repositorio<ResultadoRanking> repoDeResultadosRankings;
+  private Repositorio<Entidad> repoDeEntidades;
+  private Repositorio<Incidente> repoDeIncidentes;
 
   private static CalculadorRanking instancia = null;
 
-  public static CalculadorRanking getInstance(RepoDeResultadosRankings repoDeResultadosRankings, List<Ranking> rankings, RepoDeSujetosRanking repoDeSujetosRanking){
+  public static CalculadorRanking getInstance(List<Ranking> rankings){
     if (instancia == null){
-      instancia = new CalculadorRanking(repoDeResultadosRankings, rankings, repoDeSujetosRanking);
+      instancia = new CalculadorRanking(rankings);
     }
     return instancia;
   }
 
-  private CalculadorRanking (RepoDeResultadosRankings repoDeResultadosRankings, List<Ranking> rankings, RepoDeSujetosRanking repoDeSujetosRanking){
-    this.repoDeResultadosRankings = repoDeResultadosRankings;
+  private CalculadorRanking (List<Ranking> rankings){
     this.rankings = rankings;
-    this.repoDeSujetosRanking = repoDeSujetosRanking;
+    this.repoDeResultadosRankings = FactoryRepositorios.get(ResultadoRanking.class);
+    this.repoDeEntidades = FactoryRepositorios.get(Entidad.class);
+    this.repoDeIncidentes = FactoryRepositorios.get(Incidentes.class);
   }
+  
   public void generarTodosLosRankings(){
+  
+    this.repoDeResultadosRankings.eliminarTodo();
+
     rankings.forEach(ranking -> {repoDeResultadosRankings.resultadosRankings.add(calcularRanking(ranking));});
+
+    rankings.forEach(ranking -> {
+      List<ResultadoRanking> resultadosRanking = MapperResultadoRanking.convertirAResultadoRanking(this.calcularRanking(ranking));
+      
+      resultadosRanking.forEach(resultado -> {
+        this.repoDeResultadosRankings.agregar(resultado);
+      });
+
+    });
   }
 
   private List<ValorRanking> calcularRanking(Ranking ranking){
@@ -45,9 +61,9 @@ public class CalculadorRanking {
   }
 
   private int comparadorValorRanking( ValorRanking v1, ValorRanking v2){
-    if(v1.getValor()==v2.getValor())
+    if(v1.getValor() == v2.getValor())
       return 0;
-    else if(v1.getValor()>v2.getValor())
+    else if(v1.getValor() > v2.getValor())
       return 1;
     else
       return -1;
