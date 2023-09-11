@@ -1,6 +1,8 @@
 package persistence.converters;
 
-import domain.notificaciones.formaNotificacion;
+import domain.notificaciones.formaNotificacion.CuandoSuceden;
+import domain.notificaciones.formaNotificacion.FormaNotificacion;
+import domain.notificaciones.formaNotificacion.SinApuros;
 
 import javax.persistence.*;
 
@@ -9,29 +11,31 @@ public class ConverterFormaNotificacion implements AttributeConverter<FormaNotif
     
     @Override
     public String convertToDatabaseColumn(FormaNotificacion formaNotificacion) {
-        String formaNotificacionString = null;
+        /*String formaNotificacionString = null;
 
-        switch (formaNotificacionString) {
-            case MONDAY: formaNotificacionString = "CUANDO_SUCEDEN"; break;
-            case TUESDAY: formaNotificacionString = "SIN_APUROS"; break;
+        switch (formaNotificacion) {
+            case  = 2: formaNotificacionString = "CUANDO_SUCEDEN"; break;
+            case  = 1: formaNotificacionString = "SIN_APUROS"; break;
         }
 
-        return dia;
+        return formaNotificacionString;*/
+
+        // return formaNotificacion.getName;
+        return null;
     }
 
     @Override
-    public FormaNotificacion convertToEntityAttribute(String s) {
-        DayOfWeek dia = null;
+    public FormaNotificacion convertToEntityAttribute(String formaNotificacionString) {
+        FormaNotificacion formaNotificacion = null;
 
-        if(s != null) {
-            switch (s) {
-                case "Lunes": dia = DayOfWeek.MONDAY; break;
-                case "Sabado": dia = DayOfWeek.SATURDAY; break;
-                default: throw new IllegalArgumentException(s + " no se puede convertir a un DayOfWeek");
+        if(formaNotificacionString != null) {
+            switch (formaNotificacionString) {
+                case "CUANDO_SUCEDEN": formaNotificacion = CuandoSuceden.obtenerInstancia(); break;
+                case "SIN_APUROS": formaNotificacion = SinApuros.obtenerInstancia(); break;
+                default: throw new IllegalArgumentException(formaNotificacionString +
+                                                            " no se puede convertir a una forma de notificacion");
             }
         }
-        return dia;
+        return formaNotificacion;
     }
-
-
 }
