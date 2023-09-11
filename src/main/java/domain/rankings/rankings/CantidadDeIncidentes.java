@@ -2,6 +2,7 @@ package domain.rankings.rankings;
 
 import domain.entidades.Entidad;
 import domain.incidentes.Incidente;
+import domain.rankings.SujetosRanking;
 import domain.repositorios.RepoDeSujetosRanking;
 import domain.rankings.valorRanking.ValorRanking;
 import domain.rankings.valorRanking.ValorRankingEntidad;
@@ -9,8 +10,8 @@ import domain.rankings.valorRanking.ValorRankingEntidad;
 import java.util.List;
 
 public class CantidadDeIncidentes implements Ranking{
-  public void calcularValoresAsociados(List<ValorRanking> listaValorRanking, RepoDeSujetosRanking repoDeSujetosRanking){
-    repoDeSujetosRanking.entidades.forEach(entidad -> listaValorRanking.add(new ValorRankingEntidad(entidad, calcularValorEntidad(entidad, repoDeSujetosRanking.getIncidentes()))));
+  public void calcularValoresAsociados(List<ValorRanking> listaValorRanking, SujetosRanking sujetosRanking){
+    sujetosRanking.getEntidades().forEach(entidad -> listaValorRanking.add(new ValorRankingEntidad(entidad, calcularValorEntidad(entidad, sujetosRanking.getIncidentes()))));
   }
 
   private float calcularValorEntidad(Entidad entidad, List<Incidente> listaIncidentes){

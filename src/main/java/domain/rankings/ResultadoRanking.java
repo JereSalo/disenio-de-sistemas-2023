@@ -24,13 +24,20 @@ public class ResultadoRanking extends Persistente{
   private Entidad entidad;
 
   @ManyToOne
-  @JoinColumn(name = "entidad_id", referencedColumnName = "id")
+  @JoinColumn(name = "incidente_id", referencedColumnName = "id")
   private Incidente incidente;
 
   @Column (name = "valorPosicion")
   private float valorPosicion;
 
   public ResultadoRanking(){
-    
+
+  }
+  public ResultadoRanking(Long idRanking, Long posicion, Entidad entidad, Incidente incidente, float valorPosicion){
+    this.idRanking = idRanking;
+    this.posicion = posicion;
+    this.entidad = entidad;
+    this.incidente = incidente;
+    this.valorPosicion = valorPosicion;
   }
 }

@@ -22,6 +22,10 @@ public class Repositorio<T> {
         this.dao.eliminar(unObjeto);
     }
 
+    public void eliminarTodo(){
+        this.dao.eliminarTodo();
+    }
+
     public void agregar(Object unObjeto){
         this.dao.agregar(unObjeto);
     }

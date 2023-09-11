@@ -13,6 +13,11 @@ public class ValorRankingIncidente implements ValorRanking{
     this.incidente = incidente;
     this.valor = valor;
   }
+  
+  public Incidente getSujeto() {
+    return this.incidente;
+  }
+
   public String getNombreSujeto(){
     return "incidente";
   }

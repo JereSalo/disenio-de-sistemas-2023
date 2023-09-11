@@ -14,6 +14,10 @@ public class ValorRankingEntidad implements ValorRanking{
     this.valor = valor;
   }
 
+  public Entidad getSujeto(){
+    return this.entidad;
+  }
+
   public String getNombreSujeto(){
     return this.entidad.getNombre();
   }

@@ -1,9 +1,13 @@
 package domain.rankings;
 
+import domain.entidades.Entidad;
+import domain.incidentes.Incidente;
 import domain.rankings.rankings.Ranking;
 import domain.rankings.valorRanking.ValorRanking;
 import domain.repositorios.RepoDeResultadosRankings;
 import domain.repositorios.RepoDeSujetosRanking;
+import persistence.repositories.FactoryRepositorios;
+import persistence.repositories.Repositorio;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,17 +32,17 @@ public class CalculadorRanking {
     this.rankings = rankings;
     this.repoDeResultadosRankings = FactoryRepositorios.get(ResultadoRanking.class);
     this.repoDeEntidades = FactoryRepositorios.get(Entidad.class);
-    this.repoDeIncidentes = FactoryRepositorios.get(Incidentes.class);
+    this.repoDeIncidentes = FactoryRepositorios.get(Incidente.class);
   }
   
   public void generarTodosLosRankings(){
   
     this.repoDeResultadosRankings.eliminarTodo();
 
-    rankings.forEach(ranking -> {repoDeResultadosRankings.resultadosRankings.add(calcularRanking(ranking));});
+    SujetosRanking sujetosRanking = new SujetosRanking(this.repoDeEntidades.obtenerTodos(), this.repoDeIncidentes.obtenerTodos());
 
     rankings.forEach(ranking -> {
-      List<ResultadoRanking> resultadosRanking = MapperResultadoRanking.convertirAResultadoRanking(this.calcularRanking(ranking));
+      List<ResultadoRanking> resultadosRanking = MapperResultadoRanking.convertirAResultadoRanking(this.calcularRanking(ranking, sujetosRanking), (long) rankings.indexOf(ranking));
       
       resultadosRanking.forEach(resultado -> {
         this.repoDeResultadosRankings.agregar(resultado);
@@ -47,10 +51,10 @@ public class CalculadorRanking {
     });
   }
 
-  private List<ValorRanking> calcularRanking(Ranking ranking){
+  private List<ValorRanking> calcularRanking(Ranking ranking, SujetosRanking sujetosRanking){
     ArrayList<ValorRanking> valorRankingResultante = new ArrayList<ValorRanking>();
 
-    ranking.calcularValoresAsociados(valorRankingResultante, repoDeSujetosRanking);
+    ranking.calcularValoresAsociados(valorRankingResultante, sujetosRanking);
 
     ordenarLista(valorRankingResultante);
 

@@ -1,6 +1,8 @@
 package domain.informes;
 
+import domain.rankings.MapperResultadoRanking;
 import domain.rankings.CalculadorRanking;
+import domain.rankings.ResultadoRanking;
 import domain.rankings.rankings.CantidadDeIncidentes;
 import domain.rankings.rankings.GradoDeImpacto;
 import domain.rankings.rankings.PromedioTiempoCierre;
@@ -8,6 +10,8 @@ import domain.rankings.rankings.Ranking;
 import domain.repositorios.RepoDeResultadosRankings;
 import domain.rankings.valorRanking.ValorRanking;
 import domain.repositorios.RepoDeSujetosRanking;
+import persistence.repositories.FactoryRepositorios;
+import persistence.repositories.Repositorio;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -22,8 +26,9 @@ public class GeneradorDeInforme {
     public void generarInforme(){
         Informe informe = new Informe();
 
+        Repositorio<ResultadoRanking> repoDeResultadosRankings = FactoryRepositorios.get(ResultadoRanking.class);
 
-        List<List<ValorRanking>> resultadosRankings =   RepoDeResultadosRankings.getResultadosRankings();
+        List<List<ValorRanking>> resultadosRankings = MapperResultadoRanking.convertirAListValorRanking(repoDeResultadosRankings.obtenerTodos());
 
         // Guardamos asi en la lista de resultadosRankings:
             // 1. Mayor promedio
@@ -35,7 +40,6 @@ public class GeneradorDeInforme {
 
         RepoInformes.setInforme(informe);
     }
-
 
     private void crearParrafo(Informe informe, String titulo, List<ValorRanking> ranking){
         Parrafo parrafo = new Parrafo(titulo, ranking);
@@ -49,11 +53,7 @@ public class GeneradorDeInforme {
         listaRankings.add(new CantidadDeIncidentes());
         listaRankings.add(new GradoDeImpacto());
 
-        RepoDeSujetosRanking repoDeSujetosRanking = new RepoDeSujetosRanking();
-
-        RepoDeResultadosRankings repoDeResultadosRankings = new RepoDeResultadosRankings();
-
-        CalculadorRanking calculadorRanking = CalculadorRanking.getInstance(repoDeResultadosRankings, listaRankings, repoDeSujetosRanking);
+        CalculadorRanking calculadorRanking = CalculadorRanking.getInstance(listaRankings);
         calculadorRanking.generarTodosLosRankings();
 
         GeneradorDeInforme generadorDeInforme = new GeneradorDeInforme();
