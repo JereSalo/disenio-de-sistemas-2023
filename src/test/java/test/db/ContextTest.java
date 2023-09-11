@@ -1,4 +1,4 @@
-package db;
+package test.db;
 
 
 import io.github.flbulgarelli.jpa.extras.test.SimplePersistenceTest;

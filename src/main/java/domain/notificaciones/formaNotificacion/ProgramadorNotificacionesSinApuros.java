@@ -1,6 +1,5 @@
 package domain.notificaciones.formaNotificacion;
 
-import domain.repositorios.RepositorioSinApuros;
 import persistence.repositories.FactoryRepositorios;
 import persistence.repositories.Repositorio;
 

@@ -1,12 +1,15 @@
 package domain.localizacion;
 
+import domain.Persistente;
 import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table (name = "Localizacion")
 @Getter @Setter
-public class Localizacion extends Persistente{
+public class Localizacion extends Persistente {
   
   @ManyToOne
   @JoinColumn(name = "municipio_id", referencedColumnName = "id")

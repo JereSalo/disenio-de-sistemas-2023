@@ -1,5 +1,6 @@
 package domain.usuarios;
 
+import domain.Persistente;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;

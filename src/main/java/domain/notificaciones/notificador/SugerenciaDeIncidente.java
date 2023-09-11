@@ -1,8 +1,6 @@
 package domain.notificaciones.notificador;
 
 import domain.notificaciones.formaNotificacion.SinApuros;
-import domain.repositorios.RepositorioSinApuros;
-
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Timer;

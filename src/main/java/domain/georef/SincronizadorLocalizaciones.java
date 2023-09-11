@@ -32,33 +32,41 @@ public class SincronizadorLocalizaciones {
   }
 
   public void sincronizar() throws IOException {
+    //TODO: modificar metodos para que anden con persistencia
 
     sincronizarProvincias();
     sincronizarDepartamentos();
     sincronizarMunicipios();
+
   }
 
   private void sincronizarProvincias() throws IOException{
     ListadoDeProvincias listadoDeProvinciasAPI = georefAPI.obtenerTodasLasProvincias();
-
+    /*
     for (int i = 0; i < listadoDeProvinciasAPI.provincias.size(); i++){
       provincias.add(new Provincia(listadoDeProvinciasAPI.provincias.get(i).id, listadoDeProvinciasAPI.provincias.get(i).nombre));
     }
+     */
   }
 
   private void sincronizarDepartamentos() throws IOException {
     ListadoDeDepartamentos listadoDeDepartamentosAPI = georefAPI.obtenerTodosLosDepartamentos();
-
+    /*
     for (int i = 0; i < listadoDeDepartamentosAPI.departamentos.size(); i++){
       departamentos.add(new Departamento(listadoDeDepartamentosAPI.departamentos.get(i).id, listadoDeDepartamentosAPI.departamentos.get(i).nombre, buscarProvinciaPorID(provincias, listadoDeDepartamentosAPI.departamentos.get(i).provincia_id)));
     }
+
+     */
   }
   private void sincronizarMunicipios() throws IOException{
     ListadoDeMunicipios listadoDeMunicipiosAPI = georefAPI.obtenerTodosLosMunicipios();
 
+    /*
     for (int i = 0; i < listadoDeMunicipiosAPI.localidades.size(); i++){
       municipios.add(new Municipio(listadoDeMunicipiosAPI.localidades.get(i).municipio_id, listadoDeMunicipiosAPI.localidades.get(i).municipio_nombre, buscarDepartamentoPorID(departamentos, listadoDeMunicipiosAPI.localidades.get(i).departamento_id)));
     }
+
+     */
   }
 
   private Provincia buscarProvinciaPorID(List<Provincia> listadoDeProvincias, int id){

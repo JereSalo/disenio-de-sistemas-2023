@@ -4,8 +4,6 @@ import domain.rankings.rankings.CantidadDeIncidentes;
 import domain.rankings.rankings.GradoDeImpacto;
 import domain.rankings.rankings.PromedioTiempoCierre;
 import domain.rankings.rankings.Ranking;
-import domain.repositorios.RepoDeResultadosRankings;
-import domain.repositorios.RepoDeSujetosRanking;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -16,6 +14,10 @@ import java.util.TimerTask;
 public class ProgramadorCalculoRanking {
 
     public static void main(String[] args) {
+
+      /*
+       MODIFICAR ESTO PARA QUE ANDE CON LA PERSISTENCIA
+
       List<Ranking> listaRankings = new ArrayList<Ranking>();
       listaRankings.add(new PromedioTiempoCierre());
       listaRankings.add(new CantidadDeIncidentes());
@@ -40,5 +42,7 @@ public class ProgramadorCalculoRanking {
 
       // La tarea se ejecuta cada 1 semana
       timer.scheduleAtFixedRate(tarea, 0, 7 * 24 * 60 * 60);
+    }
+    */
     }
   }

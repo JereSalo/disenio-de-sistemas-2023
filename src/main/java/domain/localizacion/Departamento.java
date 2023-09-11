@@ -1,6 +1,8 @@
 package domain.localizacion;
 
+import domain.Persistente;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,7 +10,8 @@ import java.util.List;
 
 @Entity
 @Table (name = "Departamento")
-@Setter@Getter
+@Setter
+@Getter
 public class Departamento extends Persistente {
    
   @Column(name = "nombre")
@@ -18,8 +21,7 @@ public class Departamento extends Persistente {
   @JoinColumn(name = "provincia_id", referencedColumnName = "id")
   private Provincia provincia;
 
-  public Departamento(int id, String nombre, Provincia provincia) {
-    this.id = id;
+  public Departamento(String nombre, Provincia provincia) {
     this.nombre = nombre;
     this.provincia = provincia;
   }
