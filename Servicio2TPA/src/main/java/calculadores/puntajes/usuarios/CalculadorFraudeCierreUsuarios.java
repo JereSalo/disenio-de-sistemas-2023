@@ -15,8 +15,8 @@ public class CalculadorFraudeCierreUsuarios implements Calculador {
     private final int MINUTOS_FRAUDE_CIERRE = 3;
     private final double PUNTAJE_A_RESTAR = 0.2;
 
-    public void calcularPuntajes() {
-        List<Incidente> incidentes = Datos.getInstance().getIncidentes();
+    public void calcularPuntajes(Datos datos) {
+        List<Incidente> incidentes = datos.getIncidentes();
 
         // Crear un map para agrupar los incidentes por comunidad y prestación de servicio
         Map<String, List<Incidente>> incidentesAgrupados = new HashMap<>();

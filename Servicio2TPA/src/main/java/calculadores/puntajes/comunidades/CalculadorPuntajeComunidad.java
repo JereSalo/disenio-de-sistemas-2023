@@ -10,8 +10,8 @@ import java.util.List;
 public class CalculadorPuntajeComunidad implements Calculador {
     private double RESTA_POR_USUARIO_CON_RESERVAS = 0.2;
 
-    public void calcularPuntajes() {
-        List<Comunidad> comunidades = Datos.getInstance().getComunidades();
+    public void calcularPuntajes(Datos datos) {
+        List<Comunidad> comunidades = datos.getComunidades();
         comunidades.forEach(this::calcularPuntajeComunidad);
     }
 
@@ -23,7 +23,7 @@ public class CalculadorPuntajeComunidad implements Calculador {
         int usuariosConReservas = 0;
         for (Usuario usuario : usuariosComunidad) {
             puntajeTotal += usuario.getPuntajeDeConfianza();
-            if(usuario.getGradoDeConfianza().equals("Con reservas"))
+            if(usuario.getGradoDeConfianza().equals("Con Reservas"))
                 usuariosConReservas++;
         }
         double promedio = puntajeTotal / cantidadUsuarios;

@@ -12,13 +12,13 @@ public class ActualizadorGradoConfianza {
     private int PUNTAJE_MAXIMO_CON_RESERVAS = 3;
     private int PUNTAJE_MAXIMO_CONFIABLE_NIVEL_1 = 5;
 
-    public void actualizarGradosDeConfianzaUsuarios(){
-        List<Usuario> usuarios = Datos.getInstance().getUsuarios();
+    public void actualizarGradosDeConfianzaUsuarios(Datos datos){
+        List<Usuario> usuarios = datos.getUsuarios();
         usuarios.forEach(this::actualizarGradoConfianza);
     }
 
-    public void actualizarGradosDeConfianzaComunidades(){
-        List<Comunidad> comunidades = Datos.getInstance().getComunidades();
+    public void actualizarGradosDeConfianzaComunidades(Datos datos){
+        List<Comunidad> comunidades = datos.getComunidades();
         comunidades.forEach(this::actualizarGradoConfianza);
     }
 

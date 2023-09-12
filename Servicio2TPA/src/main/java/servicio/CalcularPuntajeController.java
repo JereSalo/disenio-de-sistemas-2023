@@ -17,25 +17,18 @@ public class CalcularPuntajeController implements Handler {
         String json = ctx.body();
 
         ObjectMapper objectMapper = new ObjectMapper();
+        Datos datos = objectMapper.readValue(json, Datos.class);
 
-        try {
-            Datos.initializeFromJson(json);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        Datos datos = Datos.getInstance();
-
-        new Sincronizador().sincronizar();
+        new Sincronizador().sincronizar(datos);
 
         CalculadorPuntajes calculadorPuntajes = new CalculadorPuntajes();
         ActualizadorGradoConfianza actualizadorGradoConfianza = new ActualizadorGradoConfianza();
 
-        calculadorPuntajes.calcularPuntajesUsuarios();
-        actualizadorGradoConfianza.actualizarGradosDeConfianzaUsuarios();
+        calculadorPuntajes.calcularPuntajesUsuarios(datos);
+        actualizadorGradoConfianza.actualizarGradosDeConfianzaUsuarios(datos);
 
-        calculadorPuntajes.calcularPuntajeComunidades();
-        actualizadorGradoConfianza.actualizarGradosDeConfianzaComunidades();
+        calculadorPuntajes.calcularPuntajeComunidades(datos);
+        actualizadorGradoConfianza.actualizarGradosDeConfianzaComunidades(datos);
 
 
         String json_respuesta = objectMapper.writeValueAsString(datos);

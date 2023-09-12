@@ -10,8 +10,7 @@ import java.util.List;
 public class CalculadorAporteUsuarios implements Calculador {
     private final double PUNTAJE_A_AUMENTAR = 0.5;
 
-    public void calcularPuntajes() {
-        Datos datos = Datos.getInstance();
+    public void calcularPuntajes(Datos datos) {
         List<Incidente> incidentes = datos.getIncidentes();
 
         // Sumo a todos los que abrieron o cerraron un incidente 1 a la variable de AperturaCierre.

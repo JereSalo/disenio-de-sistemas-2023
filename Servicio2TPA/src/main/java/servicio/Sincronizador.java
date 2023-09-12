@@ -9,9 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Sincronizador {
-    public void sincronizar() {
-        Datos datos = Datos.getInstance();
-
+    public void sincronizar(Datos datos) {
         // Sincronizo Creador y Cerrador para que apunten directamente a usuarios y también las fechas de creación y cierre para que sean LocalDateTime
         for (Incidente incidente : datos.getIncidentes()) {
             int idCreador = incidente.getCreador_id();

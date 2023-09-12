@@ -4,6 +4,7 @@ import calculadores.puntajes.comunidades.CalculadorPuntajeComunidad;
 import calculadores.puntajes.usuarios.CalculadorAporteUsuarios;
 import calculadores.puntajes.usuarios.CalculadorFraudeAperturaUsuarios;
 import calculadores.puntajes.usuarios.CalculadorFraudeCierreUsuarios;
+import servicio.entidades.Datos;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,12 +14,12 @@ public class CalculadorPuntajes {
     private List<Calculador> calculadoresPuntajeUsuarios;
     private Calculador calculadorPuntajeComunidad;
 
-    public void calcularPuntajesUsuarios(){
-        calculadoresPuntajeUsuarios.forEach(Calculador::calcularPuntajes);
+    public void calcularPuntajesUsuarios(Datos datos){
+        calculadoresPuntajeUsuarios.forEach(calculador -> calculador.calcularPuntajes(datos));
     }
 
-    public void calcularPuntajeComunidades() {
-        calculadorPuntajeComunidad.calcularPuntajes();
+    public void calcularPuntajeComunidades(Datos datos) {
+        calculadorPuntajeComunidad.calcularPuntajes(datos);
     }
 
     public CalculadorPuntajes() {

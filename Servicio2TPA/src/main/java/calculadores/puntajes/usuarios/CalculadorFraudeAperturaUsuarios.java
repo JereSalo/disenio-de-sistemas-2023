@@ -12,8 +12,8 @@ public class CalculadorFraudeAperturaUsuarios implements Calculador {
     private final int MINUTOS_FRAUDE_APERTURA = 3;
     private final double PUNTAJE_A_RESTAR = 0.2;
 
-    public void calcularPuntajes() {
-        List<Incidente> incidentes = Datos.getInstance().getIncidentes();
+    public void calcularPuntajes(Datos datos) {
+        List<Incidente> incidentes = datos.getIncidentes();
 
         // Filtro incidentes que tengan diferencia de creacion y cerrado menor a X minutos.
         List<Incidente> incidentes_fraudulentos = incidentes.stream()

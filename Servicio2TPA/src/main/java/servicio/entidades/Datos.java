@@ -24,18 +24,6 @@ public class Datos {
     private List<Comunidad> comunidades;
 
 
-
-    // SINGLETON
-    private static Datos instance;
-
-    public static Datos getInstance() {
-        if (instance == null) {
-            instance = new Datos();
-        }
-        return instance;
-    }
-
-
     // METODOS
     @JsonIgnore
     public List<Incidente> getIncidentes(){
@@ -47,12 +35,9 @@ public class Datos {
         this.incidentes = incidentes;
     }
 
-    public static void initializeFromJson(String json) throws IOException {
+    public void initializeFromJson(String json) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        instance = objectMapper.readValue(json, Datos.class);
-    }
-
-    private Datos() {
+        objectMapper.readValue(json, Datos.class);
     }
 
     public Usuario obtenerUsuarioPorID(int id) {
