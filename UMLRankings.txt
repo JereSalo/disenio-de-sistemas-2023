@@ -42,13 +42,7 @@ class ValorRankingIncidente {
 class CalculadorRanking {
     -rankings: List<Ranking>
 
-    +generarTodosLosRankings(): void
-}
-
-class MapperResultadoRanking{
-
-    +convertirAListValorRanking(List<ResultadoRanking>): List<List<ValorRanking>>
-    +convertirAResultadoRanking(List<ValorRanking>): List<ResultadoRanking>
+    +generarTodosLosRankings(): List<List<ValorRanking>>
 }
 
 Ranking ..> ValorRanking
@@ -59,7 +53,7 @@ CantidadDeIncidentes ..|> Ranking
 GradoDeImpacto ..|> Ranking
 
 CalculadorRanking --> Ranking
-CalculadorRanking ..> MapperResultadoRanking
+CalculadorRanking ..> ValorRanking
 
 ValorRankingEntidad ..|> ValorRanking
 ValorRankingIncidente ..|> ValorRanking
