@@ -46,7 +46,7 @@ public class Persona extends Persistente{
   private List<HorarioSinApuros> horariosSinApuros;
 
   @ManyToMany
-  private LinkedHashSet<Incidente> incidentesANotificar;
+  private List<Incidente> incidentesANotificar;
 
   @Convert(converter = ConverterFormaNotificacion.class)
   @Column(name = "forma_notificacion")

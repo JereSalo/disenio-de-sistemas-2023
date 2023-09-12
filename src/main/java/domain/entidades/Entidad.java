@@ -17,7 +17,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "entidad")
+@Table(name = "Entidad")
 @Setter
 @Getter
 public class Entidad extends Persistente{
@@ -33,7 +33,7 @@ public class Entidad extends Persistente{
   private TipoEntidad tipoEntidad;
   
   @OneToOne
-  @Column(name = "localizacion")
+  @JoinColumn(name = "localizacion_id", referencedColumnName = "id")
   private Localizacion localizacion;
 
   @ManyToOne

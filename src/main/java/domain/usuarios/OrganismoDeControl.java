@@ -29,7 +29,7 @@ public class OrganismoDeControl extends Persistente{
   @JoinColumn(name = "designado_id", referencedColumnName = "id")
   private Designado designado;
 
-  @OneToMany(mappedBy = "organismo_de_control_id")
+  @OneToMany(mappedBy = "organismoDeControl")
   private List<Entidad> entidades;
 
   public OrganismoDeControl(String nombre) {

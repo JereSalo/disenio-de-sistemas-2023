@@ -16,7 +16,7 @@ import java.time.ZoneOffset;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "incidente")
+@Table(name = "Incidente")
 @Setter
 @Getter
 public class Incidente extends Persistente{
