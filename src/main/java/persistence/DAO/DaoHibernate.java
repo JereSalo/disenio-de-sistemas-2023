@@ -96,7 +96,9 @@ public class DaoHibernate<T> implements Dao<T> {
     }
 
     public void eliminarTodo(){
-        //TODO
+
         instanciarEntityManager();
+
+        this.entityManager.close();
     }
 }
