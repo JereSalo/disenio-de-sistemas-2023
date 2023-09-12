@@ -24,7 +24,7 @@ public class CalculadorFraudeCierreUsuarios implements Calculador {
         // Iterar a través de la lista de incidentes y agruparlos en el map
         for (Incidente incidente : incidentes) {
             // Combina los ID de comunidad y prestación de servicio en una clave única
-            String clave = incidente.getIdComunidad() + "-" + incidente.getIdPrestacionServicio();
+            String clave = incidente.getComunidad_id() + "-" + incidente.getPrestacion_servicio_id();
 
             // Obtén la lista de incidentes asociada a la clave o crea una nueva si no existe
             List<Incidente> incidentesEnGrupo = incidentesAgrupados.getOrDefault(clave, new ArrayList<>());
@@ -47,10 +47,10 @@ public class CalculadorFraudeCierreUsuarios implements Calculador {
                     Incidente incidente1 = incidentesEnGrupo.get(i);
                     Incidente incidente2 = incidentesEnGrupo.get(j);
 
-                    LocalDateTime fechaCreacion1 = incidente1.getFechaCreacion();
-                    LocalDateTime fechaCierre1 = incidente1.getFechaCierre();
-                    LocalDateTime fechaCreacion2 = incidente2.getFechaCreacion();
-                    LocalDateTime fechaCierre2 = incidente2.getFechaCierre();
+                    LocalDateTime fechaCreacion1 = incidente1.getDateTimeCreacion();
+                    LocalDateTime fechaCierre1 = incidente1.getDateTimeCierre();
+                    LocalDateTime fechaCreacion2 = incidente2.getDateTimeCreacion();
+                    LocalDateTime fechaCierre2 = incidente2.getDateTimeCierre();
 
                     long minutosDiferencia1a2 = Math.abs(fechaCierre1.until(fechaCreacion2, java.time.temporal.ChronoUnit.MINUTES));
 

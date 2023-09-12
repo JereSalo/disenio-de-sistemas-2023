@@ -10,7 +10,7 @@ import java.util.List;
 
 @Setter
 @Getter
-public class Comunidad {
+public class Comunidad extends Confiable{
     @JsonProperty("id")
     private int id;
 
@@ -19,21 +19,9 @@ public class Comunidad {
     @JsonIgnore
     private List<Usuario> usuariosClase = new ArrayList<>();
 
-    @JsonProperty("Puntaje de Confianza")
-    private double puntajeDeConfianza;
-
-    @JsonProperty("Grado de Confianza")
-    private String gradoDeConfianza;
-
-    @JsonProperty("Inactivado")
-    private Boolean inactivado = false;
-
-
-
-
     // Metodos
 
-    @JsonProperty("Usuarios que la componen")
+    @JsonProperty("usuarios_id")
     public void setUsuariosQueLaComponen(List<Integer> usuariosQueLaComponen) {
         this.usuariosQueLaComponen = usuariosQueLaComponen;
     }
@@ -45,12 +33,6 @@ public class Comunidad {
 
     public void agregarUsuario(Usuario usuario) {
         usuariosClase.add(usuario);
-    }
-
-    public void establecerGradoDeConfianza(String gradoDeConfianza){
-        this.gradoDeConfianza = gradoDeConfianza;
-        if(gradoDeConfianza.equals("No confiable"))
-            inactivado = true;
     }
 }
 

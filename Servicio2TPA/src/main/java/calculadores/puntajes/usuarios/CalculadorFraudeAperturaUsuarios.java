@@ -17,7 +17,7 @@ public class CalculadorFraudeAperturaUsuarios implements Calculador {
 
         // Filtro incidentes que tengan diferencia de creacion y cerrado menor a X minutos.
         List<Incidente> incidentes_fraudulentos = incidentes.stream()
-                .filter(incidente -> Duration.between(incidente.getFechaCreacion(), incidente.getFechaCierre()).toMinutes() < MINUTOS_FRAUDE_APERTURA).toList();
+                .filter(incidente -> Duration.between(incidente.getDateTimeCreacion(), incidente.getDateTimeCierre()).toMinutes() < MINUTOS_FRAUDE_APERTURA).toList();
 
         // Para cada creador de esos incidentes filtrados sumar un fraude y ademas restarle el puntaje correspondiente.
         incidentes_fraudulentos.forEach(incidente -> {
@@ -25,7 +25,7 @@ public class CalculadorFraudeAperturaUsuarios implements Calculador {
             creadorFraude.sumarFraudeApertura();
             creadorFraude.restarPuntaje(PUNTAJE_A_RESTAR);
             // Imprimir id del creador fraudulento
-            System.out.println("El usuario " + creadorFraude.getId() + " cometio fraude de creacion");
+            System.out.println("El usuario " + creadorFraude.getId() + " cometio fraude de apertura");
         });
 
     }

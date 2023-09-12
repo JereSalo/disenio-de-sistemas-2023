@@ -13,33 +13,33 @@ public class Incidente {
     @JsonProperty("id")
     private int id;
 
-    @JsonProperty("Creador (usuario_id)")
-    private int creadorUsuarioId;
+    @JsonProperty("creador_id")
+    private int creador_id;
 
     @JsonIgnore
     private Usuario creador;
 
-    @JsonProperty("Datetime Creacion")
-    private String datetimeCreacion;
+    @JsonProperty("fecha_creacion")
+    private String fecha_creacion;
 
     @JsonIgnore
-    private LocalDateTime fechaCreacion;
+    private LocalDateTime dateTimeCreacion;
 
-    @JsonProperty("Cerrador (usuario_id)")
-    private int cerradorUsuarioId;
+    @JsonProperty("cerrador_id")
+    private int cerrador_id;
 
     @JsonIgnore
     private Usuario cerrador;
 
-    @JsonProperty("Datetime Cierre")
-    private String datetimeCierre;
+    @JsonProperty("fecha_cierre")
+    private String fecha_cierre;
 
     @JsonIgnore
-    private LocalDateTime fechaCierre;
+    private LocalDateTime dateTimeCierre;
 
-    @JsonProperty("id prestacion de servicio")
-    private int idPrestacionServicio;
+    @JsonProperty("prestacion_servicio_id")
+    private int prestacion_servicio_id;
 
-    @JsonProperty("id comunidad")
-    private int idComunidad;
+    @JsonProperty("comunidad_id")
+    private int comunidad_id;
 }

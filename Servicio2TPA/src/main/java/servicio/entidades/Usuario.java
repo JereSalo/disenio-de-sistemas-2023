@@ -8,20 +8,11 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class Usuario {
+public class Usuario extends Confiable{
 
 
     @JsonProperty("id")
     private int id;
-
-    @JsonProperty("Puntaje de confianza")
-    private double puntajeDeConfianza;
-
-    @JsonProperty("Grado de confianza")
-    private String gradoDeConfianza;
-
-    @JsonProperty("Inactivado")
-    private Boolean inactivado = false;
 
     @JsonIgnore
     private Integer cantAperturasYCierres = 0;
@@ -50,11 +41,5 @@ public class Usuario {
 
     public void restarPuntaje(double puntaje) {
         puntajeDeConfianza -= puntaje;
-    }
-
-    public void establecerGradoDeConfianza(String gradoDeConfianza){
-        this.gradoDeConfianza = gradoDeConfianza;
-        if(gradoDeConfianza.equals("No confiable"))
-            inactivado = true;
     }
 }

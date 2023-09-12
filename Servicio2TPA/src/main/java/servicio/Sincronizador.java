@@ -14,8 +14,8 @@ public class Sincronizador {
 
         // Sincronizo Creador y Cerrador para que apunten directamente a usuarios y también las fechas de creación y cierre para que sean LocalDateTime
         for (Incidente incidente : datos.getIncidentes()) {
-            int idCreador = incidente.getCreadorUsuarioId();
-            int idCerrador = incidente.getCerradorUsuarioId();
+            int idCreador = incidente.getCreador_id();
+            int idCerrador = incidente.getCerrador_id();
 
             // Busco el usuario con ese ID
             Usuario creador = datos.obtenerUsuarioPorID(idCreador);
@@ -28,11 +28,11 @@ public class Sincronizador {
             // Tengo que convertir de String en formato ISO 8601 a LocalDateTime
             DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
 
-            LocalDateTime localDateTimeCreacion = LocalDateTime.parse(incidente.getDatetimeCreacion(), formatter);
-            incidente.setFechaCreacion(localDateTimeCreacion);
+            LocalDateTime localDateTimeCreacion = LocalDateTime.parse(incidente.getFecha_creacion(), formatter);
+            incidente.setDateTimeCreacion(localDateTimeCreacion);
 
-            LocalDateTime localDateTimeCierre = LocalDateTime.parse(incidente.getDatetimeCierre(), formatter);
-            incidente.setFechaCierre(localDateTimeCierre);
+            LocalDateTime localDateTimeCierre = LocalDateTime.parse(incidente.getFecha_cierre(), formatter);
+            incidente.setDateTimeCierre(localDateTimeCierre);
         }
 
         // Ahora tengo que sincronizar que comunidades apunten directamente a las clases de usuarios en vez de a los IDs
