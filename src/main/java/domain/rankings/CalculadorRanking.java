@@ -12,8 +12,6 @@ import java.util.List;
 
 public class CalculadorRanking {
   private List<Ranking> rankings;
-  
-  private Repositorio<ResultadoRanking> repoDeResultadosRankings;
   private Repositorio<Entidad> repoDeEntidades;
   private Repositorio<Incidente> repoDeIncidentes;
 
@@ -28,25 +26,19 @@ public class CalculadorRanking {
 
   private CalculadorRanking (List<Ranking> rankings){
     this.rankings = rankings;
-    this.repoDeResultadosRankings = FactoryRepositorios.get(ResultadoRanking.class);
     this.repoDeEntidades = FactoryRepositorios.get(Entidad.class);
     this.repoDeIncidentes = FactoryRepositorios.get(Incidente.class);
   }
   
-  public void generarTodosLosRankings(){
-  
-    this.repoDeResultadosRankings.eliminarTodo();
+  public List<List<ValorRanking>> generarTodosLosRankings(){
 
     SujetosRanking sujetosRanking = new SujetosRanking(this.repoDeEntidades.obtenerTodos(), this.repoDeIncidentes.obtenerTodos());
 
-    rankings.forEach(ranking -> {
-      List<ResultadoRanking> resultadosRanking = MapperResultadoRanking.convertirAResultadoRanking(this.calcularRanking(ranking, sujetosRanking), (long) rankings.indexOf(ranking));
-      
-      resultadosRanking.forEach(resultado -> {
-        this.repoDeResultadosRankings.agregar(resultado);
-      });
+    List<List<ValorRanking>> resultadosRankings = new ArrayList<>();
 
-    });
+    rankings.forEach(ranking -> resultadosRankings.add(this.calcularRanking(ranking, sujetosRanking)));
+
+    return resultadosRankings;
   }
 
   private List<ValorRanking> calcularRanking(Ranking ranking, SujetosRanking sujetosRanking){

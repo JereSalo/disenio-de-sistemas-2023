@@ -95,10 +95,4 @@ public class DaoHibernate<T> implements Dao<T> {
         this.entityManager.close();
     }
 
-    public void eliminarTodo(){
-
-        instanciarEntityManager();
-
-        this.entityManager.close();
-    }
 }

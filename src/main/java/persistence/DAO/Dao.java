@@ -8,5 +8,4 @@ public interface Dao<T> {
     void agregar(Object unObjeto);
     void modificar(Object unObjeto);
     void eliminar(Object unObjeto);
-    void eliminarTodo();
 }
