@@ -19,12 +19,11 @@ import persistence.converters.ConverterHorarios;
 import persistence.converters.ConverterNotificador;
 
 import java.time.LocalTime;
-import java.util.LinkedHashSet;
 import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "persona")
+@Table(name = "Persona")
 @Setter 
 @Getter
 public class Persona extends Persistente{
@@ -33,7 +32,12 @@ public class Persona extends Persistente{
   @JoinColumn(name = "usuario_id", referencedColumnName = "id")
   private Usuario usuario;
 
-  @ManyToMany
+  @OneToMany
+  @JoinTable(
+      name="InteresadosPorLocalizacion",
+      joinColumns = @JoinColumn( name="persona_id"),
+      inverseJoinColumns = @JoinColumn( name="localizacion_id")
+  )
   private List<Localizacion> localizacionesDeInteres;
 
   @ManyToMany
