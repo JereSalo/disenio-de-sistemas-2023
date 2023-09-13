@@ -37,7 +37,7 @@ public class Incidente extends Persistente{
   @JoinColumn(name = "creador_id", referencedColumnName = "id")
   private Miembro creador;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "cerrador_id", referencedColumnName = "id")
   private Miembro cerrador;
 

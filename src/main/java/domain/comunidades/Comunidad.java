@@ -23,10 +23,10 @@ public class Comunidad extends Persistente {
   @OneToMany(mappedBy = "comunidad")
   private List<Administrador> administradores;
 
-  @OneToMany(mappedBy = "comunidad")
+  @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER)
   private List<Miembro> miembros;
 
-  @OneToMany(mappedBy = "comunidad")
+  @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER)
   private List<Incidente> incidentes;
 
   public Comunidad(String nombre) {

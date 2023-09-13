@@ -28,7 +28,7 @@ import javax.persistence.*;
 @Getter
 public class Persona extends Persistente{
  
-  @OneToOne
+  @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "usuario_id", referencedColumnName = "id")
   private Usuario usuario;
 
@@ -46,10 +46,10 @@ public class Persona extends Persistente{
   @ManyToMany
   private List<Entidad> entidadesDeInteres;
 
-  @OneToMany(mappedBy = "persona")
+  @OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
   private List<HorarioSinApuros> horariosSinApuros;
 
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   private List<Incidente> incidentesANotificar;
 
   @Convert(converter = ConverterFormaNotificacion.class)

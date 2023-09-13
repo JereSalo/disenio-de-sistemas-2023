@@ -21,15 +21,15 @@ public class PrestadoraDeServicio extends Persistente{
   @Column(name = "nombre")
   private String nombre;
 
-  @OneToOne
+  @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "usuario_id", referencedColumnName = "id")
   private Usuario usuario;
 
-  @OneToOne
+  @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "designado_id", referencedColumnName = "id")
   private Designado designado;
 
-  @OneToMany(mappedBy = "prestadoraDeServicio")
+  @OneToMany(mappedBy = "prestadoraDeServicio", fetch = FetchType.EAGER)
   private List<Entidad> entidades;
 
   public PrestadoraDeServicio(String nombre) {
