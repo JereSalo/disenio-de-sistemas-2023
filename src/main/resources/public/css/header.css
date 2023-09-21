@@ -1,0 +1,42 @@
+/* paleta de colores utilizada: https://palettes.shecodes.io/palettes/1448 */
+
+header{
+    background-color: #38598b;
+    height: 65px;
+    width: 100vw;
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    background-color: #e7eaf6;
+}
+
+header div{
+    height: 100%;
+    margin-right: 300px;
+    margin-left: 300px;
+}
+
+header h1{
+
+    height: 100%;
+    display: inline-block;
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+nav{
+    display: inline;
+    float: right;
+}
+
+nav ul li{
+    display: inline-block;
+    color: white;
+    margin-top: 20px;
+    padding-right: 15px;
+    font-size: 20px;
+}
