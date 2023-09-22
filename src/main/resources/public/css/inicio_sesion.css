@@ -37,6 +37,10 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+.form-input-container label{
+    padding-top: 20px;
+}
+
 .form-button-container{
     display: flex;
     flex-direction: column;

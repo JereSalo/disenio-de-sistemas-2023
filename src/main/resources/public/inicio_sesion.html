@@ -36,15 +36,21 @@
                 <div class ="form-title-container">
                     <h3>Iniciar Sesión</h3>
                 </div>
+                
+                <form method = "post">
 
-                <div class ="form-input-container">
-                    <input type="text" placeholder="Usuario">
-                    <input type="text" placeholder="Contraseña">
-                </div>
+                    <div class ="form-input-container">
+                        <label for="usuario"><b>Usuario</b></label>
+                        <input type="text" name="usuario" required>
+                        <label for="contraseña"><b>Contraseña</b></label>
+                        <input type="text"name="contraseña" required>
+                    </div>
 
-                <div class = "form-button-container">
-                    <button type = "button">Iniciar Sesión</button>
-                </div>
+                    <div class = "form-button-container">
+                        <button type="submit">Iniciar Sesión</button>
+                    </div>
+
+                </form>
             </div>
 
         </div>
