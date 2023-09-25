@@ -1,6 +1,6 @@
 package domain.rankings.valorRanking;
 
-import domain.incidentes.Incidente;
+import domain.ent_est_inc_serv_ubi.incidentes.Incidente;
 import lombok.Getter;
 import lombok.Setter;
 

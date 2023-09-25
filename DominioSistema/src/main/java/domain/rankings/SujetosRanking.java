@@ -1,7 +1,7 @@
 package domain.rankings;
 
-import domain.entidades.Entidad;
-import domain.incidentes.Incidente;
+import domain.ent_est_inc_serv_ubi.entidades.Entidad;
+import domain.ent_est_inc_serv_ubi.incidentes.Incidente;
 import lombok.Getter;
 import lombok.Setter;
 

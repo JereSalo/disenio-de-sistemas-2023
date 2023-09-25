@@ -1,20 +1,10 @@
 package domain.notificaciones.formaNotificacion;
 
-import domain.incidentes.Incidente;
-import domain.params.RecepcionIncidenteParams;
-import domain.rankings.CalculadorRanking;
-import domain.rankings.rankings.Ranking;
+import domain.ent_est_inc_serv_ubi.incidentes.Incidente;
+import domain.ent_est_inc_serv_ubi.incidentes.params.RecepcionIncidenteParams;
 import domain.usuarios.Persona;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-
-import javax.persistence.*;
 
 
 public final class SinApuros implements FormaNotificacion{

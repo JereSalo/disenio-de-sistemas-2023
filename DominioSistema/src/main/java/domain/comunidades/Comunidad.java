@@ -1,9 +1,9 @@
 package domain.comunidades;
 
 import domain.Persistente;
-import domain.incidentes.Incidente;
-import domain.incidentes.IncidenteBuilder;
-import domain.params.AperturaIncidenteParams;
+import domain.ent_est_inc_serv_ubi.incidentes.Incidente;
+import domain.ent_est_inc_serv_ubi.incidentes.IncidenteBuilder;
+import domain.ent_est_inc_serv_ubi.incidentes.params.AperturaIncidenteParams;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,7 +1,6 @@
 package domain.rankings.rankings;
 
-import domain.comunidades.Comunidad;
-import domain.incidentes.Incidente;
+import domain.ent_est_inc_serv_ubi.incidentes.Incidente;
 import domain.rankings.SujetosRanking;
 import domain.rankings.valorRanking.ValorRanking;
 import domain.rankings.valorRanking.ValorRankingIncidente;

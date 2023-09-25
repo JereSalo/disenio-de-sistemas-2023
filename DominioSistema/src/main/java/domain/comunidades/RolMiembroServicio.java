@@ -1,7 +1,7 @@
 package domain.comunidades;
 
 import domain.Persistente;
-import domain.servicios.Servicio;
+import domain.ent_est_inc_serv_ubi.servicios.Servicio;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;

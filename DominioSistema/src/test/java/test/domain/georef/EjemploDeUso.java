@@ -1,10 +1,10 @@
 package test.domain.georef;
 
-import domain.georef.Georef;
-import domain.georef.SincronizadorLocalizaciones;
-import domain.georef.entidades.ListadoDeDepartamentos;
-import domain.georef.entidades.ListadoDeMunicipios;
-import domain.georef.entidades.ListadoDeProvincias;
+import domain.localizacion.georef.Georef;
+import domain.localizacion.georef.SincronizadorLocalizaciones;
+import domain.localizacion.georef.entidades.ListadoDeDepartamentos;
+import domain.localizacion.georef.entidades.ListadoDeMunicipios;
+import domain.localizacion.georef.entidades.ListadoDeProvincias;
 
 import java.io.IOException;
 

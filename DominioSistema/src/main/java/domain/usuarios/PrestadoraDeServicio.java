@@ -1,10 +1,10 @@
 package domain.usuarios;
 
-import domain.entidades.Entidad;
-import domain.informes.Informe;
-import domain.informes.ManejadorDeParrafos;
-import domain.informes.Parrafo;
-import domain.informes.RepoInformes;
+import domain.ent_est_inc_serv_ubi.entidades.Entidad;
+import domain.rankings.informes.Informe;
+import domain.rankings.informes.ManejadorDeParrafos;
+import domain.rankings.informes.Parrafo;
+import domain.rankings.informes.RepoInformes;
 import domain.Persistente;
 
 import lombok.Getter;

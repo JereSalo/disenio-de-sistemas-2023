@@ -1,8 +1,8 @@
 package domain.comunidades;
 
 import domain.Persistente;
-import domain.incidentes.Incidente;
-import domain.servicios.Servicio;
+import domain.ent_est_inc_serv_ubi.incidentes.Incidente;
+import domain.ent_est_inc_serv_ubi.servicios.Servicio;
 import domain.usuarios.Persona;
 import lombok.Getter;
 import lombok.Setter;

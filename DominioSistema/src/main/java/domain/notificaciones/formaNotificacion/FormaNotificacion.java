@@ -1,7 +1,6 @@
 package domain.notificaciones.formaNotificacion;
 
-import domain.incidentes.Incidente;
-import domain.params.RecepcionIncidenteParams;
+import domain.ent_est_inc_serv_ubi.incidentes.params.RecepcionIncidenteParams;
 import domain.usuarios.Persona;
 
 public interface FormaNotificacion {

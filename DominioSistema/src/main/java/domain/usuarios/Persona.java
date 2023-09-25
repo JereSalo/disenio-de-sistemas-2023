@@ -1,21 +1,19 @@
 package domain.usuarios;
 
-import domain.entidades.Entidad;
-import domain.incidentes.Incidente;
+import domain.ent_est_inc_serv_ubi.entidades.Entidad;
+import domain.ent_est_inc_serv_ubi.incidentes.Incidente;
 import domain.notificaciones.formaNotificacion.FormaNotificacion;
 import domain.notificaciones.formaNotificacion.HorarioSinApuros;
-import domain.notificaciones.formaNotificacion.SinApuros;
 import domain.notificaciones.notificador.Notificador;
-import domain.params.RecepcionIncidenteParams;
-import domain.servicios.Servicio;
+import domain.ent_est_inc_serv_ubi.incidentes.params.RecepcionIncidenteParams;
+import domain.ent_est_inc_serv_ubi.servicios.Servicio;
 import domain.localizacion.Localizacion;
-import domain.ubicacion.Ubicacion;
+import domain.ent_est_inc_serv_ubi.ubicacion.Ubicacion;
 import domain.Persistente;
 import persistence.converters.ConverterFormaNotificacion;
 
 import lombok.Getter;
 import lombok.Setter;
-import persistence.converters.ConverterHorarios;
 import persistence.converters.ConverterNotificador;
 
 import java.time.LocalTime;
