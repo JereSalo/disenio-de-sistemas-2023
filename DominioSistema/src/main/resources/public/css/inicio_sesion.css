@@ -1,0 +1,64 @@
+/* paleta de colores utilizada: https://palettes.shecodes.io/palettes/1448 */
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+.form-container{
+    width: 30%;
+    padding: 60px;
+    margin-top: 200px;
+    background-color: #a2a8d3;
+    border-radius: 10px;
+}
+
+.form-title-container{
+    text-align: center;
+    font-weight:bold;
+    font-size: 30px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-input-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-input-container input{
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-input-container label{
+    padding-top: 20px;
+}
+
+.form-button-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.form-button-container button{
+    padding: 10px;
+    background-color: #113f67;
+    color: white;
+    transition-duration: 0.4s;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.form-button-container button:hover{
+    background-color: white;
+    color: #113f67;
+}
