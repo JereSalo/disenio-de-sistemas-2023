@@ -1,5 +1,7 @@
 package persistence.DAO;
 
+import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
+
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -7,34 +9,23 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class DaoHibernate<T> implements Dao<T> {
+public class DaoHibernate<T> implements WithSimplePersistenceUnit, Dao<T>{
     private Class<T> type;
-    private EntityManager entityManager;
-    private EntityManagerFactory entityManagerFactory;
 
     public DaoHibernate(Class<T> type){
         this.type = type;
-        this.entityManagerFactory = Persistence.createEntityManagerFactory("persistence");
-    }
-
-    private void instanciarEntityManager(){
-        this.entityManager = this.entityManagerFactory.createEntityManager();
     }
 
     @Override
     public List<T> obtenerTodos() {
 
-        instanciarEntityManager();
-
-        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaBuilder builder = entityManager().getCriteriaBuilder();
 
         CriteriaQuery<T> criteria = builder.createQuery(this.type);
 
         criteria.from(type);
 
-        List<T> entities = this.entityManager.createQuery(criteria).getResultList();
-
-        this.entityManager.close();
+        List<T> entities = entityManager().createQuery(criteria).getResultList();
 
         return entities;
     }
@@ -42,57 +33,47 @@ public class DaoHibernate<T> implements Dao<T> {
     @Override
     public T buscarPorId(int id) {
 
-        instanciarEntityManager();
 
-        T t =  this.entityManager.find(type, id);
-
-        this.entityManager.close();
+        T t =  this.entityManager().find(type, id);
 
         return t;
     }
 
     @Override
     public void agregar(Object unObjeto) {
-        
-        instanciarEntityManager();
 
-        this.entityManager.getTransaction().begin();
+        entityManager().getTransaction().begin();
 
-        this.entityManager.persist(unObjeto);
+        entityManager().persist(unObjeto);
 
-        this.entityManager.getTransaction().commit();
+        entityManager().getTransaction().commit();
 
-        this.entityManager.close();
     }
 
     @Override
     public void modificar(Object unObjeto) {
 
-        instanciarEntityManager();
 
-        this.entityManager.getTransaction().begin();
+        entityManager().getTransaction().begin();
 
-        this.entityManager.merge(unObjeto);
+        entityManager().merge(unObjeto);
 
-        this.entityManager.getTransaction().commit();
+        entityManager().getTransaction().commit();
 
-        this.entityManager.close();
     }
 
     @Override
     public void eliminar(Object unObjeto) {
 
-        instanciarEntityManager();
         
-        this.entityManager.getTransaction().begin();
+        entityManager().getTransaction().begin();
 
-        Object reattached = this.entityManager.merge(unObjeto);
+        Object reattached = entityManager().merge(unObjeto);
 
-        this.entityManager.remove(reattached);
+        entityManager().remove(reattached);
 
-        this.entityManager.getTransaction().commit();
+        entityManager().getTransaction().commit();
 
-        this.entityManager.close();
     }
 
 }

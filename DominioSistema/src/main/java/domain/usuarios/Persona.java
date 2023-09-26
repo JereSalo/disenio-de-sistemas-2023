@@ -44,10 +44,10 @@ public class Persona extends Persistente{
   @ManyToMany
   private List<Entidad> entidadesDeInteres;
 
-  @OneToMany(mappedBy = "persona", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "persona")
   private List<HorarioSinApuros> horariosSinApuros;
 
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany
   private List<Incidente> incidentesANotificar;
 
   @Convert(converter = ConverterFormaNotificacion.class)
