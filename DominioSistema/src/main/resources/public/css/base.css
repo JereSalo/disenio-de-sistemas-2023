@@ -40,3 +40,16 @@ nav ul li{
     padding-right: 15px;
     font-size: 20px;
 }
+
+a{
+    color:white;
+    text-decoration: none;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}

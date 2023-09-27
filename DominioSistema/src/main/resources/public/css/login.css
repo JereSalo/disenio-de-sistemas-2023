@@ -1,13 +1,5 @@
 /* paleta de colores utilizada: https://palettes.shecodes.io/palettes/1448 */
 
-.main-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-}
-
 .form-container{
     width: 30%;
     padding: 60px;

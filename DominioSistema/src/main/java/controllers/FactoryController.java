@@ -9,7 +9,6 @@ public class FactoryController {
     Object controller = null;
     switch (nombre) {
       case "Incidentes": controller = new IncidentesController(FactoryRepositorios.get(Incidente.class)); break;
-      case "Login": controller = new LoginController(FactoryRepositorios.get(Usuario.class)); break;
     }
     return controller;
   }
