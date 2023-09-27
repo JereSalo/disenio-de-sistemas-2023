@@ -13,8 +13,8 @@ body{
 
 header div{
     height: 100%;
-    margin-right: 300px;
-    margin-left: 300px;
+    margin-right: 200px;
+    margin-left: 200px;
 }
 
 header h1{
@@ -52,4 +52,21 @@ a{
     justify-content: center;
     align-items: center;
     width: 100vw;
+}
+
+.sub-menu {
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    background-color: #113f67;
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-item:hover .sub-menu {
+    display: block;
+}
+
+.menu-item {
+    position: relative;
 }

@@ -13,7 +13,7 @@ public class Router {
 
       get("", ctx -> {
         Map<String, Object> model = new HashMap<>();
-        model.put("logeado", false);
+        model.put("logeado", true);
         model.put("username", "salacas");
         ctx.render("index.hbs", model);
       });
@@ -24,7 +24,7 @@ public class Router {
         model.put("username", "salacas");
 
         if (yaEstaLogeado(ctx)) ctx.redirect("");
-        else ctx.render("login/login.hbs", model);
+        else ctx.render("login.hbs", model);
 
       });
 

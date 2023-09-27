@@ -18,10 +18,26 @@
 
             <nav class ="main-nav">
                 <ul>
-                    <li>Lorem</li>
-                    <li>Lorem</li>
                     {{#if logeado}}
-                        <li><u>{{username}}</u></li>
+
+                        <li class="menu-item">Incidentes
+                            <ul class="sub-menu">
+                                <li><a href="#">Ver Lista</a></li>
+                                <li><a href="#">Abrir Incidente</a></li>
+                                <li><a href="#">Cerrar Incidente</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#">Carga Masiva</a></li>
+
+                        <li><a href="#">Rankings</a></li>
+
+                        <li class="menu-item"><u>Logeado: {{username}}</u>
+                            <ul class="sub-menu">
+                                <li><a href="#">Cerrar Sesión</a></li>
+                            </ul>
+                        </li>
+
                     {{else}}
                         <li><a href="login"><u>Iniciar Sesión</u></a></li>
                     {{/if}}
