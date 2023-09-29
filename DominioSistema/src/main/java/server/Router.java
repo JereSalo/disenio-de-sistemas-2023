@@ -1,5 +1,8 @@
 package server;
 
+import controllers.FactoryController;
+import controllers.IncidentesController;
+import controllers.LoginController;
 import io.javalin.http.Context;
 
 import java.util.HashMap;
@@ -8,7 +11,6 @@ import java.util.Map;
 import static io.javalin.apibuilder.ApiBuilder.*;
 public class Router {
   public static void init() {
-
     Server.app().routes(() -> {
 
       get("", ctx -> ctx.redirect("home"));
@@ -16,8 +18,7 @@ public class Router {
       get("home", ctx -> {
         Map<String, Object> model = new HashMap<>();
 
-        model.put("logeado", yaEstaLogeado(ctx));
-        model.put("username", ctx.sessionAttribute("current-user"));
+        LoginController.modificarModelSiEstaLogueado(ctx, model);
 
         ctx.render("index.hbs", model);
       });
@@ -25,16 +26,15 @@ public class Router {
       get("login", ctx -> {
         Map<String, Object> model = new HashMap<>();
 
-        model.put("logeado", yaEstaLogeado(ctx));
-        model.put("username", ctx.sessionAttribute("current-user"));
+        LoginController.modificarModelSiEstaLogueado(ctx, model);
 
-        if (yaEstaLogeado(ctx)) ctx.redirect("home");
+        if (LoginController.yaEstaLogeado(ctx)) ctx.redirect("home");
         else ctx.render("login.hbs", model);
 
       });
 
       post("login", ctx -> {
-        if (sonCredencialesValidas(ctx)){
+        if (LoginController.sonCredencialesValidas(ctx)){
           ctx.sessionAttribute("current-user", ctx.formParam("usuario"));
           ctx.redirect("home");
         }
@@ -48,14 +48,10 @@ public class Router {
         ctx.redirect("home");
       });
 
+      get("abrir-incidente", ((IncidentesController) FactoryController.controller("Incidentes"))::create);
+
+      get("lista-incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::index);
     });
   };
-  private static boolean yaEstaLogeado(Context ctx){
 
-    return ctx.sessionAttribute("current-user") != null;
-  }
-
-  private static boolean sonCredencialesValidas(Context ctx){
-    return true;
-  }
 }

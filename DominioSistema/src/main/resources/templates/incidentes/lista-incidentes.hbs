@@ -1,0 +1,33 @@
+{{#partial "contenido" }}
+    <link rel="stylesheet" href="css/lista-incidentes.css">
+
+    <div class = "table-container">
+        <div class ="table-title-container">
+            <h3>Lista De Incidentes</h3>
+        </div>
+
+        <table>
+            <tr>
+                <th>Comunidad</th>
+                <th>Entidad</th>
+                <th>Establecimiento</th>
+                <th>Servicio</th>
+                <th>Fecha de Creación</th>
+                <th>Fecha de Cierre</th>
+            </tr>
+            <tbody>
+            {{#each incidentes}}
+                <tr>
+                    <td>{{this.comunidad.nombre}}</td>
+                    <td>{{this.entidad.nombre}}</td>
+                    <td>{{this.establecimiento.nombre}}</td>
+                    <td>{{this.prestacionDeServicio.servicio.descripcion}}</td>
+                    <td>{{this.fechaDeCreacion}}</td>
+                    <td>{{this.fechaDeCierre}}</td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+{{/partial}}
+{{> templates/base }}

@@ -1,0 +1,57 @@
+{{#partial "contenido" }}
+    <link rel="stylesheet" href="css/abrir-incidente.css">
+
+    <div class = "form-container">
+        <div class ="form-title-container">
+            <h3>Abrir Incidente</h3>
+        </div>
+
+        <form action="abrir-incidente" method = "post">
+
+            <div class ="form-input-container">
+
+                <label><b>Comunidad</b></label>
+
+                <select name="comunidad" id="comunidad">
+                    {{#each comunidades}}
+                        <option value="{{this.id}}">{{this.nombre}}</option>
+                    {{/each}}
+                </select>
+
+                <label><b>Entidad</b></label>
+
+                <select name="entidad" id="entidad">
+                    {{#each entidades}}
+                        <option value="{{this.id}}">{{this.nombre}}</option>
+                    {{/each}}
+                </select>
+
+                <label><b>Establecimiento</b></label>
+
+                <select name="establecimiento" id="establecimiento">
+                    {{#each establecimiento}}
+                        <option value="{{this.id}}">{{this.nombre}}</option>
+                    {{/each}}
+                </select>
+
+                <label><b>Servicio</b></label>
+
+                <select name="servicio" id="servicio">
+                    {{#each servicios}}
+                        <option value="{{this.id}}">{{this.nombre}}</option>
+                    {{/each}}
+                </select>
+
+                <label><b>Observaciones</b></label>
+                <input type="text"name="observaciones" required>
+
+            </div>
+
+            <div class = "form-button-container">
+                <button type="submit">Subir</button>
+            </div>
+
+        </form>
+    </div>
+{{/partial}}
+{{> templates/base }}
