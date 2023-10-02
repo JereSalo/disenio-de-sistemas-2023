@@ -1,4 +1,4 @@
-package controllers;
+package web.controllers;
 
 import io.javalin.http.Context;
 

@@ -1,4 +1,4 @@
-package server.utils;
+package web.server.utils;
 
 import io.javalin.http.Context;
 

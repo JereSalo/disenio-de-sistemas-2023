@@ -1,7 +1,6 @@
-package controllers;
+package web.controllers;
 
 import domain.ent_est_inc_serv_ubi.incidentes.Incidente;
-import domain.usuarios.Usuario;
 import persistence.repositories.FactoryRepositorios;
 
 public class FactoryController {

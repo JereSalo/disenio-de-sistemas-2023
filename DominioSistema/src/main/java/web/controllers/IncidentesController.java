@@ -1,4 +1,4 @@
-package controllers;
+package web.controllers;
 
 import domain.comunidades.Comunidad;
 import domain.ent_est_inc_serv_ubi.entidades.Entidad;
@@ -8,7 +8,7 @@ import domain.ent_est_inc_serv_ubi.servicios.PrestacionServicio;
 import io.javalin.http.Context;
 import persistence.repositories.FactoryRepositorios;
 import persistence.repositories.Repositorio;
-import server.utils.ICrudViewsHandler;
+import web.server.utils.ICrudViewsHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;

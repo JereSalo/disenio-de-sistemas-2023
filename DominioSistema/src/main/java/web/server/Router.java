@@ -1,9 +1,9 @@
-package server;
+package web.server;
 
-import controllers.FactoryController;
-import controllers.IncidentesController;
-import controllers.LoginController;
-import io.javalin.http.Context;
+import web.controllers.FactoryController;
+import web.controllers.IncidentesController;
+import web.controllers.LoginController;
+import io.javalin.apibuilder.ApiBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,7 +48,7 @@ public class Router {
         ctx.redirect("home");
       });
 
-      get("abrir-incidente", ((IncidentesController) FactoryController.controller("Incidentes"))::create);
+      ApiBuilder.get("abrir-incidente", ((IncidentesController) FactoryController.controller("Incidentes"))::create);
 
       get("lista-incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::index);
     });

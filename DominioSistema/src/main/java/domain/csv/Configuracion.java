@@ -4,6 +4,6 @@ import lombok.Getter;
 
 public class Configuracion {
     @Getter
-    private static String rutaArchivoCSV = "./src/main/resources/prueba.csv";
+    private static String rutaArchivoCSV = "./src/main/resources/domain/prueba.csv";
 
 }
