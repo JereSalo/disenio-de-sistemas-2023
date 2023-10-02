@@ -48,9 +48,14 @@ public class Router {
         ctx.redirect("home");
       });
 
-      ApiBuilder.get("abrir-incidente", ((IncidentesController) FactoryController.controller("Incidentes"))::create);
+      ApiBuilder.get("abrir-incidente", ((IncidentesController) FactoryController.controller("Incidentes"))::abrirIncidente);
 
-      get("lista-incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::index);
+      get("lista-incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::listarIncidentes);
+
+      get("cerrar-incidente", ((IncidentesController) FactoryController.controller("Incidentes"))::listarIncidentesParaCerrar);
+
+      post("cerrar-incidente/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::cerrarIncidente);
+
     });
   };
 

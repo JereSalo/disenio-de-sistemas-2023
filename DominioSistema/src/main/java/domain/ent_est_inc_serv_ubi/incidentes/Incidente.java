@@ -59,7 +59,9 @@ public class Incidente extends Persistente{
     this.fechaDeCierre = null;
   }
 
-  public void cerrar() {
+  public void cerrar(Miembro cerrador) {
+
+    this.cerrador = cerrador;
     this.fechaDeCierre = LocalDateTime.now();
   }
 

@@ -16,6 +16,7 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+/* Estilos mejorados para la tabla */
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -24,8 +25,9 @@
 
 .table th, .table td {
     text-align: center;
-    padding: 10px;
-    border: 1px solid #000;
+    padding: 12px; /* Aumentar el espaciado dentro de las celdas */
+    border: 1px solid #ccc; /* Utilizar un borde más suave */
+    font-family: 'Open Sans', sans-serif; /* Aplicar la fuente Open Sans a las celdas */
 }
 
 .table th {
@@ -36,4 +38,22 @@
 
 .table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+
+/* Estilos para el botón en el formulario */
+form button[type="submit"] {
+    background-color: #007bff; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    border: none; /* Eliminar el borde del botón */
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer; /* Cambiar el cursor al pasar el ratón sobre el botón */
+    font-family: 'Open Sans', sans-serif; /* Aplicar la fuente Open Sans al botón */
+    font-weight: bold; /* Texto en negrita */
+}
+
+/* Estilos adicionales para el botón al pasar el cursor sobre él */
+form button[type="submit"]:hover {
+    background-color: #0056b3; /* Cambiar el color de fondo al pasar el cursor */
 }

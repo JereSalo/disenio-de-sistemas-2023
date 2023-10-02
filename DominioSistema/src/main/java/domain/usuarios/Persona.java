@@ -94,4 +94,6 @@ public class Persona extends Persistente{
     return null;
   }
 
+  public String getUsername() {return this.getUsuario().getUsername();}
+
 }

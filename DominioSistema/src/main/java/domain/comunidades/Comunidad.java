@@ -43,9 +43,9 @@ public class Comunidad extends Persistente {
     informarIncidente(incidente.getCreador(), incidente);
   }
 
-  public void cerrarIncidente(Miembro miembro, Incidente incidente) {
-    incidente.cerrar();
-    informarIncidente(miembro, incidente);
+  public void cerrarIncidente(Miembro cerrador, Incidente incidente) {
+    incidente.cerrar(cerrador);
+    informarIncidente(cerrador, incidente);
   }
 
   public long cuantosAfectados(Incidente incidente){

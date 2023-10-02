@@ -36,6 +36,8 @@ public class Miembro extends Persistente {
     this.persona.recibirIncidente(incidente);
   }
 
+  public String getUsername() {return this.persona.getUsername();}
+
   public boolean estaAfectado(Servicio servicio) {
     return rolesPorServicio.stream().
                             anyMatch(rolMiembroServicio -> rolMiembroServicio.getServicio().equals(servicio)
