@@ -69,6 +69,38 @@ public class IncidentesController extends Controller{
 
   public void abrirIncidente(Context context){
     //TODO: crear nuevo incidente en la base de datos
+    Incidente nuevoIncidente = new Incidente();
+
+    Repositorio<Comunidad> repoDeComunidades = FactoryRepositorios.get(Comunidad.class);
+    Repositorio<Entidad> repoDeEntidades = FactoryRepositorios.get(Entidad.class);
+    Repositorio<Establecimiento> repoDeEstablecimientos = FactoryRepositorios.get(Establecimiento.class);
+    Repositorio<PrestacionServicio> repoDePrestacionServicio = FactoryRepositorios.get(PrestacionServicio.class);
+
+    nuevoIncidente.setCreador(this.obtenerMiembro(super.getCurrentUserName(context)));
+
+    nuevoIncidente.setComunidad(repoDeComunidades.buscarPorId(Integer.parseInt(context.formParam("comunidad"))));
+
+    nuevoIncidente.setEntidad(repoDeEntidades.buscarPorId(Integer.parseInt(context.formParam("entidad"))));
+
+    nuevoIncidente.setEstablecimiento(repoDeEstablecimientos.buscarPorId(Integer.parseInt(context.formParam("establecimiento"))));
+
+    nuevoIncidente.setPrestacionDeServicio(repoDePrestacionServicio.buscarPorId(Integer.parseInt(context.formParam("servicio"))));
+
+    nuevoIncidente.setObservaciones(context.formParam("observaciones"));
+
+    this.repositorioDeIncidentes.agregar(nuevoIncidente);
+
+    context.redirect("incidentes/abierto-exito");
+  }
+
+  public void mostrarMensajeDeIncidenteAbierto(Context context){
+    Map<String, Object> model = new HashMap<>();
+
+    super.modificarModelSiEstaLogueado(context, model);
+
+    model.put("mensaje", "El incidente ha sido abierto con éxito");
+
+    context.render("mensaje-exito.hbs", model);
   }
 
   private boolean usuarioPerteneceAComunidad(Comunidad comunidad, String username){

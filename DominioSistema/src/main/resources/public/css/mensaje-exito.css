@@ -1,0 +1,15 @@
+.mensaje-container {
+    width: 80%;
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: var(--primary-bg-color);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}

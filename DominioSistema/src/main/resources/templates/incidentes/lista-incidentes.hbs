@@ -1,5 +1,5 @@
 {{#partial "contenido" }}
-    <link rel="stylesheet" href="css/lista-incidentes.css">
+    <link rel="stylesheet" href="/css/lista-incidentes.css">
 
     <div class = "table-container">
         <div class ="table-title-container">
@@ -26,7 +26,7 @@
                     <td>{{this.fechaDeCreacion}}</td>
                     <td>{{this.fechaDeCierre}}</td>
                     <td>
-                        <form method="POST" action="cerrar-incidente/{{this.id}}">
+                        <form method="POST" action="/cerrar-incidente/{{this.id}}">
                             <button type="submit" >Cerrar</button>
                         </form>
                     </td>

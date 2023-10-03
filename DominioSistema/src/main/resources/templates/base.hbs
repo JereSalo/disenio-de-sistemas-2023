@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="css/reset.css">
-    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/base.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
 <body>
     <header>
         <div>
-            <h1> <a href="home">S.A.C.M.R.</a></h1>
+            <h1> <a href="/home">S.A.C.M.R.</a></h1>
 
             <nav class ="main-nav">
                 <ul>
@@ -22,8 +22,8 @@
 
                         <li class="menu-item">Incidentes
                             <ul class="sub-menu">
-                                <li><a href="incidentes">Ver Lista</a></li>
-                                <li><a href="incidentes/abrir">Abrir Incidente</a></li>
+                                <li><a href="/incidentes">Ver Lista</a></li>
+                                <li><a href="/incidentes/abrir">Abrir Incidente</a></li>
                             </ul>
                         </li>
 
@@ -33,12 +33,12 @@
 
                         <li class="menu-item"><u>Logeado: {{username}}</u>
                             <ul class="sub-menu">
-                                <li><a href="logout">Cerrar Sesión</a></li>
+                                <li><a href="/logout">Cerrar Sesión</a></li>
                             </ul>
                         </li>
 
                     {{else}}
-                        <li><a href="login"><u>Iniciar Sesión</u></a></li>
+                        <li><a href="/login"><u>Iniciar Sesión</u></a></li>
                     {{/if}}
                 </ul>
 

@@ -31,6 +31,8 @@ public class Router {
 
       post("incidente/cerrar/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::cerrarIncidente);
 
+      get("incidentes/abierto-exito", ((IncidentesController) FactoryController.controller("Incidentes"))::mostrarMensajeDeIncidenteAbierto);
+
     });
   };
 
