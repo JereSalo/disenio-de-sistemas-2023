@@ -3,11 +3,7 @@
 
     <div class = "table-container">
         <div class ="table-title-container">
-            {{#if cerrar}}
-                <h3>Cerrar Incidente</h3>
-            {{else}}
                 <h3>Lista De Incidentes</h3>
-            {{/if}}
         </div>
 
         <table>
@@ -29,13 +25,11 @@
                     <td>{{this.prestacionDeServicio.servicio.descripcion}}</td>
                     <td>{{this.fechaDeCreacion}}</td>
                     <td>{{this.fechaDeCierre}}</td>
-                    {{#if cerrar}}
-                        <td>
-                            <form method="POST" action="cerrar-incidente/{{this.id}}">
-                                <button type="submit" >Cerrar</button>
-                            </form>
-                        </td>
-                    {{/if}}
+                    <td>
+                        <form method="POST" action="cerrar-incidente/{{this.id}}">
+                            <button type="submit" >Cerrar</button>
+                        </form>
+                    </td>
                 </tr>
             {{/each}}
             </tbody>

@@ -26,4 +26,8 @@ public class Usuario extends Persistente {
     this.username = nombreusuario;
     this.password = contrasenia;
   }
+
+  public Usuario(){
+
+  }
 }

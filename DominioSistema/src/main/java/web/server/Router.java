@@ -15,46 +15,21 @@ public class Router {
 
       get("", ctx -> ctx.redirect("home"));
 
-      get("home", ctx -> {
-        Map<String, Object> model = new HashMap<>();
+      get("home",  ((LoginController) FactoryController.controller("Login"))::home);
 
-        LoginController.modificarModelSiEstaLogueado(ctx, model);
+      get("login", ((LoginController) FactoryController.controller("Login"))::mostrarPantallaLogin);
 
-        ctx.render("index.hbs", model);
-      });
+      post("login", ((LoginController) FactoryController.controller("Login"))::login);
 
-      get("login", ctx -> {
-        Map<String, Object> model = new HashMap<>();
+      get("logout", ((LoginController) FactoryController.controller("Login"))::logout);
 
-        LoginController.modificarModelSiEstaLogueado(ctx, model);
+      get("incidentes/abrir", ((IncidentesController) FactoryController.controller("Incidentes"))::mostrarFormAbrirIncidente);
 
-        if (LoginController.yaEstaLogeado(ctx)) ctx.redirect("home");
-        else ctx.render("login.hbs", model);
+      post("incidentes/abrir", ((IncidentesController) FactoryController.controller("Incidentes"))::abrirIncidente);
 
-      });
+      get("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::listarIncidentes);
 
-      post("login", ctx -> {
-        if (LoginController.sonCredencialesValidas(ctx)){
-          ctx.sessionAttribute("current-user", ctx.formParam("usuario"));
-          ctx.redirect("home");
-        }
-        else{
-          ctx.result("Las credenciales ingresadas son incorrectas");
-        }
-      });
-
-      get("logout", ctx -> {
-        ctx.req().getSession().invalidate();
-        ctx.redirect("home");
-      });
-
-      ApiBuilder.get("abrir-incidente", ((IncidentesController) FactoryController.controller("Incidentes"))::abrirIncidente);
-
-      get("lista-incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::listarIncidentes);
-
-      get("cerrar-incidente", ((IncidentesController) FactoryController.controller("Incidentes"))::listarIncidentesParaCerrar);
-
-      post("cerrar-incidente/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::cerrarIncidente);
+      post("incidente/cerrar/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::cerrarIncidente);
 
     });
   };
