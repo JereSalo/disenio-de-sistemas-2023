@@ -28,4 +28,8 @@ public class Localizacion extends Persistente {
     this.departamento = departamento;
     this.provincia = provincia;
   }
+
+  public Localizacion() {
+
+  }
 }

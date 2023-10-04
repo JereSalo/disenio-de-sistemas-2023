@@ -19,4 +19,8 @@ public class Administrador extends Persistente {
   @ManyToOne
   @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   private Comunidad comunidad;
+
+    public Administrador() {
+
+    }
 }

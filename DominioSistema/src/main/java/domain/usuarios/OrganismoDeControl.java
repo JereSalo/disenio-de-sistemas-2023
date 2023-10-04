@@ -36,6 +36,10 @@ public class OrganismoDeControl extends Persistente{
     this.nombre = nombre;
   }
 
+  public OrganismoDeControl() {
+
+  }
+
   private Informe ConsultarInforme(){
     Informe informe = RepoInformes.getInforme();
     List<Parrafo> parrafos = informe.getParrafos();

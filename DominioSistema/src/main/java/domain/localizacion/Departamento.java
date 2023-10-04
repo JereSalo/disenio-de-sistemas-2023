@@ -25,4 +25,8 @@ public class Departamento extends Persistente {
     this.nombre = nombre;
     this.provincia = provincia;
   }
+
+  public Departamento() {
+
+  }
 }

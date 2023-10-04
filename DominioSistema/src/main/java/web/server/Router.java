@@ -4,6 +4,7 @@ import web.controllers.FactoryController;
 import web.controllers.IncidentesController;
 import web.controllers.LoginController;
 import io.javalin.apibuilder.ApiBuilder;
+import web.controllers.RegistroController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +23,11 @@ public class Router {
       post("login", ((LoginController) FactoryController.controller("Login"))::login);
 
       get("logout", ((LoginController) FactoryController.controller("Login"))::logout);
+
+      get("registrarse", ((RegistroController) FactoryController.controller("Registro"))::mostrarPantallaRegistrarse);
+
+      post("registrarse", ((RegistroController) FactoryController.controller("Registro"))::registrarUsuario);
+
 
       get("incidentes/abrir", ((IncidentesController) FactoryController.controller("Incidentes"))::mostrarFormAbrirIncidente);
 

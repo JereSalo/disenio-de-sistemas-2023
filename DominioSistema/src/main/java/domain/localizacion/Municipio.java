@@ -23,4 +23,8 @@ public class Municipio extends Persistente {
     this.nombre = nombre;
     this.departamento = departamento;
   }
+
+  public Municipio() {
+
+  }
 }

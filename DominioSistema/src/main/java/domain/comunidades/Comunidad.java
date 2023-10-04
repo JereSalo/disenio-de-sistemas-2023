@@ -33,6 +33,10 @@ public class Comunidad extends Persistente {
     this.nombre = nombre;
   }
 
+  public Comunidad() {
+
+  }
+
   public void abrirIncidente(AperturaIncidenteParams params) {
     Incidente incidente = new IncidenteBuilder()
                             .withComunidad(this).withCreador(params.getCreador())

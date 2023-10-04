@@ -62,6 +62,10 @@ public class Persona extends Persistente{
     this.usuario = usuario;
   }
 
+  public Persona() {
+
+  }
+
   public List<LocalTime> getHorarios(){
     return this.horariosSinApuros.stream().map(h -> h.getHorario()).toList();
   }

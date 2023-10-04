@@ -19,4 +19,8 @@ public class Provincia extends Persistente {
   public Provincia(String nombre) {
     this.nombre = nombre;
   }
+
+  public Provincia() {
+
+  }
 }

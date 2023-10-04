@@ -1,0 +1,27 @@
+{{#partial "contenido" }}
+    <link rel="stylesheet" href="/css/registrarse.css">
+
+    <div class = "form-container">
+        <div class ="form-title-container">
+            <h3>Registrarse</h3>
+        </div>
+
+        <form action="registrarse" method = "post">
+
+            <div class ="form-input-container">
+                <label><b>Usuario</b></label>
+                <input class = "campo_entrada" type="text" name="username" required>
+                <label><b>Contraseña</b></label>
+                <input class = "campo_entrada" type="password" name="password" required>
+                <label><b>Email</b></label>
+                <input class = "campo_entrada" type="email" name="email" required>
+            </div>
+
+            <div class = "form-button-container">
+                <button type="submit">Registrarse</button>
+            </div>
+
+        </form>
+    </div>
+{{/partial}}
+{{> templates/base }}

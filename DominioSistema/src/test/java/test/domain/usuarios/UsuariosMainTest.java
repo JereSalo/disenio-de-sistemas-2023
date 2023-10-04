@@ -11,7 +11,7 @@ public class UsuariosMainTest {
 
   @BeforeEach
   public void init(){
-    this.usuarioGenerico = new Usuario("Juan123","123");
+    this.usuarioGenerico = new Usuario("Juan123","123","");
   }
 
   @Test

@@ -15,4 +15,8 @@ public class Designado extends Persistente {
   public Designado(Usuario usuario) {
     this.usuario = usuario;
   }
+
+  public Designado() {
+
+  }
 }

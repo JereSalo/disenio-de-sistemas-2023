@@ -29,4 +29,8 @@ public class PrestacionServicio extends Persistente{
     this.servicio = servicio;
     this.estado = estado;
   }
+
+  public PrestacionServicio() {
+
+  }
 }

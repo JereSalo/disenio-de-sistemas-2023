@@ -22,6 +22,13 @@ public class Usuario extends Persistente {
   @Column(name = "password")
   private String password;
 
+
+  public Usuario(String nombreusuario, String contrasenia, String email) {
+    this.username = nombreusuario;
+    this.password = contrasenia;
+    this.mail = email;
+  }
+
   public Usuario(String nombreusuario, String contrasenia) {
     this.username = nombreusuario;
     this.password = contrasenia;

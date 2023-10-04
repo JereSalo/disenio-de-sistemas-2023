@@ -32,6 +32,10 @@ public class Miembro extends Persistente {
     this.persona = persona;
   }
 
+  public Miembro() {
+
+  }
+
   public void recibirIncidente(Incidente incidente) {
     this.persona.recibirIncidente(incidente);
   }

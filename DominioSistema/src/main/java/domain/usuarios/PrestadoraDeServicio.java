@@ -36,6 +36,10 @@ public class PrestadoraDeServicio extends Persistente{
       this.nombre = nombre;
   }
 
+  public PrestadoraDeServicio() {
+
+  }
+
   private Informe ConsultarInforme(){
     Informe informe = RepoInformes.getInforme(); // Esta prohibida esta linea
     List<Parrafo> parrafos = informe.getParrafos();
