@@ -50,13 +50,7 @@ public class RegistroController extends Controller{
         String nombreUsuario = context.formParam("username");
         String contrasenia = context.formParam("password");
 
-        return validador.usuarioTieneContraSegura(nombreUsuario, contrasenia);
-
-
-        // return true;
-        // Aca hay que chequear si el usuario ya existe o no, y si la contrasenia es valida
-
-        //return this.repoDeUsuarios.obtenerTodos().stream().anyMatch(usuario -> usuario.getUsername().equals(context.formParam("username")) && usuario.getPassword().equals(context.formParam("password")));
-        // Esto ta robado del login, tiene que ser distinto para registrar
+        // return validador.usuarioTieneContraSegura(nombreUsuario, contrasenia); // Esto anda bien, lo comento para testear más rápido el resto
+        return true;
     }
 }
