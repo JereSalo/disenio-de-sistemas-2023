@@ -25,7 +25,7 @@ public class IncidentesController extends Controller{
   public void listarIncidentes(Context context) {
     Map<String, Object> model = new HashMap<>();
 
-    super.modificarModelSiEstaLogueado(context, model);
+    modificarModelSiEstaLogueado(context, model);
 
     Repositorio<Comunidad> repoDeComunidades = FactoryRepositorios.get(Comunidad.class);
 
@@ -96,7 +96,7 @@ public class IncidentesController extends Controller{
   public void mostrarMensajeDeIncidenteAbierto(Context context){
     Map<String, Object> model = new HashMap<>();
 
-    super.modificarModelSiEstaLogueado(context, model);
+    modificarModelSiEstaLogueado(context, model);
 
     model.put("mensaje", "El incidente ha sido abierto con éxito");
 

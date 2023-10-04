@@ -19,7 +19,7 @@ public class LoginController extends Controller{
   public void home(Context context){
       Map<String, Object> model = new HashMap<>();
 
-      super.modificarModelSiEstaLogueado(context, model);
+      modificarModelSiEstaLogueado(context, model);
 
       context.render("index.hbs", model);
   }
@@ -27,9 +27,9 @@ public class LoginController extends Controller{
   public void mostrarPantallaLogin(Context context){
     Map<String, Object> model = new HashMap<>();
 
-    super.modificarModelSiEstaLogueado(context, model);
+    modificarModelSiEstaLogueado(context, model);
 
-    if (this.yaEstaLogeado(context)) context.redirect("home");
+    if (yaEstaLogeado(context)) context.redirect("home");
     else context.render("login.hbs", model);
 
   }
