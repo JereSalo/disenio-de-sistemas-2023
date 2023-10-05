@@ -1,10 +1,7 @@
 package web.server;
 
-import web.controllers.FactoryController;
-import web.controllers.IncidentesController;
-import web.controllers.LoginController;
+import web.controllers.*;
 import io.javalin.apibuilder.ApiBuilder;
-import web.controllers.RegistroController;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +35,11 @@ public class Router {
       post("incidente/cerrar/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::cerrarIncidente);
 
       get("incidentes/abierto-exito", ((IncidentesController) FactoryController.controller("Incidentes"))::mostrarMensajeDeIncidenteAbierto);
+
+
+      get("carga-masiva", ((CargaMasivaController) FactoryController.controller("CargaMasiva"))::mostrarFormCargaMasiva);
+
+      post("carga-masiva", ((CargaMasivaController) FactoryController.controller("CargaMasiva"))::cargar);
 
     });
   };

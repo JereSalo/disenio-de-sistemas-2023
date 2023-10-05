@@ -1,0 +1,19 @@
+{{#partial "contenido" }}
+    <link rel="stylesheet" href="/css/carga-masiva.css">
+
+    <div class="form-container">
+        <h2>Carga Masiva de Entidades Prestadoras y Organismos de Control</h2>
+        <br>
+        <div class="form-content">
+            <p>Seleccione archivo CSV con formato tipo;nombre</p>
+            <form action="/carga-masiva" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+                <input type="file" id="archivo" name="archivo" accept=".csv, .txt" onchange="checkFile()" required>
+                <button type="submit" id="submitButton" disabled>Subir</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- script js -->
+    <script src="/js/carga-masiva.js"></script>
+{{/partial}}
+{{> templates/base }}
