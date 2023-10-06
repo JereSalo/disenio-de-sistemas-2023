@@ -1,3 +1,54 @@
+.table-title {
+    text-align: left; /* Alinea el título a la izquierda */
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px; /* Agrega un espacio inferior */
+    background-color: #a2a8d3; /* Color de fondo del título */
+    color: #fff; /* Color del texto del título */
+    padding: 10px 15px; /* Añade un espaciado alrededor del título */
+}
+
+.filtros-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.filtros-table th, .filtros-table td {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.filtros-table th {
+    background-color: #a2a8d3;
+    color: #fff;
+    font-weight: bold;
+}
+
+.filtros-table h3 {
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0;
+}
+
+.filtros-table a {
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+.filtros-table a:hover {
+    background-color: #f2f2f2;
+}
+
+.filtro-seleccionado {
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+}
+
 .table-container {
     width: 60%;
     padding: 60px;
@@ -17,26 +68,26 @@
 }
 
 /* Estilos mejorados para la tabla */
-.table {
+.lista-table{
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-.table th, .table td {
+.lista-table th, .lista-table td {
     text-align: center;
     padding: 12px; /* Aumentar el espaciado dentro de las celdas */
     border: 1px solid #ccc; /* Utilizar un borde más suave */
     font-family: 'Open Sans', sans-serif; /* Aplicar la fuente Open Sans a las celdas */
 }
 
-.table th {
+.lista-table th {
     background-color: #a2a8d3;
     color: #fff;
     font-weight: bold;
 }
 
-.table tbody tr:nth-child(even) {
+.lista-table tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 

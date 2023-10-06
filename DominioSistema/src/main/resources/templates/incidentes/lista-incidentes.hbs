@@ -6,7 +6,18 @@
                 <h3>Lista De Incidentes</h3>
         </div>
 
-        <table>
+        <h3 class="table-title">Filtrar por Estado</h3>
+        <table class="filtros-table">
+
+            <tbody>
+                <tr>
+                    <td><a href="/incidentes?estado=abierto" {{#if abierto}} class="filtro-seleccionado"{{/if}}>Abierto</a></td>
+                    <td><a href="/incidentes?estado=cerrado" {{#if cerrado}} class="filtro-seleccionado"{{/if}}>Cerrado</a></td>
+                    <td><a href="/incidentes"  {{#if ninguno}} class="filtro-seleccionado"{{/if}}>Ninguno</a></td>
+                </tr>
+            </tbody>
+
+        <table class="lista-table">
             <tr>
                 <th>Comunidad</th>
                 <th>Entidad</th>

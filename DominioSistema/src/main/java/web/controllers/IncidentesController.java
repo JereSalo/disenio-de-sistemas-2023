@@ -35,9 +35,31 @@ public class IncidentesController extends Controller{
 
     comunidadesDelUsuario.forEach(comunidad -> listaDeIncidentes.addAll(comunidad.getIncidentes()));
 
+    this.filtrarIncidentes(listaDeIncidentes, context);
+
     model.put("incidentes", listaDeIncidentes);
 
+    if (context.queryParamMap().containsKey("estado") && context.queryParam("estado").equals("abierto")){
+      model.put("abierto", true);
+    }
+    else if(context.queryParamMap().containsKey("estado") && context.queryParam("estado").equals("cerrado")){
+      model.put("cerrado", true);
+    }
+    else{
+      model.put("ninguno", true);
+    }
+
     context.render("incidentes/lista-incidentes.hbs", model);
+  }
+
+  private void filtrarIncidentes(List<Incidente> listaDeIncidentes, Context context){
+
+    if (context.queryParamMap().containsKey("estado") && context.queryParam("estado").equals("abierto")){
+      listaDeIncidentes.removeIf(incidente -> !incidente.abierto());
+    }
+    else if (context.queryParamMap().containsKey("estado") && context.queryParam("estado").equals("cerrado")) {
+      listaDeIncidentes.removeIf(incidente -> incidente.abierto());
+    }
   }
 
   public void cerrarIncidente(Context context){
