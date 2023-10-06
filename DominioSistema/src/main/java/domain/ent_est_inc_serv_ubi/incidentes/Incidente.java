@@ -69,46 +69,4 @@ public class Incidente extends Persistente{
   public boolean abierto() {
     return this.fechaDeCierre == null;
   }
-
-  public Boolean diferenciaMenor24HorasMientrasSeguiaAbierto(Incidente otroIncidente){
-    int diferenciaFechasDeCreacionEnHoras = Math.round(this.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC) - otroIncidente.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC)) / 3600;
-
-    int diferenciaFechaCreacionConFechaDeCierreDelOtro = Math.round(this.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC) - otroIncidente.getFechaDeCierre().toEpochSecond(ZoneOffset.UTC));
-
-    return diferenciaFechasDeCreacionEnHoras > 0 && diferenciaFechasDeCreacionEnHoras < 24 && (diferenciaFechaCreacionConFechaDeCierreDelOtro > 0 || otroIncidente.abierto());
-  }
-
-  public int calcularTiempoCierreIncidenteEnHoras(){
-    return Math.round(((this.getFechaDeCierre().toEpochSecond(ZoneOffset.UTC) - this.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC)) / 3600));
-  }
-  public Boolean abiertoEnSemanaAnterior(){
-    LocalDateTime fechaLunesAnterior = obtenerLunesAnterior();
-
-    LocalDateTime fechaUltimoLunes = fechaLunesAnterior.plusWeeks(1);
-
-    return (this.getFechaDeCreacion().isAfter(fechaLunesAnterior)) && (this.getFechaDeCreacion().isBefore(fechaUltimoLunes));
-  }
-
-  public Boolean abiertoYCerradoEnSemanaAnterior(){
-    LocalDateTime fechaLunesAnterior = obtenerLunesAnterior();
-
-    LocalDateTime fechaUltimoLunes = fechaLunesAnterior.plusWeeks(1);
-
-    return (!this.abierto() && this.getFechaDeCreacion().isAfter(fechaLunesAnterior)) && (this.getFechaDeCierre().isBefore(fechaUltimoLunes));
-  }
-
-  private LocalDateTime obtenerLunesAnterior(){
-    LocalDate fechaLunesAnterior = LocalDate.now();
-
-    int i = 0;
-
-    if (fechaLunesAnterior.getDayOfWeek().getValue() == 1) i += 1;
-
-    for(; i < 2 ; fechaLunesAnterior.minusDays(1) ){
-
-      if (fechaLunesAnterior.getDayOfWeek().getValue() == 1) i += 1;
-    }
-
-    return fechaLunesAnterior.atStartOfDay();
-  }
 }

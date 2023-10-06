@@ -20,7 +20,7 @@ public class Administrador extends Persistente {
   @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   private Comunidad comunidad;
 
-    public Administrador() {
+  public Administrador() {
 
-    }
+  }
 }

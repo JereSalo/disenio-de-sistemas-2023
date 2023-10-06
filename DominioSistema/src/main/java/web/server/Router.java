@@ -41,6 +41,8 @@ public class Router {
 
       post("carga-masiva", ((CargaMasivaController) FactoryController.controller("CargaMasiva"))::cargar);
 
+      get("revision-incidente/{id}", ((SugerenciaRevisionController) FactoryController.controller("SugerenciaRevision"))::mostrarFormSugerenciaRevision);
+
     });
   };
 
