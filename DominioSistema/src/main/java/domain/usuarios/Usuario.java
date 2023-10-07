@@ -22,6 +22,10 @@ public class Usuario extends Persistente {
   @Column(name = "password")
   private String password;
 
+  @ManyToOne
+  @JoinColumn(name = "rol_id", referencedColumnName = "id")
+  private Rol rol;
+
 
   public Usuario(String nombreusuario, String contrasenia, String email) {
     this.username = nombreusuario;

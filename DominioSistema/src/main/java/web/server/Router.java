@@ -1,7 +1,9 @@
 package web.server;
 
+import domain.usuarios.TipoRol;
 import web.controllers.*;
 import io.javalin.apibuilder.ApiBuilder;
+import web.middlewares.AuthMiddleware;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +11,7 @@ import java.util.Map;
 import static io.javalin.apibuilder.ApiBuilder.*;
 public class Router {
   public static void init() {
+
     Server.app().routes(() -> {
 
       get("", ctx -> ctx.redirect("home"));
@@ -26,22 +29,22 @@ public class Router {
       post("registrarse", ((RegistroController) FactoryController.controller("Registro"))::registrarUsuario);
 
 
-      get("incidentes/abrir", ((IncidentesController) FactoryController.controller("Incidentes"))::mostrarFormAbrirIncidente);
+      get("incidentes/abrir", ((IncidentesController) FactoryController.controller("Incidentes"))::mostrarFormAbrirIncidente, TipoRol.MIEMBRO);
 
-      post("incidentes/abrir", ((IncidentesController) FactoryController.controller("Incidentes"))::abrirIncidente);
+      post("incidentes/abrir", ((IncidentesController) FactoryController.controller("Incidentes"))::abrirIncidente, TipoRol.MIEMBRO);
 
-      get("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::listarIncidentes);
+      get("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::listarIncidentes, TipoRol.MIEMBRO);
 
-      post("incidente/cerrar/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::cerrarIncidente);
+      post("incidente/cerrar/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::cerrarIncidente, TipoRol.MIEMBRO);
 
-      get("incidentes/abierto-exito", ((IncidentesController) FactoryController.controller("Incidentes"))::mostrarMensajeDeIncidenteAbierto);
+      get("incidentes/abierto-exito", ((IncidentesController) FactoryController.controller("Incidentes"))::mostrarMensajeDeIncidenteAbierto, TipoRol.MIEMBRO);
 
 
-      get("carga-masiva", ((CargaMasivaController) FactoryController.controller("CargaMasiva"))::mostrarFormCargaMasiva);
+      get("carga-masiva", ((CargaMasivaController) FactoryController.controller("CargaMasiva"))::mostrarFormCargaMasiva, TipoRol.ADMINISTRADOR_PLATAFORMA);
 
-      post("carga-masiva", ((CargaMasivaController) FactoryController.controller("CargaMasiva"))::cargar);
+      post("carga-masiva", ((CargaMasivaController) FactoryController.controller("CargaMasiva"))::cargar, TipoRol.ADMINISTRADOR_PLATAFORMA);
 
-      get("revision-incidente/{id}", ((SugerenciaRevisionController) FactoryController.controller("SugerenciaRevision"))::mostrarFormSugerenciaRevision);
+      get("revision-incidente/{id}", ((SugerenciaRevisionController) FactoryController.controller("SugerenciaRevision"))::mostrarFormSugerenciaRevision, TipoRol.MIEMBRO);
 
     });
   };

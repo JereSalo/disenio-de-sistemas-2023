@@ -122,7 +122,7 @@ public class IncidentesController extends Controller{
 
     model.put("mensaje", "El incidente ha sido abierto con éxito");
 
-    context.render("mensaje-exito.hbs", model);
+    context.render("mensaje.hbs", model);
   }
 
   private boolean usuarioPerteneceAComunidad(Comunidad comunidad, String username){
