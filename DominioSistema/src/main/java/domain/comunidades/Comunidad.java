@@ -4,6 +4,7 @@ import domain.Persistente;
 import domain.ent_est_inc_serv_ubi.incidentes.Incidente;
 import domain.ent_est_inc_serv_ubi.incidentes.IncidenteBuilder;
 import domain.ent_est_inc_serv_ubi.incidentes.params.AperturaIncidenteParams;
+import domain.usuarios.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,6 +37,10 @@ public class Comunidad extends Persistente {
 
   public Comunidad() {
 
+  }
+
+  public boolean esMiembro(Usuario usuario){
+    return miembros.stream().anyMatch(miembro -> miembro.getUsuario() == usuario);
   }
 
   public void abrirIncidente(AperturaIncidenteParams params) {

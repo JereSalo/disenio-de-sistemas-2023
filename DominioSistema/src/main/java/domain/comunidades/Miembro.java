@@ -4,6 +4,7 @@ import domain.Persistente;
 import domain.ent_est_inc_serv_ubi.incidentes.Incidente;
 import domain.ent_est_inc_serv_ubi.servicios.Servicio;
 import domain.usuarios.Persona;
+import domain.usuarios.Usuario;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,6 +33,11 @@ public class Miembro extends Persistente {
     this.persona = persona;
   }
 
+  public Miembro(Persona persona, Comunidad comunidad) {
+    this.persona = persona;
+    this.comunidad = comunidad;
+  }
+
   public Miembro() {
 
   }
@@ -41,6 +47,10 @@ public class Miembro extends Persistente {
   }
 
   public String getUsername() {return this.persona.getUsername();}
+
+  public Usuario getUsuario(){
+    return this.persona.getUsuario();
+  }
 
   public boolean estaAfectado(Servicio servicio) {
     return rolesPorServicio.stream().

@@ -6,13 +6,14 @@
             <h3>Abrir Incidente</h3>
         </div>
 
-        <form action="/abrir-incidente" method = "post">
+        <form action="/incidentes/abrir" method = "post">
 
             <div class ="form-input-container">
 
                 <label><b>Comunidad</b></label>
 
                 <select name="comunidad" id="comunidad">
+                    <option selected disabled>Seleccionar</option>
                     {{#each comunidades}}
                         <option value="{{this.id}}">{{this.nombre}}</option>
                     {{/each}}
@@ -21,6 +22,7 @@
                 <label><b>Entidad</b></label>
 
                 <select name="entidad" id="entidad">
+                    <option selected disabled>Seleccionar</option>
                     {{#each entidades}}
                         <option value="{{this.id}}">{{this.nombre}}</option>
                     {{/each}}
@@ -29,6 +31,7 @@
                 <label><b>Establecimiento</b></label>
 
                 <select name="establecimiento" id="establecimiento">
+                    <option selected disabled>Seleccionar</option>
                     {{#each establecimiento}}
                         <option value="{{this.id}}">{{this.nombre}}</option>
                     {{/each}}
@@ -37,13 +40,14 @@
                 <label><b>Servicio</b></label>
 
                 <select name="servicio" id="servicio">
+                    <option selected disabled>Seleccionar</option>
                     {{#each servicios}}
                         <option value="{{this.id}}">{{this.nombre}}</option>
                     {{/each}}
                 </select>
 
                 <label><b>Observaciones</b></label>
-                <input type="text"name="observaciones" required>
+                <input type="text"name="observaciones">
 
             </div>
 

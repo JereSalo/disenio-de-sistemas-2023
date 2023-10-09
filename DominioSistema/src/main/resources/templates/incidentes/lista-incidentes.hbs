@@ -25,6 +25,7 @@
                 <th>Servicio</th>
                 <th>Fecha de Creación</th>
                 <th>Fecha de Cierre</th>
+                <th>Observaciones</th>
             </tr>
             <tbody>
             {{#each incidentes}}
@@ -36,6 +37,7 @@
                     <td>{{this.prestacionDeServicio.servicio.descripcion}}</td>
                     <td>{{this.fechaDeCreacion}}</td>
                     <td>{{this.fechaDeCierre}}</td>
+                    <td>{{this.observaciones}}</td>
                     <td>
                         <form method="POST" action="/cerrar-incidente/{{this.id}}">
                             <button type="submit" >Cerrar</button>

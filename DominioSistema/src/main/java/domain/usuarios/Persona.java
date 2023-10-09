@@ -17,6 +17,7 @@ import lombok.Setter;
 import persistence.converters.ConverterNotificador;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -60,10 +61,20 @@ public class Persona extends Persistente{
 
   public Persona(Usuario usuario) {
     this.usuario = usuario;
+    this.localizacionesDeInteres = new ArrayList<>();
+    this.serviciosDeInteres = new ArrayList<>();
+    this.entidadesDeInteres = new ArrayList<>();
+    this.horariosSinApuros = new ArrayList<>();
+    this.incidentesANotificar = new ArrayList<>();
+
   }
 
   public Persona() {
-
+    this.localizacionesDeInteres = new ArrayList<>();
+    this.serviciosDeInteres = new ArrayList<>();
+    this.entidadesDeInteres = new ArrayList<>();
+    this.horariosSinApuros = new ArrayList<>();
+    this.incidentesANotificar = new ArrayList<>();
   }
 
   public List<LocalTime> getHorarios(){

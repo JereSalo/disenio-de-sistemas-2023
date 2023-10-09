@@ -35,6 +35,14 @@ function cambiarOpcionesEstablecimiento() {
             // Limpia las opciones existentes en el select
             selectElement.innerHTML = '';
 
+            const option = document.createElement('option');
+            option.text = "Seleccionar";
+            option.selected = true;
+            option.disabled = true;
+
+            selectElement.appendChild(option);
+
+
             // Itera sobre la lista de elementos JSON y agrega opciones al select
             response.forEach(element => {
                 const option = document.createElement('option');
@@ -60,6 +68,13 @@ function cambiarOpcionesServicio() {
 
             // Limpia las opciones existentes en el select
             selectElement.innerHTML = '';
+
+            const option = document.createElement('option');
+            option.text = "Seleccionar";
+            option.selected = true;
+            option.disabled = true;
+
+            selectElement.appendChild(option);
 
             // Itera sobre la lista de elementos JSON y agrega opciones al select
             response.forEach(element => {

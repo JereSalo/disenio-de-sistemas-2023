@@ -34,4 +34,14 @@ public class Establecimiento extends Persistente{
         this.prestaciones = new ArrayList<>();
     }
 
+    public Establecimiento(String nombre, TipoEstablecimiento tipoEstablecimiento, Entidad entidad) {
+        this.nombre = nombre;
+        this.tipoEstablecimiento = tipoEstablecimiento;
+        this.entidad = entidad;
+        this.prestaciones = new ArrayList<>();
+    }
+
+    public void addPrestacionServicio(PrestacionServicio prestacionServicio){
+        this.prestaciones.add(prestacionServicio);
+    }
 }

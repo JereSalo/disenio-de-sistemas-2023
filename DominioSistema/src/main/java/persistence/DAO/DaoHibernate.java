@@ -31,7 +31,7 @@ public class DaoHibernate<T> implements WithSimplePersistenceUnit, Dao<T>{
     }
 
     @Override
-    public T buscarPorId(int id) {
+    public T buscarPorId(Long id) {
 
 
         T t =  this.entityManager().find(type, id);

@@ -14,8 +14,8 @@ public class ConverterNotificador implements AttributeConverter<Notificador, Str
   public String convertToDatabaseColumn(Notificador notificador) {
     String notificadorString = null;
 
-    if (notificador == WhatsApp.obtenerInstancia()) notificadorString = "EMAIL";
-    else if (notificador == CorreoElectronico.obtenerInstancia()) notificadorString = "WHATSAPP";
+    if (notificador == CorreoElectronico.obtenerInstancia()) notificadorString = "EMAIL";
+    else if (notificador == WhatsApp.obtenerInstancia()) notificadorString = "WHATSAPP";
 
     return notificadorString;
   }

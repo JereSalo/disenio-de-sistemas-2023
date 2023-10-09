@@ -9,6 +9,7 @@ import domain.usuarios.PrestadoraDeServicio;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
 
@@ -40,4 +41,17 @@ public class Entidad extends Persistente{
   @JoinColumn(name = "organismo_de_control_id", referencedColumnName = "id")
   private OrganismoDeControl organismoDeControl;
 
+  public Entidad(){
+    this.establecimientos = new ArrayList<>();
+  }
+
+  public Entidad(String nombre, TipoEntidad tipoEntidad) {
+    this.nombre = nombre;
+    this.tipoEntidad = tipoEntidad;
+    this.establecimientos = new ArrayList<>();
+  }
+
+  public void addEstablecimiento(Establecimiento nuevoEstablecimiento){
+    this.establecimientos.add(nuevoEstablecimiento);
+  }
 }

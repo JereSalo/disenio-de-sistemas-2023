@@ -18,7 +18,7 @@ public class SugerenciaRevisionController extends Controller{
 
         modificarModelSiEstaLogueado(context, model);
 
-        Incidente incidente = this.repositorioDeIncidentes.buscarPorId(Integer.parseInt(context.pathParam("id")));
+        Incidente incidente = this.repositorioDeIncidentes.buscarPorId(Long.parseLong(context.pathParam("id")));
 
         model.put("incidente", incidente);
 

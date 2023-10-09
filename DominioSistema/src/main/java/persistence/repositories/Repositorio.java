@@ -30,7 +30,7 @@ public class Repositorio<T> {
         return this.dao.obtenerTodos();
     }
 
-    public T buscarPorId(int id){
+    public T buscarPorId(Long id){
         return this.dao.buscarPorId(id);
     }
 

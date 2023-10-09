@@ -30,6 +30,12 @@ public class PrestacionServicio extends Persistente{
     this.estado = estado;
   }
 
+  public PrestacionServicio(Servicio servicio, EstadoServicio estado, Establecimiento establecimiento) {
+    this.servicio = servicio;
+    this.estado = estado;
+    this.establecimiento = establecimiento;
+  }
+
   public PrestacionServicio() {
 
   }

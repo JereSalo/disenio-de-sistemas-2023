@@ -31,7 +31,7 @@ public class IncidentesController extends Controller{
 
     Repositorio<Comunidad> repoDeComunidades = FactoryRepositorios.get(Comunidad.class);
 
-    List<Comunidad> comunidadesDelUsuario = repoDeComunidades.obtenerTodos().stream().filter(comunidad -> usuarioPerteneceAComunidad(comunidad, context.sessionAttribute("current-user"))).toList();
+    List<Comunidad> comunidadesDelUsuario = repoDeComunidades.obtenerTodos().stream().filter(comunidad -> comunidad.esMiembro(super.getUsuario(context))).toList();
 
     List<Incidente> listaDeIncidentes = new ArrayList<Incidente>();
 
@@ -66,16 +66,14 @@ public class IncidentesController extends Controller{
 
   public void cerrarIncidente(Context context){
 
-    Incidente incidente = this.repositorioDeIncidentes.buscarPorId(Integer.parseInt(context.pathParam("id")));
+    Incidente incidente = this.repositorioDeIncidentes.buscarPorId(Long.parseLong(context.pathParam("id")));
 
-    incidente.cerrar(obtenerMiembro(super.getCurrentUserName(context)));
+    incidente.cerrar(obtenerMiembro(super.getCurrentUserName(context), incidente.getComunidad()));
 
     context.redirect("home");
   }
 
   public void mostrarFormAbrirIncidente(Context context) {
-
-    //TODO: IR FILTRANDO CON JS A MEDIDA QUE SE VA SELECCIONANDO
 
     Map<String, Object> model = new HashMap<>();
 
@@ -83,16 +81,15 @@ public class IncidentesController extends Controller{
 
     Repositorio<Comunidad> repoDeComunidades = FactoryRepositorios.get(Comunidad.class);
     Repositorio<Entidad> repoDeEntidades = FactoryRepositorios.get(Entidad.class);
-    Repositorio<Establecimiento> repoDeEstablecimientos = FactoryRepositorios.get(Establecimiento.class);
-    Repositorio<PrestacionServicio> repoDePrestacionServicio = FactoryRepositorios.get(PrestacionServicio.class);
 
-    model.put("comunidades", repoDeComunidades.obtenerTodos().stream().filter(comunidad -> usuarioPerteneceAComunidad(comunidad, context.sessionAttribute("current-user"))).toList());
+    model.put("comunidades", repoDeComunidades.obtenerTodos().stream().filter(comunidad -> comunidad.esMiembro(super.getUsuario(context))).toList());
+    model.put("entidades", repoDeEntidades.obtenerTodos());
 
     context.render("incidentes/abrir-incidente.hbs", model);
   }
 
   public void abrirIncidente(Context context){
-    //TODO: crear nuevo incidente en la base de datos
+
     Incidente nuevoIncidente = new Incidente();
 
     Repositorio<Comunidad> repoDeComunidades = FactoryRepositorios.get(Comunidad.class);
@@ -100,28 +97,28 @@ public class IncidentesController extends Controller{
     Repositorio<Establecimiento> repoDeEstablecimientos = FactoryRepositorios.get(Establecimiento.class);
     Repositorio<PrestacionServicio> repoDePrestacionServicio = FactoryRepositorios.get(PrestacionServicio.class);
 
-    nuevoIncidente.setCreador(this.obtenerMiembro(super.getCurrentUserName(context)));
+    nuevoIncidente.setCreador(this.obtenerMiembro(super.getCurrentUserName(context), repoDeComunidades.buscarPorId(Long.parseLong(context.formParam("comunidad")))));
 
-    nuevoIncidente.setComunidad(repoDeComunidades.buscarPorId(Integer.parseInt(context.formParam("comunidad"))));
+    nuevoIncidente.setComunidad(repoDeComunidades.buscarPorId(Long.parseLong(context.formParam("comunidad"))));
 
-    nuevoIncidente.setEntidad(repoDeEntidades.buscarPorId(Integer.parseInt(context.formParam("entidad"))));
+    nuevoIncidente.setEntidad(repoDeEntidades.buscarPorId(Long.parseLong(context.formParam("entidad"))));
 
-    nuevoIncidente.setEstablecimiento(repoDeEstablecimientos.buscarPorId(Integer.parseInt(context.formParam("establecimiento"))));
+    nuevoIncidente.setEstablecimiento(repoDeEstablecimientos.buscarPorId(Long.parseLong(context.formParam("establecimiento"))));
 
-    nuevoIncidente.setPrestacionDeServicio(repoDePrestacionServicio.buscarPorId(Integer.parseInt(context.formParam("servicio"))));
+    nuevoIncidente.setPrestacionDeServicio(repoDePrestacionServicio.buscarPorId(Long.parseLong(context.formParam("servicio"))));
 
     nuevoIncidente.setObservaciones(context.formParam("observaciones"));
 
     this.repositorioDeIncidentes.agregar(nuevoIncidente);
 
-    context.redirect("incidentes/abierto-exito");
+    context.redirect("/incidentes/abierto-exito");
   }
 
   public void getEstablecimientosDeEntidad(Context context){
 
     Repositorio<Entidad> repoDeEntidades = FactoryRepositorios.get(Entidad.class);
 
-    String jsonResponse = this.armarJSONEstablecimientos(repoDeEntidades.buscarPorId(Integer.parseInt(context.pathParam("id-entidad"))).getEstablecimientos());
+    String jsonResponse = this.armarJSONEstablecimientos(repoDeEntidades.buscarPorId(Long.parseLong(context.pathParam("id-entidad"))).getEstablecimientos());
 
     context.contentType("application/json");
 
@@ -182,7 +179,7 @@ public class IncidentesController extends Controller{
 
     Repositorio<Establecimiento> repoDeEstablecimientos = FactoryRepositorios.get(Establecimiento.class);
 
-    String jsonResponse = this.armarJSONServicios(repoDeEstablecimientos.buscarPorId(Integer.parseInt(context.pathParam("id-establecimiento"))).getPrestaciones());
+    String jsonResponse = this.armarJSONServicios(repoDeEstablecimientos.buscarPorId(Long.parseLong(context.pathParam("id-establecimiento"))).getPrestaciones());
 
     context.contentType("application/json");
 
@@ -199,14 +196,9 @@ public class IncidentesController extends Controller{
 
     context.render("mensaje.hbs", model);
   }
-
-  private boolean usuarioPerteneceAComunidad(Comunidad comunidad, String username){
-    return comunidad.getMiembros().stream().anyMatch(miembro -> miembro.getUsername() == username);
-  }
-
-  private Miembro obtenerMiembro(String username){
+  private Miembro obtenerMiembro(String username, Comunidad comunidad){
     Repositorio<Miembro> repoDeMiembros = FactoryRepositorios.get(Miembro.class);
 
-    return repoDeMiembros.obtenerTodos().stream().filter(miembro -> miembro.getUsername() == username).findFirst().get();
+    return repoDeMiembros.obtenerTodos().stream().filter(miembro -> miembro.getUsername().equals(username) && miembro.getComunidad() == comunidad).findFirst().get();
   }
 }
