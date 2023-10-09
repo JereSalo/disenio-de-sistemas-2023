@@ -33,12 +33,15 @@ public class Router {
 
       post("incidentes/abrir", ((IncidentesController) FactoryController.controller("Incidentes"))::abrirIncidente, TipoRol.MIEMBRO);
 
-      get("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::listarIncidentes, TipoRol.MIEMBRO);
+      get("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::listarIncidentes);
 
       post("incidente/cerrar/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::cerrarIncidente, TipoRol.MIEMBRO);
 
       get("incidentes/abierto-exito", ((IncidentesController) FactoryController.controller("Incidentes"))::mostrarMensajeDeIncidenteAbierto, TipoRol.MIEMBRO);
 
+      get("establecimientos/{id-entidad}", ((IncidentesController) FactoryController.controller("Incidentes"))::getEstablecimientosDeEntidad, TipoRol.MIEMBRO);
+
+      get("servicios/{id-establecimiento}", ((IncidentesController) FactoryController.controller("Incidentes"))::getServiciosDeEstablecimiento, TipoRol.MIEMBRO);
 
       get("carga-masiva", ((CargaMasivaController) FactoryController.controller("CargaMasiva"))::mostrarFormCargaMasiva, TipoRol.ADMINISTRADOR_PLATAFORMA);
 

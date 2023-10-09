@@ -25,8 +25,14 @@ public class Rol extends Persistente {
   @ManyToMany
   private Set<Permiso> permisos;
 
-  public Rol() {
+  public Rol(String nombre, TipoRol tipo){
+    this.nombre = nombre;
+    this.tipo = tipo;
     this.permisos = new HashSet<>();
+  }
+
+  public Rol(){
+
   }
 
   public void agregarPermisos(Permiso ... permisos) {

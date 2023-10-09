@@ -1,5 +1,7 @@
 package web.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import domain.comunidades.Comunidad;
 import domain.comunidades.Miembro;
 import domain.ent_est_inc_serv_ubi.entidades.Entidad;
@@ -113,6 +115,79 @@ public class IncidentesController extends Controller{
     this.repositorioDeIncidentes.agregar(nuevoIncidente);
 
     context.redirect("incidentes/abierto-exito");
+  }
+
+  public void getEstablecimientosDeEntidad(Context context){
+
+    Repositorio<Entidad> repoDeEntidades = FactoryRepositorios.get(Entidad.class);
+
+    String jsonResponse = this.armarJSONEstablecimientos(repoDeEntidades.buscarPorId(Integer.parseInt(context.pathParam("id-entidad"))).getEstablecimientos());
+
+    context.contentType("application/json");
+
+    context.result(jsonResponse);
+  }
+
+  private String armarJSONEstablecimientos(List<Establecimiento> listaDeEstablecimientos){
+    List<Map<String, Object>> jsonEstablecimientos = new ArrayList<>();
+
+    listaDeEstablecimientos.forEach(establecimiento -> {
+      Map<String, Object> jsonMap = new HashMap<>();
+
+      jsonMap.put("id", establecimiento.getId());
+      jsonMap.put("nombre", establecimiento.getNombre());
+
+      jsonEstablecimientos.add(jsonMap);
+    });
+
+    try {
+
+      ObjectMapper objectMapper = new ObjectMapper();
+      objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+      return objectMapper.writeValueAsString(jsonEstablecimientos);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return "[]";
+    }
+  }
+
+  private String armarJSONServicios(List<PrestacionServicio> listaDePrestacionServicio){
+
+    //TODO: RESOLVER REPETICION DE LOGICA CON armarJsonEstablecimientos
+    List<Map<String, Object>> jsonServicio = new ArrayList<>();
+
+    listaDePrestacionServicio.forEach(prestacionServicio -> {
+      Map<String, Object> jsonMap = new HashMap<>();
+
+      jsonMap.put("id", prestacionServicio.getId());
+      jsonMap.put("nombre", prestacionServicio.getServicio().getDescripcion());
+
+      jsonServicio.add(jsonMap);
+    });
+
+    try {
+
+      ObjectMapper objectMapper = new ObjectMapper();
+      objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+      return objectMapper.writeValueAsString(jsonServicio);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      return "[]";
+    }
+  }
+
+  public void getServiciosDeEstablecimiento(Context context){
+
+    Repositorio<Establecimiento> repoDeEstablecimientos = FactoryRepositorios.get(Establecimiento.class);
+
+    String jsonResponse = this.armarJSONServicios(repoDeEstablecimientos.buscarPorId(Integer.parseInt(context.pathParam("id-establecimiento"))).getPrestaciones());
+
+    context.contentType("application/json");
+
+    context.result(jsonResponse);
+
   }
 
   public void mostrarMensajeDeIncidenteAbierto(Context context){

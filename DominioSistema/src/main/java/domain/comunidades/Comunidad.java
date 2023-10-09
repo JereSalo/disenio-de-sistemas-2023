@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -24,10 +25,10 @@ public class Comunidad extends Persistente {
   private List<Administrador> administradores;
 
   @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER)
-  private List<Miembro> miembros;
+  private Set<Miembro> miembros;
 
   @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER)
-  private List<Incidente> incidentes;
+  private Set<Incidente> incidentes;
 
   public Comunidad(String nombre) {
     this.nombre = nombre;

@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 import javax.persistence.*;
 
 @Entity
@@ -30,7 +31,7 @@ public class OrganismoDeControl extends Persistente{
   private Designado designado;
 
   @OneToMany(mappedBy = "organismoDeControl", fetch = FetchType.EAGER)
-  private List<Entidad> entidades;
+  private Set<Entidad> entidades;
 
   public OrganismoDeControl(String nombre) {
     this.nombre = nombre;

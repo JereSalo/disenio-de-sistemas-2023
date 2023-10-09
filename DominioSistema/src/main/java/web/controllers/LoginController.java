@@ -52,7 +52,6 @@ public class LoginController extends Controller{
   }
 
   public boolean sonCredencialesValidas(Context context){
-    return true; //para poder testear más rapido
-    //return this.repoDeUsuarios.obtenerTodos().stream().anyMatch(usuario -> usuario.getUsername().equals(context.formParam("username")) && usuario.getPassword().equals(context.formParam("password")));
+    return this.repoDeUsuarios.obtenerTodos().stream().anyMatch(usuario -> usuario.getUsername().equals(context.formParam("username")) && usuario.getPassword().equals(context.formParam("password")));
   }
 }

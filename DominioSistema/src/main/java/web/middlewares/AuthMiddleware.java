@@ -9,6 +9,9 @@ public class AuthMiddleware {
 
   public static void apply(JavalinConfig config) {
       config.accessManager(((handler, context, routeRoles) -> {
+
+        handler.handle(context); // BORRAR ESTA LINEA Y DESCOMENTAR LO DE ABAJO PARA IMPLEMENTAR LOS ROLES
+        /*
         TipoRol userRole = getUserRoleType(context);
 
         if(routeRoles.size() == 0 || routeRoles.contains(userRole)) {
@@ -17,6 +20,7 @@ public class AuthMiddleware {
         else {
           throw new AccessDeniedException();
         }
+         */
       }));
     }
 

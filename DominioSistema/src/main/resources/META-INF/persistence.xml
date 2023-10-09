@@ -22,8 +22,7 @@
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.password" value="admin"/> -->
 
-      <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/> <!-- ESTA LINEA NUNCA SE COMENTA -->
-
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/> <!-- ESTA LINEA NUNCA SE COMENTA -->
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>
       <property name="use_sql_comments" value="true"/>

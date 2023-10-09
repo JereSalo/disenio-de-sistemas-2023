@@ -47,7 +47,7 @@ public class Server {
       });
       config.jetty.sessionHandler(() -> fileSessionHandler());
 
-      //AuthMiddleware.apply(config); COMENTADO PARA PODER TESTEAR MAS FACIL
+      AuthMiddleware.apply(config);
       
     };
   }
