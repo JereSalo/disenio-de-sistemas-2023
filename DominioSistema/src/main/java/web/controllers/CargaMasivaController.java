@@ -1,8 +1,10 @@
 package web.controllers;
 
+import domain.csv.LectorCSV;
 import io.javalin.http.Context;
 import io.javalin.http.UploadedFile;
 import io.javalin.util.FileUtil;
+import org.apache.commons.io.FileUtils;
 
 import javax.naming.ldap.Control;
 import java.util.HashMap;
@@ -18,15 +20,17 @@ public class CargaMasivaController extends Controller {
     }
 
     public void cargar(Context context) {
-        // Obtener el archivo
-
         UploadedFile archivo = context.uploadedFile("archivo");
 
-        // Esto esta en la documentacion de javalin, no se ni qué hace
-        // FileUtil.streamToFile(archivo.content(), "upload/" + archivo.filename());
+        String pathArchivo = "src/main/resources/domain/" + archivo.filename();
 
-        // Ahora tendría que hallar la forma de interactuar con el Lector de CSV para que lea el archivo y cree los objetos
+        FileUtil.streamToFile(archivo.content(), pathArchivo);
+
+        LectorCSV lectorCSV = new LectorCSV(pathArchivo, ';');
+        lectorCSV.leerArchivo();
 
 
+
+        context.redirect("home");
     }
 }

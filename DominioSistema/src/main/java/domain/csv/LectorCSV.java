@@ -33,7 +33,7 @@ public class LectorCSV {
         }
     }
 
-    public FileReader abrirArchivo() {
+    private FileReader abrirArchivo() {
         try {
             return new FileReader(path);
         } catch (FileNotFoundException e) {
