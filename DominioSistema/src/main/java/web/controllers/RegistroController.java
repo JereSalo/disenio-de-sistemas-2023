@@ -27,22 +27,23 @@ public class RegistroController extends Controller{
 
     public void registrarUsuario(Context context) {
         if (this.usuarioYaExiste(context.formParam("username"))) {
+            //TODO: Hacerlo más bonito. Debería hacer comprobación de email? Capaz en un futuro sí...
             context.result("El usuario ya existe");
         }
         else if (contraseniaEsSegura(context)) {
             Usuario usuario = new Usuario(context.formParam("username"), context.formParam("password"), context.formParam("email"));
-            // this.repoDeUsuarios.agregar(usuario); // Hay que arreglar problemas con la base de datos para que esto funcione
+            this.repoDeUsuarios.agregar(usuario);
             context.sessionAttribute("current-user", context.formParam("username"));
             context.redirect("home");
         }
         else{
+            //TODO: Hacerlo más bonito, aclarar por qué no es segura la contraseña.
             context.result("La contraseña no es segura");
         }
     }
 
     private boolean usuarioYaExiste(String nombreUsuario){
-        return false;
-        // return this.repoDeUsuarios.obtenerTodos().stream().anyMatch(usuario -> usuario.getUsername().equals(nombreUsuario));
+        return this.repoDeUsuarios.obtenerTodos().stream().anyMatch(usuario -> usuario.getUsername().equals(nombreUsuario));
     }
 
     public boolean contraseniaEsSegura(Context context){

@@ -23,12 +23,15 @@ import persistence.repositories.Repositorio;
 
 public class App {
   public static void main(String[] args) {
-    cargarDatosParaTestear();
+    // Si el repo de roles está vacío (cosa que no debería pasar si hay datos en el sistema) entonces cargo los datos, sino no hago nada
+    if(FactoryRepositorios.get(Rol.class).obtenerTodos().isEmpty()) cargarDatosParaTestear();
+    else System.out.println("No voy a cargar datos pq repo no ta vacio");
+
     Server.init();
   }
 
   private static void cargarDatosParaTestear(){
-
+    System.out.println("Cargando datos para testear...");
 
     Rol rolMiembro = new Rol("miembro", TipoRol.MIEMBRO);
     Usuario usuarioMiembro = new Usuario("salacas", "1234", "1234@gmail.com");
