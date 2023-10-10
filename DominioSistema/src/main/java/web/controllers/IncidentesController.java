@@ -66,11 +66,29 @@ public class IncidentesController extends Controller{
 
   public void cerrarIncidente(Context context){
 
+    Map<String, Object> model = new HashMap<>();
+
     Incidente incidente = this.repositorioDeIncidentes.buscarPorId(Long.parseLong(context.pathParam("id")));
 
-    incidente.cerrar(obtenerMiembro(super.getCurrentUserName(context), incidente.getComunidad()));
+    if (incidente.abierto()){
 
-    context.redirect("home");
+        incidente.cerrar(obtenerMiembro(super.getCurrentUserName(context), incidente.getComunidad()));
+
+        this.repositorioDeIncidentes.modificar(incidente);
+
+        modificarModelSiEstaLogueado(context, model);
+
+        model.put("mensaje", "El incidente ha sido cerrado con éxito");
+
+        context.render("mensaje.hbs", model);
+    }
+    else{
+      modificarModelSiEstaLogueado(context, model);
+
+      model.put("mensaje", "El incidente ya está cerrado");
+
+      context.render("mensaje.hbs", model);
+    }
   }
 
   public void mostrarFormAbrirIncidente(Context context) {
@@ -111,7 +129,13 @@ public class IncidentesController extends Controller{
 
     this.repositorioDeIncidentes.agregar(nuevoIncidente);
 
-    context.redirect("/incidentes/abierto-exito");
+    Map<String, Object> model = new HashMap<>();
+
+    modificarModelSiEstaLogueado(context, model);
+
+    model.put("mensaje", "El incidente ha sido abierto con éxito");
+
+    context.render("mensaje.hbs", model);
   }
 
   public void getEstablecimientosDeEntidad(Context context){
@@ -187,15 +211,6 @@ public class IncidentesController extends Controller{
 
   }
 
-  public void mostrarMensajeDeIncidenteAbierto(Context context){
-    Map<String, Object> model = new HashMap<>();
-
-    modificarModelSiEstaLogueado(context, model);
-
-    model.put("mensaje", "El incidente ha sido abierto con éxito");
-
-    context.render("mensaje.hbs", model);
-  }
   private Miembro obtenerMiembro(String username, Comunidad comunidad){
     Repositorio<Miembro> repoDeMiembros = FactoryRepositorios.get(Miembro.class);
 

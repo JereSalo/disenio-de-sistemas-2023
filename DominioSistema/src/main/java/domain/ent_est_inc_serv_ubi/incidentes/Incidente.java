@@ -69,4 +69,6 @@ public class Incidente extends Persistente{
   public boolean abierto() {
     return this.fechaDeCierre == null;
   }
+
+  public boolean getEstadoAbierto() {return this.abierto();}
 }

@@ -35,9 +35,7 @@ public class Router {
 
       get("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::listarIncidentes);
 
-      post("incidente/cerrar/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::cerrarIncidente, TipoRol.MIEMBRO);
-
-      get("incidentes/abierto-exito", ((IncidentesController) FactoryController.controller("Incidentes"))::mostrarMensajeDeIncidenteAbierto, TipoRol.MIEMBRO);
+      post("incidentes/cerrar/{id}", ((IncidentesController) FactoryController.controller("Incidentes"))::cerrarIncidente, TipoRol.MIEMBRO);
 
       get("establecimientos/{id-entidad}", ((IncidentesController) FactoryController.controller("Incidentes"))::getEstablecimientosDeEntidad, TipoRol.MIEMBRO);
 

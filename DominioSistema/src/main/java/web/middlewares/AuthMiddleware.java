@@ -10,8 +10,6 @@ public class AuthMiddleware {
   public static void apply(JavalinConfig config) {
       config.accessManager(((handler, context, routeRoles) -> {
 
-        handler.handle(context); // BORRAR ESTA LINEA Y DESCOMENTAR LO DE ABAJO PARA IMPLEMENTAR LOS ROLES
-        /*
         TipoRol userRole = getUserRoleType(context);
 
         if(routeRoles.size() == 0 || routeRoles.contains(userRole)) {
@@ -20,13 +18,12 @@ public class AuthMiddleware {
         else {
           throw new AccessDeniedException();
         }
-         */
       }));
     }
 
   private static TipoRol getUserRoleType(Context context) {
-      return context.sessionAttribute("tipo_rol") != null?
-          TipoRol.valueOf(context.sessionAttribute("tipo_rol")) : null;
+      return context.sessionAttribute("tipo-rol") != null?
+          TipoRol.valueOf(context.sessionAttribute("tipo-rol")) : null;
     }
 
 }

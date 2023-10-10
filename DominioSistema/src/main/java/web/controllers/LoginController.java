@@ -35,10 +35,12 @@ public class LoginController extends Controller{
   }
 
   public void login(Context context){
-    //TODO: guardar sessionAttribute con el tipo de rol del usuario
 
     if (this.sonCredencialesValidas(context)){
       context.sessionAttribute("current-user", context.formParam("username"));
+
+      context.sessionAttribute("tipo-rol", super.getUsuario(context).getRol().getTipo().name());
+
       context.redirect("home");
     }
     else{

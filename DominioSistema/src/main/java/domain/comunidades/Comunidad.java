@@ -28,7 +28,7 @@ public class Comunidad extends Persistente {
   @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER)
   private Set<Miembro> miembros;
 
-  @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
   private Set<Incidente> incidentes;
 
   public Comunidad(String nombre) {

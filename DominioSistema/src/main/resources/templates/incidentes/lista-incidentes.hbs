@@ -38,11 +38,18 @@
                     <td>{{this.fechaDeCreacion}}</td>
                     <td>{{this.fechaDeCierre}}</td>
                     <td>{{this.observaciones}}</td>
-                    <td>
-                        <form method="POST" action="/cerrar-incidente/{{this.id}}">
-                            <button type="submit" >Cerrar</button>
-                        </form>
-                    </td>
+
+                    {{#if this.estadoAbierto}}
+                        <td>
+                            <form method="POST" action="/incidentes/cerrar/{{this.id}}">
+                                <button type="submit" >Cerrar</button>
+                            </form>
+                        </td>
+                    {{else}}
+                        <td>CERRADO</td>
+                    {{/if}}
+
+
                 </tr>
             {{/each}}
             </tbody>
