@@ -46,6 +46,17 @@ public class App {
 
     repositorioDeUsuarios.agregar(usuarioMiembro);
 
+    // Admin
+
+    Rol rolAdmin = new Rol("admin", TipoRol.ADMINISTRADOR_PLATAFORMA);
+    Usuario usuarioAdmin = new Usuario("admin", "admin");
+
+    usuarioAdmin.setRol(rolAdmin);
+
+    repositorioDeRoles.agregar(rolAdmin);
+    repositorioDeUsuarios.agregar(usuarioAdmin);
+
+
     // Persona, Miembro y comunidad
 
     Persona persona = new Persona(usuarioMiembro);

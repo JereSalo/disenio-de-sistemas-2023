@@ -31,6 +31,7 @@ public class Usuario extends Persistente {
     this.username = nombreusuario;
     this.password = contrasenia;
     this.mail = email;
+    // this.rol = rol;
   }
 
   public Usuario(String nombreusuario, String contrasenia) {
