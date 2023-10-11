@@ -29,13 +29,9 @@ public class IncidentesController extends Controller{
 
     modificarModelSiEstaLogueado(context, model);
 
-    Repositorio<Comunidad> repoDeComunidades = FactoryRepositorios.get(Comunidad.class);
+    List<Incidente> listaDeIncidentes = this.repositorioDeIncidentes.obtenerTodos();
 
-    List<Comunidad> comunidadesDelUsuario = repoDeComunidades.obtenerTodos().stream().filter(comunidad -> comunidad.esMiembro(super.getUsuario(context))).toList();
-
-    List<Incidente> listaDeIncidentes = new ArrayList<Incidente>();
-
-    comunidadesDelUsuario.forEach(comunidad -> listaDeIncidentes.addAll(comunidad.getIncidentes()));
+    listaDeIncidentes.removeIf(incidente -> !incidente.getComunidad().esMiembro(super.getUsuario(context)));
 
     this.filtrarIncidentes(listaDeIncidentes, context);
 
