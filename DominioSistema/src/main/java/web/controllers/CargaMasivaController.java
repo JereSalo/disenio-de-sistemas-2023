@@ -41,34 +41,19 @@ public class CargaMasivaController extends Controller {
 
         FileUtil.streamToFile(archivo.content(), pathArchivo);
 
-        LectorCSV lectorCSV = new LectorCSV(pathArchivo, ';');
-        lectorCSV.leerArchivo();
-
+        String tipoEntidad = context.formParam("entidad");
         ParserDatos parserDatos = new ParserDatos();
 
-        List<PrestadoraDeServicio> prestadoras = parserDatos.getDatosPrestadoras(pathArchivo, ';');
-
-        List<OrganismoDeControl> organismos = parserDatos.getDatosOrganismos(pathArchivo, ';');
-
-//        // Mostrar en pantalla todos los nombres de prestadoras
-//
-//        System.out.println("Prestadoras: ");
-//        for (PrestadoraDeServicio prestadora : prestadoras) {
-//            System.out.println(prestadora.getNombre());
-//        }
-//
-//        // Mostrar en pantalla todos los nombres de organismos
-//
-//        System.out.println("Organismos: ");
-//        for (OrganismoDeControl organismo : organismos) {
-//            System.out.println(organismo.getNombre());
-//        }
-
-        // Supongamos que ya tenemos a todas las prestadoras y org de control bien cargados
-
-//        this.repoDePrestadorasDeServicio.agregarTodos(prestadoras);
-
-//        this.repoDeOrganismosDeControl.agregarTodos(organismos);
+        switch (tipoEntidad) {
+            case "prestadoras":
+                List<PrestadoraDeServicio> prestadoras = parserDatos.getDatosPrestadoras(pathArchivo, ';');
+                this.repoDePrestadorasDeServicio.agregarTodos(prestadoras);
+                break;
+            case "organismos_de_control":
+                List<OrganismoDeControl> organismos = parserDatos.getDatosOrganismos(pathArchivo, ';');
+                this.repoDeOrganismosDeControl.agregarTodos(organismos);
+                break;
+        }
 
         context.redirect("home");
     }
