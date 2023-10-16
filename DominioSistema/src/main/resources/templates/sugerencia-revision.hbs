@@ -2,6 +2,44 @@
 {{#partial "contenido" }}
     <link rel="stylesheet" href="/css/sugerencia-revision.css">
 
+    <br>
+    <h1 id="titulo"> Sugerencia de revisión de incidente #{{incidente.id}}</h1>
+    <br>
+
+    <table class="incidente-tabla">
+        <tr>
+            <th>Comunidad</th>
+            <th>Entidad</th>
+            <th>Establecimiento</th>
+            <th>Servicio</th>
+            <th>Fecha de Creación</th>
+            <th>Observaciones</th>
+        </tr>
+        <tbody>
+
+            <tr>
+                <td>{{incidente.comunidad.nombre}}</td>
+                <td>{{incidente.entidad.nombre}}</td>
+                <td>{{incidente.establecimiento.nombre}}</td>
+                <td>{{incidente.prestacionDeServicio.servicio.descripcion}}</td>
+                <td>{{incidente.fechaDeCreacion}}</td>
+                <td>{{incidente.observaciones}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <br>
+    <h3 id="pregunta"> ¿Se encuentra en funcionamiento el servicio '{{incidente.prestacionDeServicio.servicio.descripcion}}' en {{incidente.establecimiento.nombre}}? </h3>
+    <br>
+
+    <form id="form-respuesta" method="POST" action="/incidentes/cerrar/{{incidente.id}}">
+        <button type="button" id="yes-button" onclick="enviarFormulario()">Sí</button>
+        <button type="button" onclick="agradecer()" id="no-button">No</button>
+    </form>
+
+
+    <script src="/js/sugerencia-revision.js"></script>
 
 {{/partial}}
 {{> templates/base }}

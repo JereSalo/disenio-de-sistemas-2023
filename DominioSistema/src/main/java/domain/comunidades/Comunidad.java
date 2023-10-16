@@ -28,7 +28,7 @@ public class Comunidad extends Persistente {
   @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER)
   private Set<Miembro> miembros;
 
-  @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+  @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER)
   private Set<Incidente> incidentes;
 
   public Comunidad(String nombre) {
@@ -43,29 +43,8 @@ public class Comunidad extends Persistente {
     return miembros.stream().anyMatch(miembro -> miembro.getUsuario() == usuario);
   }
 
-  public void abrirIncidente(AperturaIncidenteParams params) {
-    Incidente incidente = new IncidenteBuilder()
-                            .withComunidad(this).withCreador(params.getCreador())
-                            .withEntidad(params.getEntidad()).withEstablecimiento(params.getEstablecimiento()).withPrestacionDeServicio(params.getPrestacionDeServicio())
-                            .withObservaciones(params.getObservaciones())
-                            .build();
-    incidentes.add(incidente);
-    informarIncidente(incidente.getCreador(), incidente);
-  }
-
-  public void cerrarIncidente(Miembro cerrador, Incidente incidente) {
-    incidente.cerrar(cerrador);
-    informarIncidente(cerrador, incidente);
-  }
-
   public long cuantosAfectados(Incidente incidente){
     return miembros.stream().filter(miembro -> miembro.estaAfectado(incidente.getPrestacionDeServicio().getServicio())).count();
-  }
-
-  private void informarIncidente(Miembro miembroExcluido, Incidente incidente) {
-    miembros.stream()
-        .filter(miembro -> miembro != miembroExcluido)
-        .forEach(miembro -> miembro.recibirIncidente(incidente));
   }
 
 }

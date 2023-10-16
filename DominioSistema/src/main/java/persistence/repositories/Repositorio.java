@@ -26,6 +26,12 @@ public class Repositorio<T> {
         this.dao.agregar(unObjeto);
     }
 
+    public void agregarTodos(List<T> objetos){
+        for (T objeto : objetos) {
+            this.dao.agregar(objeto);
+        }
+    }
+
     public List<T> obtenerTodos(){
         return this.dao.obtenerTodos();
     }

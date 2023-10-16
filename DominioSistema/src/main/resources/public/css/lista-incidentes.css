@@ -1,10 +1,8 @@
 .table-title {
     text-align: left; /* Alinea el título a la izquierda */
-    font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 10px; /* Agrega un espacio inferior */
     background-color: #a2a8d3; /* Color de fondo del título */
-    color: #fff; /* Color del texto del título */
     padding: 10px 15px; /* Añade un espaciado alrededor del título */
 }
 
@@ -50,7 +48,7 @@
 }
 
 .table-container {
-    width: 60%;
+    width: 80%;
     padding: 60px;
     margin-top: 200px;
     background-color: #a2a8d3;
@@ -58,6 +56,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    display: inline-block;
+    max-width: 100%; /* Ajusta el ancho máximo según tus necesidades */
+    max-height: 100vh; /* Ajusta la altura máxima según tus necesidades, 100vh significa el 100% del alto del viewport */
+    overflow: auto; /* Agrega una barra de desplazamiento si la tabla es demasiado grande */
+
 }
 
 .table-title-container {

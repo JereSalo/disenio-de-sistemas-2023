@@ -15,7 +15,7 @@ public class FactoryController {
       case "Incidentes": controller = new IncidentesController(FactoryRepositorios.get(Incidente.class)); break;
       case "Login": controller = new LoginController(FactoryRepositorios.get(Usuario.class)); break;
       case "Registro": controller = new RegistroController(FactoryRepositorios.get(Usuario.class)); break;
-      case "CargaMasiva": controller = new CargaMasivaController(); break;
+      case "CargaMasiva": controller = new CargaMasivaController(FactoryRepositorios.get(PrestadoraDeServicio.class), FactoryRepositorios.get(OrganismoDeControl.class)); break;
       case "SugerenciaRevision": controller = new SugerenciaRevisionController(FactoryRepositorios.get(Incidente.class)); break;
       case "AdministracionUsuarios": controller = new AdministracionUsuariosController(FactoryRepositorios.get(Usuario.class)); break;
       case "Ranking" : controller = new RankingsController(FactoryRepositorios.get(Ranking.class)); break;
