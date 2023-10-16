@@ -5,9 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class ValorRankingEntidad implements ValorRanking{
+
+  @Getter @Setter
   private Entidad entidad;
   @Getter @Setter
-  public float valor;
+  private float valor;
 
   public ValorRankingEntidad(Entidad entidad, float valor) {
     this.entidad = entidad;

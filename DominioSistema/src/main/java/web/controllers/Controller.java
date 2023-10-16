@@ -13,8 +13,13 @@ public abstract class Controller {
   }
 
   public static void modificarModelSiEstaLogueado(Context ctx, Map<String, Object> model){
+
     model.put("logeado", yaEstaLogeado(ctx));
     model.put("username", getCurrentUserName(ctx));
+
+    if (yaEstaLogeado(ctx)) {
+      model.put(getUsuario(ctx).getRol().getTipo().name(), true);
+    }
   }
 
   public static String getCurrentUserName(Context ctx){

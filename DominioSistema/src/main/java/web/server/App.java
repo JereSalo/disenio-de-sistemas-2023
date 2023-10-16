@@ -33,7 +33,6 @@ public class App {
 
     cargarUsuariosDePrueba();
 
-
     // Servicio
     Servicio servicioAscensor = new Servicio("ascensor");
 

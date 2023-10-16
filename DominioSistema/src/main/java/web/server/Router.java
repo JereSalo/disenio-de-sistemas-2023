@@ -58,7 +58,7 @@ public class Router {
 
       post("administracion/usuarios/{id-usuario}", ((AdministracionUsuariosController) FactoryController.controller("AdministracionUsuarios"))::actualizarDetalleUsuario, TipoRol.ADMINISTRADOR_PLATAFORMA);
 
-      get("rankings", ((RankingsController) FactoryController.controller("Ranking"))::mostrarRankings, TipoRol.MIEMBRO);
+      get("rankings", ((RankingsController) FactoryController.controller("Ranking"))::mostrarRankings, TipoRol.ORGANISMO_DE_CONTROL, TipoRol.PRESTADORA_DE_SERVICIO);
 
     });
   };

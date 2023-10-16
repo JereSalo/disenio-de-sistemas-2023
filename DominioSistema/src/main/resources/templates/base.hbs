@@ -19,23 +19,36 @@
             <nav class ="main-nav">
                 <ul>
                     {{#if logeado}}
+                        {{#if MIEMBRO}}
+                            <li class="menu-item">Incidentes
+                                <ul class="sub-menu">
+                                    <li><a href="/incidentes">Ver Lista</a></li>
+                                    <li><a href="/incidentes/abrir">Abrir Incidente</a></li>
+                                </ul>
+                            </li>
+                        {{/if}}
 
-                        <li class="menu-item">Incidentes
-                            <ul class="sub-menu">
-                                <li><a href="/incidentes">Ver Lista</a></li>
-                                <li><a href="/incidentes/abrir">Abrir Incidente</a></li>
-                            </ul>
-                        </li>
+                        {{#if ADMINISTRADOR_PLATAFORMA}}
 
-                        <li><a href="/carga-masiva">Carga Masiva</a></li>
+                            <li><a href="/carga-masiva">Carga Masiva</a></li>
 
-                        <li><a href="/rankings">Rankings</a></li>
+                            <li class="menu-item">Administrar
+                                <ul class="sub-menu">
+                                    <li><a href="/administracion/usuarios">Usuarios</a></li>
+                                </ul>
+                            </li>
 
-                        <li class="menu-item">Administrar
-                            <ul class="sub-menu">
-                                <li><a href="/administracion/usuarios">Usuarios</a></li>
-                            </ul>
-                        </li>
+                        {{/if}}
+
+                        {{#if ORGANISMO_DE_CONTROL}}
+
+                            <li><a href="/rankings">Rankings</a></li>
+                        {{/if}}
+
+                        {{#if PRESTADORA_DE_SERVICIO}}
+
+                            <li><a href="/rankings">Rankings</a></li>
+                        {{/if}}
 
                         <li class="menu-item"><u>Logueado: {{username}}</u>
                             <ul class="sub-menu">

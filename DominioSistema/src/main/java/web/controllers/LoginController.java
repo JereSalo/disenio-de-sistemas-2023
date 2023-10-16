@@ -44,7 +44,10 @@ public class LoginController extends Controller{
       context.redirect("home");
     }
     else{
-      context.result("Las credenciales ingresadas son incorrectas");
+      Map<String, Object> model = new HashMap<>();
+
+      model.put("mensaje","ERROR: Las credenciales ingresadas son incorrectas");
+      context.render("mensaje.hbs", model);
     }
   }
 

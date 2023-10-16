@@ -5,9 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class ValorRankingIncidente implements ValorRanking{
+  @Getter @Setter
   private Incidente incidente;
   @Getter @Setter
-  public float valor;
+  private float valor;
 
   public ValorRankingIncidente(Incidente incidente, float valor){
     this.incidente = incidente;
@@ -19,6 +20,6 @@ public class ValorRankingIncidente implements ValorRanking{
   }
 
   public String getNombreSujeto(){
-    return "incidente";
+    return this.incidente.getId().toString();
   }
 }

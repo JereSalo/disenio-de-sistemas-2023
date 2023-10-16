@@ -12,7 +12,7 @@
             <tbody>
             {{#each rankingPromedioTiempoCierre}}
                 <tr>
-                    <td>{{this.entidad.nombre}}</td>
+                    <td>{{this.nombreSujeto}}</td>
                     <td>{{this.valor}}</td>
                 </tr>
             {{/each}}
@@ -32,7 +32,7 @@
             <tbody>
             {{#each rankingMayorCantIncidentes}}
                 <tr>
-                    <td>{{this.entidad.nombre}}</td>
+                    <td>{{this.nombreSujeto}}</td>
                     <td>{{this.valor}}</td>
                 </tr>
             {{/each}}
@@ -46,14 +46,14 @@
         </div>
         <table class="lista-table">
             <tr>
-                <th>Incidente</th>
+                <th>ID Incidente</th>
                 <th>Grado</th>
                 <th>Comunidad afectada</th>
             </tr>
             <tbody>
             {{#each rankingGradoDeImpacto}}
                 <tr>
-                    <td>{{this.incidente.id}}</td>
+                    <td>{{this.nombreSujeto}}</td>
                     <td>{{this.valor}}</td>
                     <td>{{this.incidenete.comunidad.nombre}}</td>
                 </tr>
