@@ -1,0 +1,27 @@
+{{#partial "contenido" }}
+<link rel="stylesheet" href="/css/administracionUsuario.css">
+
+    <h2>Datos usuario</h2>
+    <form id="form-usuario" method="POST" action="/administracion/usuarios/{{usuario.id}}">
+
+        <label for="nombre">Nombre de usuario:</label>
+        <input type="text" id="nombre" name="nombreUsuario" value = {{usuario.username}} required>
+
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="mail" value = {{usuario.mail}} required>
+
+        <label>Rol</label>
+
+        <select name="rol" id="rol">
+        <option selected disabled>Seleccionar</option>
+        {{#each roles}}
+            <option value="{{this.id}}">{{this.nombre}}</option>
+            {{/each}}
+        </select>
+
+        <input type="submit" value="Actualizar" id="submit-button">
+    </form>
+    
+    <script src="/js/administracion-usuario.js"></script>
+{{/partial}}
+{{> templates/base }}

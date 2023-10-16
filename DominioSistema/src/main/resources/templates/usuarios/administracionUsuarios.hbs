@@ -1,0 +1,27 @@
+{{#partial "contenido" }}
+    <link rel="stylesheet" href="/css/administracionUsuarios.css">
+
+     <div class = "table-container">
+        <div class ="table-title-container">
+                <h3>Lista De Usuarios</h3>
+        </div>
+        <table class="lista-table">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Rol</th>
+            </tr>
+            <tbody>
+            {{#each usuarios}}
+                <tr>
+                    <td>{{this.username}}</td>
+                    <td>{{this.mail}}</td>
+                    <td>{{this.rol.nombre}}</td>
+                    <td><a href="/administracion/usuarios/{{this.id}}">Ver detalle</a></td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+     </div>
+{{/partial}}
+{{> templates/base }}

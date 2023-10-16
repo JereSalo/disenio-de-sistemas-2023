@@ -22,7 +22,7 @@ public class Usuario extends Persistente {
   @Column(name = "password")
   private String password;
 
-  @ManyToOne
+  @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "rol_id", referencedColumnName = "id")
   private Rol rol;
 

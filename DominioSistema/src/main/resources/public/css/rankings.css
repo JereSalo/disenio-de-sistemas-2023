@@ -1,0 +1,38 @@
+/* Estilo para el contenedor principal */
+.table-container {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #113f67; /* Utiliza el color de fondo del menú como borde */
+    background-color: #e7eaf6; /* Utiliza el color de fondo del body */
+}
+
+/* Estilo para el título de la tabla */
+.table-title-container {
+    background-color: #38598b; /* Utiliza el color de fondo del header */
+    color: white; /* Texto en blanco para mayor visibilidad */
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para las tablas */
+.lista-table {
+    width: 800px;
+    border-collapse: collapse;
+    background-color: #ffffff; /* Color de fondo de las tablas */
+}
+
+.lista-table th, .lista-table td {
+    border: 1px solid #113f67; /* Borde de celdas con el mismo color que el menú */
+    padding: 8px;
+    text-align: left;
+}
+
+/* Estilo para las filas impares */
+.lista-table tr:nth-child(odd) {
+    background-color: #e7eaf6; /* Utiliza el color de fondo del body para filas impares */
+}
+
+/* Estilo para las filas pares */
+.lista-table tr:nth-child(even) {
+    background-color: #f7f7f7; /* Utiliza el color de fondo del contenedor principal para filas pares */
+}

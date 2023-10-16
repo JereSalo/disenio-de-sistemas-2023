@@ -3,6 +3,8 @@ import io.javalin.security.RouteRole;
 public enum TipoRol implements RouteRole{
   MIEMBRO,
   ADMINISTRADOR_COMUNIDAD,
-  DELEGADO,
+  DESIGNADO,
   ADMINISTRADOR_PLATAFORMA,
+  ORGANISMO_DE_CONTROL,
+  PRESTADORA_DE_SERVICIO
 }

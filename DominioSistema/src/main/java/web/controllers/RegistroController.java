@@ -1,8 +1,10 @@
 package web.controllers;
 
 import domain.contrasenias.ValidadorContrasenias;
+import domain.usuarios.Rol;
 import domain.usuarios.Usuario;
 import io.javalin.http.Context;
+import persistence.repositories.FactoryRepositorios;
 import persistence.repositories.Repositorio;
 
 import java.util.HashMap;
@@ -27,18 +29,24 @@ public class RegistroController extends Controller{
 
     public void registrarUsuario(Context context) {
         if (this.usuarioYaExiste(context.formParam("username"))) {
-            //TODO: Hacerlo más bonito. Debería hacer comprobación de email? Capaz en un futuro sí...
-            context.result("El usuario ya existe");
+            Map<String, Object> model = new HashMap<>();
+
+            model.put("mensaje","ERROR: Usuario ya existente");
+            context.render("mensaje.hbs", model);
         }
         else if (contraseniaEsSegura(context)) {
+
             Usuario usuario = new Usuario(context.formParam("username"), context.formParam("password"), context.formParam("email"));
+            usuario.setRol(FactoryRepositorios.get(Rol.class).obtenerTodos().stream().filter(r -> r.getNombre().equals("Miembro")).findFirst().get());
             this.repoDeUsuarios.agregar(usuario);
+
             context.sessionAttribute("current-user", context.formParam("username"));
             context.redirect("home");
         }
         else{
-            //TODO: Hacerlo más bonito, aclarar por qué no es segura la contraseña.
-            context.result("La contraseña no es segura");
+            Map<String, Object> model = new HashMap<>();
+            model.put("mensaje","ERROR: La contraseña no es segura");
+            context.render("mensaje.hbs", model);
         }
     }
 
@@ -51,7 +59,6 @@ public class RegistroController extends Controller{
         String nombreUsuario = context.formParam("username");
         String contrasenia = context.formParam("password");
 
-        // return validador.usuarioTieneContraSegura(nombreUsuario, contrasenia); // Esto anda bien, lo comento para testear más rápido el resto
-        return true;
+        return validador.usuarioTieneContraSegura(nombreUsuario, contrasenia);
     }
 }

@@ -19,8 +19,10 @@ public class PromedioTiempoCierre implements Ranking{
 
   private float calcularValorEntidad(Entidad entidad, List<Incidente> listaIncidentes){
     List<Incidente> listaIncidentesDeEntidad = listaIncidentes.stream().filter(incidente -> abiertoYCerradoEnSemanaAnterior(incidente) && (incidente.getEntidad() == entidad)).toList();
-
-    return sumarTiemposCierre(listaIncidentesDeEntidad) / listaIncidentesDeEntidad.size();
+    if(listaIncidentesDeEntidad.size() == 0)
+      return 0;
+    else
+      return sumarTiemposCierre(listaIncidentesDeEntidad) / listaIncidentesDeEntidad.size();
   }
 
   private int sumarTiemposCierre(List<Incidente> listaIncidentes){

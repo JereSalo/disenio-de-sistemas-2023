@@ -19,6 +19,7 @@
 
         <table class="lista-table">
             <tr>
+                <th>Id</th>
                 <th>Comunidad</th>
                 <th>Entidad</th>
                 <th>Establecimiento</th>
@@ -30,7 +31,7 @@
             <tbody>
             {{#each incidentes}}
                 <tr>
-
+                    <td>{{this.id}}</td>
                     <td>{{this.comunidad.nombre}}</td>
                     <td>{{this.entidad.nombre}}</td>
                     <td>{{this.establecimiento.nombre}}</td>
