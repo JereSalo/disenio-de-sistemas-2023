@@ -8,7 +8,13 @@ public class CalculadorTiempos {
     public static Boolean diferenciaMenor24HorasMientrasSeguiaAbierto(Incidente unIncidente, Incidente otroIncidente){
         int diferenciaFechasDeCreacionEnHoras = Math.round(unIncidente.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC) - otroIncidente.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC)) / 3600;
 
-        int diferenciaFechaCreacionConFechaDeCierreDelOtro = Math.round(unIncidente.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC) - otroIncidente.getFechaDeCierre().toEpochSecond(ZoneOffset.UTC));
+        int diferenciaFechaCreacionConFechaDeCierreDelOtro;
+        if(!otroIncidente.abierto())
+            diferenciaFechaCreacionConFechaDeCierreDelOtro = Math.round(unIncidente.getFechaDeCreacion().toEpochSecond(ZoneOffset.UTC) - otroIncidente.getFechaDeCierre().toEpochSecond(ZoneOffset.UTC));
+        else
+            diferenciaFechaCreacionConFechaDeCierreDelOtro = 1;
+
+
 
         return diferenciaFechasDeCreacionEnHoras > 0 && diferenciaFechasDeCreacionEnHoras < 24 && (diferenciaFechaCreacionConFechaDeCierreDelOtro > 0 || otroIncidente.abierto());
     }
