@@ -27,25 +27,41 @@ public class RegistroController extends Controller {
 
     public void registrarUsuario(Context context) {
         if (this.usuarioYaExiste(context.formParam("username"))) {
-            Map<String, Object> model = new HashMap<>();
-
-            model.put("mensaje","ERROR: Usuario ya existente");
-            context.render("mensaje.hbs", model);
+            mensajeUsuarioYaExiste(context);
         }
-        else if (contraseniaEsSegura(context)) {
-
-            Usuario usuario = new Usuario(context.formParam("username"), context.formParam("password"), context.formParam("email"));
-            usuario.setRol(FactoryRepositorios.get(Rol.class).obtenerTodos().stream().filter(r -> r.getNombre().equals("Miembro")).findFirst().get());
-            this.repoDeUsuarios.agregar(usuario);
-
+        else if (!contraseniaEsSegura(context)) {
+            mensajeContraseniaNoSegura(context);
+        }
+        else{
+            crearUsuario(context);
             context.sessionAttribute("current-user", context.formParam("username"));
             context.redirect("home");
         }
-        else{
-            Map<String, Object> model = new HashMap<>();
-            model.put("mensaje","ERROR: La contraseña no es segura");
-            context.render("mensaje.hbs", model);
-        }
+    }
+
+    private void mensajeUsuarioYaExiste(Context context){
+        Map<String, Object> model = new HashMap<>();
+        model.put("mensaje","ERROR: Usuario ya existente");
+        context.render("mensaje.hbs", model);
+    }
+
+    private void mensajeContraseniaNoSegura(Context context){
+        Map<String, Object> model = new HashMap<>();
+        model.put("mensaje","ERROR: La contraseña no es segura");
+        context.render("mensaje.hbs", model);
+    }
+
+    private void crearUsuario(Context context){
+        // Hashing contraseña aca ?
+        Usuario usuario = new Usuario(context.formParam("username"),
+                context.formParam("password"), context.formParam("email"));
+
+        // Cambiar por query más sencilla "SELECT * FROM rol WHERE nombre = "miembro""
+        usuario.setRol(FactoryRepositorios.get(Rol.class).obtenerTodos().stream().filter(r -> r.getNombre().equals("Miembro")).findFirst().get());
+
+
+        this.repoDeUsuarios.agregar(usuario);
+
     }
 
     private boolean usuarioYaExiste(String nombreUsuario){
