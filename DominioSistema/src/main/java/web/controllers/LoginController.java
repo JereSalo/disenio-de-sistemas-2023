@@ -3,12 +3,12 @@ package web.controllers;
 import domain.usuarios.Usuario;
 import io.javalin.http.Context;
 import persistence.repositories.Repositorio;
+import web.controllers.base.Controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class LoginController extends Controller{
+public class LoginController extends Controller {
 
   private Repositorio<Usuario> repoDeUsuarios;
 

@@ -6,11 +6,12 @@ import domain.usuarios.Usuario;
 import io.javalin.http.Context;
 import persistence.repositories.FactoryRepositorios;
 import persistence.repositories.Repositorio;
+import web.controllers.base.Controller;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegistroController extends Controller{
+public class RegistroController extends Controller {
 
     private Repositorio<Usuario> repoDeUsuarios;
 

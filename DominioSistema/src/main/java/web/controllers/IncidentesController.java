@@ -11,13 +11,14 @@ import domain.ent_est_inc_serv_ubi.servicios.PrestacionServicio;
 import io.javalin.http.Context;
 import persistence.repositories.FactoryRepositorios;
 import persistence.repositories.Repositorio;
+import web.controllers.base.Controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class IncidentesController extends Controller{
+public class IncidentesController extends Controller {
   private Repositorio<Incidente> repositorioDeIncidentes;
   public IncidentesController (Repositorio<Incidente> repositorioDeIncidentes){
     this.repositorioDeIncidentes = repositorioDeIncidentes;

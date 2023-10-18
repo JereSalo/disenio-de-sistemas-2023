@@ -1,4 +1,4 @@
-package web.controllers;
+package web.controllers.base;
 
 import domain.comunidades.Comunidad;
 import domain.ent_est_inc_serv_ubi.incidentes.Incidente;
@@ -7,6 +7,7 @@ import domain.usuarios.OrganismoDeControl;
 import domain.usuarios.PrestadoraDeServicio;
 import domain.usuarios.Usuario;
 import persistence.repositories.FactoryRepositorios;
+import web.controllers.*;
 
 public class FactoryController {
   public static Object controller(String nombre) {

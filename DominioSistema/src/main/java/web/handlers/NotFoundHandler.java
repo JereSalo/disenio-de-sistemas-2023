@@ -1,13 +1,12 @@
 package web.handlers;
 
 import io.javalin.Javalin;
-import web.exceptions.AccessDeniedException;
 import web.exceptions.NotFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static web.controllers.Controller.modificarModelSiEstaLogueado;
+import static web.controllers.base.Controller.modificarModelSiEstaLogueado;
 
 public class NotFoundHandler implements IHandler{
     @Override
