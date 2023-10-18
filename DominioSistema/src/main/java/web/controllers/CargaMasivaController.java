@@ -32,15 +32,14 @@ public class CargaMasivaController extends Controller {
     }
 
     public void cargar(Context context) {
+        // Agarramos archivo subido y lo guardamos en el directorio resources
         UploadedFile archivo = context.uploadedFile("archivo");
-
         String pathArchivo = "src/main/resources/domain/" + archivo.filename();
-
         FileUtil.streamToFile(archivo.content(), pathArchivo);
 
-        String tipoEntidad = context.formParam("entidad");
         ParserDatos parserDatos = new ParserDatos();
 
+        String tipoEntidad = context.formParam("entidad");
         switch (tipoEntidad) {
             case "prestadoras":
                 List<PrestadoraDeServicio> prestadoras = parserDatos.getDatosPrestadoras(pathArchivo, ';');

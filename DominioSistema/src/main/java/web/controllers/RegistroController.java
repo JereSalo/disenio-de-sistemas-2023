@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class RegistroController extends Controller {
+    // Aca no hay model
 
     private Repositorio<Usuario> repoDeUsuarios;
 
@@ -20,12 +21,8 @@ public class RegistroController extends Controller {
     }
 
     public void mostrarPantallaRegistrarse(Context context){
-        Map<String, Object> model = new HashMap<>();
-
-        modificarModelSiEstaLogueado(context, model);
-
         if (yaEstaLogeado(context)) context.redirect("home");
-        else context.render("registrarse.hbs", model);
+        else context.render("registrarse.hbs");
     }
 
     public void registrarUsuario(Context context) {

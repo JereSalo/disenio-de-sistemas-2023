@@ -1,11 +1,11 @@
 function agradecer() {
-    alert("Gracias por su respuesta!");
+    // alert("Gracias por su respuesta!");
 
     window.location.href = "/";
 }
 
 function enviarFormulario(){
-    var formulario = document.getElementById("form-respuesta");
+    let formulario = document.getElementById("form-respuesta");
 
     formulario.submit();
 }
