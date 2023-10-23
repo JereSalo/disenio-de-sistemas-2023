@@ -2,41 +2,56 @@
 {{#partial "contenido" }}
     <link rel="stylesheet" href="/css/sugerencia-revision.css">
 
-    <br>
-    <h1 id="titulo"> Sugerencia de revisión de incidente #{{incidente.id}}</h1>
-    <br>
+    <div id="todo-el-resto">
+        <br>
+        <h1 id="titulo"> Sugerencia de Revisión de Incidente </h1>
+        <br>
 
-    <table class="incidente-tabla">
-        <tr>
-            <th>Comunidad</th>
-            <th>Entidad</th>
-            <th>Establecimiento</th>
-            <th>Servicio</th>
-            <th>Fecha de Creación</th>
-            <th>Observaciones</th>
-        </tr>
-        <tbody>
+        <div class="incidente-card">
+            <div class="incidente-content">
+                <div class="incidente-info">
+                    <strong>Comunidad:</strong> {{incidente.comunidad.nombre}}
+                </div>
+                <div class="incidente-info">
+                    <strong>Entidad:</strong> {{incidente.entidad.nombre}}
+                </div>
+                <div class="incidente-info">
+                    <strong>Establecimiento:</strong> {{incidente.establecimiento.nombre}}
+                </div>
+                <div class="incidente-info">
+                    <strong>Servicio:</strong> {{incidente.prestacionDeServicio.servicio.descripcion}}
+                </div>
+    <!--            <div class="incidente-info">-->
+    <!--                <strong>Fecha de Creación:</strong> {{incidente.fechaDeCreacion}} -->
+    <!--            </div>-->
+    <!--            <div class="incidente-info">-->
+    <!--                <strong>Observaciones:</strong> {{incidente.observaciones}}-->
+    <!--            </div>-->
+            </div>
+        </div>
 
-            <tr>
-                <td>{{incidente.comunidad.nombre}}</td>
-                <td>{{incidente.entidad.nombre}}</td>
-                <td>{{incidente.establecimiento.nombre}}</td>
-                <td>{{incidente.prestacionDeServicio.servicio.descripcion}}</td>
-                <td>{{incidente.fechaDeCreacion}}</td>
-                <td>{{incidente.observaciones}}</td>
-            </tr>
-        </tbody>
-    </table>
+        <br>
+        <h3 id="pregunta"> ¿Se encuentra en funcionamiento el servicio '{{incidente.prestacionDeServicio.servicio.descripcion}}' en {{incidente.establecimiento.nombre}}? </h3>
+        <br>
+
+        <form id="form-respuesta" method="POST" action="/incidentes/cerrar/{{incidente.id}}">
+            <button type="button" id="yes-button">Sí</button>
+            <button type="button" id="no-button">No</button>
+        </form>
+
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <button id="cancelButton">Cancelar</button>
+            <button id="proceedButton">Confirmar</button>
+        </div>
+    </div>
 
 
-    <br>
-    <h3 id="pregunta"> ¿Se encuentra en funcionamiento el servicio '{{incidente.prestacionDeServicio.servicio.descripcion}}' en {{incidente.establecimiento.nombre}}? </h3>
-    <br>
-
-    <form id="form-respuesta" method="POST" action="/incidentes/cerrar/{{incidente.id}}">
-        <button type="button" id="yes-button" onclick="enviarFormulario()">Sí</button>
-        <button type="button" onclick="agradecer()" id="no-button">No</button>
-    </form>
+    <div id="agradecimiento" style="display:none;">
+        <h1>Gracias por su colaboración</h1>
+    </div>
 
 
     <script src="/js/sugerencia-revision.js"></script>
