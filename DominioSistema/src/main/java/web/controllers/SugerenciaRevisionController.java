@@ -3,13 +3,14 @@ package web.controllers;
 import domain.ent_est_inc_serv_ubi.incidentes.Incidente;
 import io.javalin.http.Context;
 import persistence.repositories.Repositorio;
+import web.controllers.base.Controller;
 import web.exceptions.AccessDeniedException;
 import web.exceptions.NotFoundException;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class SugerenciaRevisionController extends Controller{
+public class SugerenciaRevisionController extends Controller {
     private Repositorio<Incidente> repositorioDeIncidentes;
     public SugerenciaRevisionController (Repositorio<Incidente> repositorioDeIncidentes){
         this.repositorioDeIncidentes = repositorioDeIncidentes;

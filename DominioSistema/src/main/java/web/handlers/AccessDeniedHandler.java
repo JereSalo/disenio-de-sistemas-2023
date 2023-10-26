@@ -6,7 +6,7 @@ import web.exceptions.AccessDeniedException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static web.controllers.Controller.modificarModelSiEstaLogueado;
+import static web.controllers.base.Controller.modificarModelSiEstaLogueado;
 
 public class AccessDeniedHandler implements IHandler{
   @Override

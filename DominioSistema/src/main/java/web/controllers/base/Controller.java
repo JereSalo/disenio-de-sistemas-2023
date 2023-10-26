@@ -1,4 +1,4 @@
-package web.controllers;
+package web.controllers.base;
 
 import domain.usuarios.Usuario;
 import io.javalin.http.Context;
@@ -13,13 +13,16 @@ public abstract class Controller {
   }
 
   public static void modificarModelSiEstaLogueado(Context ctx, Map<String, Object> model){
-
-    model.put("logeado", yaEstaLogeado(ctx));
-    model.put("username", getCurrentUserName(ctx));
-
+    // Este método solo hace falta usarlo en páginas que se puedan ver tanto si estás logueado como si no
     if (yaEstaLogeado(ctx)) {
-      model.put(getUsuario(ctx).getRol().getTipo().name(), true);
+      modificarModelLogueado(ctx, model);
     }
+  }
+
+  public static void modificarModelLogueado(Context ctx, Map<String, Object> model){
+    model.put("logeado", true);
+    model.put("username", getCurrentUserName(ctx));
+    model.put(getUsuario(ctx).getRol().getTipo().name(), true);
   }
 
   public static String getCurrentUserName(Context ctx){

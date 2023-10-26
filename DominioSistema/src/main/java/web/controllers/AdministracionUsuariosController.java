@@ -5,12 +5,13 @@ import domain.usuarios.Usuario;
 import io.javalin.http.Context;
 import persistence.repositories.FactoryRepositorios;
 import persistence.repositories.Repositorio;
+import web.controllers.base.Controller;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AdministracionUsuariosController extends Controller{
+public class AdministracionUsuariosController extends Controller {
 
     private Repositorio<Usuario> repoDeUsuarios;
     public AdministracionUsuariosController(Repositorio<Usuario> repoDeUsuarios) {

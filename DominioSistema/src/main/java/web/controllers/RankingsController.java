@@ -1,7 +1,6 @@
 package web.controllers;
 
 import domain.rankings.CalculadorRanking;
-import domain.rankings.SujetosRanking;
 import domain.rankings.rankings.CantidadDeIncidentes;
 import domain.rankings.rankings.GradoDeImpacto;
 import domain.rankings.rankings.PromedioTiempoCierre;
@@ -10,13 +9,14 @@ import domain.rankings.valorRanking.ValorRanking;
 import persistence.repositories.Repositorio;
 
 import io.javalin.http.Context;
+import web.controllers.base.Controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RankingsController extends Controller{
+public class RankingsController extends Controller {
 
     // No me acuerdo de que tendria que ser el repo (valorRanking / sujetoRanking / etc)
     private Repositorio<Ranking> repoRankings;

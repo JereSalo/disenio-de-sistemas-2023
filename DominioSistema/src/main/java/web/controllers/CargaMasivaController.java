@@ -1,17 +1,14 @@
 package web.controllers;
 
-import domain.csv.LectorCSV;
 import domain.csv.ParserDatos;
 import domain.usuarios.OrganismoDeControl;
 import domain.usuarios.PrestadoraDeServicio;
-import domain.usuarios.Usuario;
 import io.javalin.http.Context;
 import io.javalin.http.UploadedFile;
 import io.javalin.util.FileUtil;
-import org.apache.commons.io.FileUtils;
 import persistence.repositories.Repositorio;
+import web.controllers.base.Controller;
 
-import javax.naming.ldap.Control;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,21 +26,20 @@ public class CargaMasivaController extends Controller {
     public void mostrarFormCargaMasiva(Context context) {
         Map<String, Object> model = new HashMap<>();
 
-        modificarModelSiEstaLogueado(context, model);
+        modificarModelLogueado(context, model);
 
         context.render("carga-masiva.hbs", model);
     }
 
     public void cargar(Context context) {
+        // Agarramos archivo subido y lo guardamos en el directorio resources
         UploadedFile archivo = context.uploadedFile("archivo");
-
         String pathArchivo = "src/main/resources/domain/" + archivo.filename();
-
         FileUtil.streamToFile(archivo.content(), pathArchivo);
 
-        String tipoEntidad = context.formParam("entidad");
         ParserDatos parserDatos = new ParserDatos();
 
+        String tipoEntidad = context.formParam("entidad");
         switch (tipoEntidad) {
             case "prestadoras":
                 List<PrestadoraDeServicio> prestadoras = parserDatos.getDatosPrestadoras(pathArchivo, ';');

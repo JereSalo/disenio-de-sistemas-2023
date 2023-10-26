@@ -18,8 +18,12 @@ p {
     margin-bottom: 16px; /* Adjust the margin as needed */
 }
 
-h2 {
+h1 {
     text-align: center;
+    /* Bold */
+    font-weight: 600;
+    /* Size */
+    font-size: 20px;
 }
 
 form {
@@ -50,6 +54,11 @@ button {
 
 button:hover {
     background-color: #45a049;
+}
+
+.archivo-ejemplo{
+    text-decoration: none;
+    color: #3498db;
 }
 
 .radio-group {

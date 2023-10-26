@@ -2,18 +2,14 @@ package web.server;
 
 import domain.usuarios.TipoRol;
 import web.controllers.*;
-import io.javalin.apibuilder.ApiBuilder;
-import web.middlewares.AuthMiddleware;
-
-import java.util.HashMap;
-import java.util.Map;
+import web.controllers.base.FactoryController;
 
 import static io.javalin.apibuilder.ApiBuilder.*;
 public class Router {
   public static void init() {
 
     Server.app().routes(() -> {
-
+      
       get("", ctx -> ctx.redirect("home"));
 
       get("home",  ((LoginController) FactoryController.controller("Login"))::home);

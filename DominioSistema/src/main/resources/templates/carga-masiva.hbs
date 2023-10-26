@@ -2,23 +2,21 @@
     <link rel="stylesheet" href="/css/carga-masiva.css">
 
     <div class="form-container">
-        <h2>Carga Masiva de Entidades Prestadoras y Organismos de Control</h2>
+        <h1>Carga Masiva de Entidades Prestadoras y Organismos de Control</h1>
         <br>
         <div class="form-content">
             <form action="/carga-masiva" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
 
-                <p>Seleccione que tipo de Entidad desea cargar</p>
                 <div class="radio-group">
                     <label for="prestadoras">Prestadoras de Servicio</label>
                     <input type="radio" id="prestadoras" name="entidad" value="prestadoras" required>
-
                     <br>
-
                     <label for="control">Organismos de Control</label>
                     <input type="radio" id="control" name="entidad" value="organismos_de_control" required>
                 </div>
 
-                <p>Seleccione archivo CSV</p>
+                <a class="archivo-ejemplo" href="/archivos/ejemplo.csv" download>Ejemplo CSV</a>
+                <br>
                 <input type="file" id="archivo" name="archivo" accept=".csv" onchange="checkFile()" required>
 
                 <button type="submit" id="submitButton" disabled>Subir</button>
