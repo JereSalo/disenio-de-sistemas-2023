@@ -12,17 +12,37 @@
     <properties>
       <property name="hibernate.archive.autodetection" value="class"/>
 
+      <!-- PARA USAR LA DB DE RENDER.COM (TAMBIEN CAMBIAR DIALECTO MAS ABAJO) -->
+
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver" />
+      <property name="hibernate.connection.url" value="jdbc:postgresql://dpg-clgf2mef27hc739jst00-a.oregon-postgres.render.com:5432/db_5gv0" />
+      <property name="hibernate.connection.username" value="db_5gv0_user" />
+      <property name="hibernate.connection.password" value="i8AP36ZDAKRYqHRroluGxcT4o0f5QcAl" />
+
+      <!-- PARA USAR LA DB LOCAL (TAMBIEN CAMBIAR DIALECTO MAS ABAJO) -->
+      <!--
       <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
       <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp_dds?serverTimezone=UTC" />
       <property name="hibernate.connection.username" value="root" />
       <property name="hibernate.connection.password" value="admin" />
+      -->
 
-      <!-- <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
+
+      <!-- PARA USAR LA DB EN MEMORIA -->
+      <!--
+      <property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver"/>
       <property name="hibernate.connection.url" value="jdbc:hsqldb:mem:app-db"/>
       <property name="hibernate.connection.username" value="root"/>
       <property name="hibernate.connection.password" value="admin"/> -->
 
-      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/> <!-- ESTA LINEA NUNCA SE COMENTA -->
+      <!-- PARA USAR DB LOCAL -->
+      <!--
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+      -->
+
+      <!-- PARA USAR DB EN RENDER.COM -->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>
       <property name="use_sql_comments" value="true"/>

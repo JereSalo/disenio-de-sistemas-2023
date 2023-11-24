@@ -45,10 +45,10 @@ public class Incidente extends Persistente{
   @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   private Comunidad comunidad;
 
-  @Column(name = "fecha_creacion", columnDefinition = "datetime")
+  @Column(name = "fecha_creacion")
   private LocalDateTime fechaDeCreacion;
 
-  @Column(name = "fecha_cierre", columnDefinition = "datetime")
+  @Column(name = "fecha_cierre")
   private LocalDateTime fechaDeCierre;
 
   @Column(name = "observaciones", columnDefinition = "text")
