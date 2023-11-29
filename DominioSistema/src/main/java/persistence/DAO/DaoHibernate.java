@@ -24,6 +24,8 @@ public class DaoHibernate<T> implements WithSimplePersistenceUnit, Dao<T>{
 
         List<T> entities = entityManager().createQuery(criteria).getResultList();
 
+        entities.forEach(ent -> entityManager().refresh(ent));
+
         return entities;
     }
 

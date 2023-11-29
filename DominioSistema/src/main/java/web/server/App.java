@@ -62,15 +62,6 @@ public class App {
     Miembro creador = FactoryRepositorios.get(Miembro.class).obtenerTodos().stream().findFirst().get();
     Entidad entidad = FactoryRepositorios.get(Entidad.class).obtenerTodos().stream().findFirst().get();
 
-
-    //INCIDENTE
-    Incidente incidente1 = new Incidente();
-
-    incidente1.setComunidad(comunidad);
-    incidente1.setCreador(creador);
-    incidente1.setEntidad(entidad);
-
-    FactoryRepositorios.get(Incidente.class).agregar(incidente1);
   }
 
 

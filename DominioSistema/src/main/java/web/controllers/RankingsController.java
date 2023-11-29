@@ -29,25 +29,21 @@ public class RankingsController extends Controller {
         Map<String, Object> model = new HashMap<>();
 
         modificarModelSiEstaLogueado(context, model);
-        
-        Ranking gradoDeImpacto = new GradoDeImpacto();
+
         Ranking promedioTiempoCierre = new PromedioTiempoCierre();
         Ranking cantidadDeIncidentes = new CantidadDeIncidentes();
 
         List<Ranking> listaCriterios = new ArrayList<>();
 
-        listaCriterios.add(gradoDeImpacto);
         listaCriterios.add(promedioTiempoCierre);
         listaCriterios.add(cantidadDeIncidentes);
 
         List<List<ValorRanking>> listaRankings = CalculadorRanking.getInstance(listaCriterios).generarTodosLosRankings();
 
-        List<ValorRanking> rankingGradoDeImpacto = listaRankings.get(0);
-        List<ValorRanking> rankingPromedioTiempoCierre = listaRankings.get(1);
-        List<ValorRanking> rankingMayorCantIncidentes = listaRankings.get(2);
+        List<ValorRanking> rankingPromedioTiempoCierre = listaRankings.get(0);
+        List<ValorRanking> rankingMayorCantIncidentes = listaRankings.get(1);
 
         model.put("rankingMayorCantIncidentes", rankingMayorCantIncidentes);
-        model.put("rankingGradoDeImpacto", rankingGradoDeImpacto);
         model.put("rankingPromedioTiempoCierre", rankingPromedioTiempoCierre);
 
         context.render("rankings.hbs", model);

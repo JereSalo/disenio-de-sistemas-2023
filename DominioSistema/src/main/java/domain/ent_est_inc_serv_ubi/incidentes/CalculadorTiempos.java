@@ -1,5 +1,6 @@
 package domain.ent_est_inc_serv_ubi.incidentes;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -39,17 +40,12 @@ public class CalculadorTiempos {
     }
 
     private static LocalDateTime obtenerLunesAnterior(){
-        LocalDate fechaLunesAnterior = LocalDate.now();
+        LocalDateTime fechaLunesAnterior = LocalDateTime.now();
 
-        int i = 0;
-
-        if (fechaLunesAnterior.getDayOfWeek().getValue() == 1) i += 1;
-
-        for(; i < 2 ; fechaLunesAnterior.minusDays(1) ){
-
-            if (fechaLunesAnterior.getDayOfWeek().getValue() == 1) i += 1;
+        while(fechaLunesAnterior.getDayOfWeek() != DayOfWeek.MONDAY){
+            fechaLunesAnterior = fechaLunesAnterior.minusDays(1);
         }
 
-        return fechaLunesAnterior.atStartOfDay();
+        return fechaLunesAnterior.toLocalDate().atStartOfDay();
     }
 }
