@@ -6,6 +6,7 @@ import domain.ent_est_inc_serv_ubi.entidades.Entidad;
 import domain.ent_est_inc_serv_ubi.entidades.TipoEntidad;
 import domain.ent_est_inc_serv_ubi.establecimientos.Establecimiento;
 import domain.ent_est_inc_serv_ubi.establecimientos.TipoEstablecimiento;
+import domain.ent_est_inc_serv_ubi.incidentes.Incidente;
 import domain.ent_est_inc_serv_ubi.servicios.EstadoServicio;
 import domain.ent_est_inc_serv_ubi.servicios.PrestacionServicio;
 import domain.ent_est_inc_serv_ubi.servicios.Servicio;
@@ -55,6 +56,21 @@ public class App {
     FactoryRepositorios.get(Establecimiento.class).agregar(establecimientoSucursal);
 
     FactoryRepositorios.get(PrestacionServicio.class).agregar(prestacionServicio);
+
+
+    Comunidad comunidad = FactoryRepositorios.get(Comunidad.class).obtenerTodos().stream().findFirst().get();
+    Miembro creador = FactoryRepositorios.get(Miembro.class).obtenerTodos().stream().findFirst().get();
+    Entidad entidad = FactoryRepositorios.get(Entidad.class).obtenerTodos().stream().findFirst().get();
+
+
+    //INCIDENTE
+    Incidente incidente1 = new Incidente();
+
+    incidente1.setComunidad(comunidad);
+    incidente1.setCreador(creador);
+    incidente1.setEntidad(entidad);
+
+    FactoryRepositorios.get(Incidente.class).agregar(incidente1);
   }
 
 

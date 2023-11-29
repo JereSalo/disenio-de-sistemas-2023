@@ -17,7 +17,10 @@
                     <td>{{this.username}}</td>
                     <td>{{this.mail}}</td>
                     <td>{{this.rol.nombre}}</td>
-                    <td><a href="/administracion/usuarios/{{this.id}}">Ver detalle</a></td>
+                    <td><a href="/administracion/usuarios/{{this.id}}">
+                          <img src="/archivos/editIcon.png" alt="Icono para editar la foto" class = "imagen-icono-editar">
+                        </a>
+                    </td>
                 </tr>
             {{/each}}
             </tbody>

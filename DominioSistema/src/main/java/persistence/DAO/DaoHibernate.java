@@ -2,11 +2,8 @@ package persistence.DAO;
 
 import io.github.flbulgarelli.jpa.extras.simple.WithSimplePersistenceUnit;
 
-import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.util.List;
 
 public class DaoHibernate<T> implements WithSimplePersistenceUnit, Dao<T>{
@@ -33,8 +30,9 @@ public class DaoHibernate<T> implements WithSimplePersistenceUnit, Dao<T>{
     @Override
     public T buscarPorId(Long id) {
 
-
         T t =  this.entityManager().find(type, id);
+
+        entityManager().refresh(t);
 
         return t;
     }
@@ -59,7 +57,6 @@ public class DaoHibernate<T> implements WithSimplePersistenceUnit, Dao<T>{
         entityManager().merge(unObjeto);
 
         entityManager().getTransaction().commit();
-
     }
 
     @Override

@@ -10,7 +10,6 @@ import domain.rankings.valorRanking.ValorRankingEntidad;
 import java.util.List;
 
 import static domain.ent_est_inc_serv_ubi.incidentes.CalculadorTiempos.abiertoYCerradoEnSemanaAnterior;
-import static domain.ent_est_inc_serv_ubi.incidentes.CalculadorTiempos.calcularTiempoCierreIncidenteEnHoras;
 
 public class PromedioTiempoCierre implements Ranking{
   public void calcularValoresAsociados(List<ValorRanking> listaValorRanking, SujetosRanking sujetosRanking){

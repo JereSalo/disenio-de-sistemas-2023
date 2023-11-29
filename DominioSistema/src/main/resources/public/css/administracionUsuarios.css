@@ -37,3 +37,8 @@
     color: #333;
     transition: background-color 0.3s;
 }
+
+.imagen-icono-editar {
+    width: auto; /* Ajusta el valor según tus preferencias */
+    height: 20px; /* Esta regla mantiene la proporción original de la imagen */
+}

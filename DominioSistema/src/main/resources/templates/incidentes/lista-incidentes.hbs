@@ -13,13 +13,12 @@
                 <tr>
                     <td><a href="/incidentes?estado=abierto" {{#if abierto}} class="filtro-seleccionado"{{/if}}>Abierto</a></td>
                     <td><a href="/incidentes?estado=cerrado" {{#if cerrado}} class="filtro-seleccionado"{{/if}}>Cerrado</a></td>
-                    <td><a href="/incidentes"  {{#if ninguno}} class="filtro-seleccionado"{{/if}}>Ninguno</a></td>
+                    <td><a href="/incidentes"  {{#if ninguno}} class="filtro-seleccionado"{{/if}}>Ver todos</a></td>
                 </tr>
             </tbody>
 
         <table class="lista-table">
             <tr>
-                <th>Id</th>
                 <th>Comunidad</th>
                 <th>Entidad</th>
                 <th>Establecimiento</th>
@@ -31,7 +30,6 @@
             <tbody>
             {{#each incidentes}}
                 <tr>
-                    <td>{{this.id}}</td>
                     <td>{{this.comunidad.nombre}}</td>
                     <td>{{this.entidad.nombre}}</td>
                     <td>{{this.establecimiento.nombre}}</td>
