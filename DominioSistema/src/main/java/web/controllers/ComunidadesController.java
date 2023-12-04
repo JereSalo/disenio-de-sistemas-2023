@@ -3,15 +3,22 @@ package web.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import domain.comunidades.Comunidad;
+import domain.comunidades.Miembro;
+import domain.usuarios.Persona;
+import domain.usuarios.Usuario;
 import io.javalin.http.Context;
+import org.eclipse.jetty.security.UserAuthentication;
+import org.jetbrains.annotations.NotNull;
+import persistence.repositories.FactoryRepositorios;
 import persistence.repositories.Repositorio;
+import web.controllers.base.Controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ComunidadesController {
+public class ComunidadesController extends Controller {
 
     Repositorio<Comunidad> repoComunidades;
 
@@ -19,35 +26,55 @@ public class ComunidadesController {
         this.repoComunidades = repoComunidades;
     }
     
-    public void obtenerComunidades(Context context) {
-        String jsonResponse = this.armarJSONComunidades(repoComunidades.obtenerTodos());
+    public void mostrarComunidadesQueNoPertenece(Context context) {
+        Map<String, Object> model = new HashMap<>();
 
-        context.contentType("application/json");
+        modificarModelSiEstaLogueado(context, model);
 
-        context.result(jsonResponse);
+        Usuario usuarioActual = this.getUsuario(context);
+
+        List<Comunidad> comunidadesALasQueNoPertenece =
+                this.repoComunidades.obtenerTodos().stream().filter(c -> !c.esMiembro(usuarioActual)).toList();
+        model.put("titulo", "Lista de comunidades a las que no pertenece");
+        model.put("comunidades", comunidadesALasQueNoPertenece);
+        context.render("comunidades/listaComunidades.hbs", model);
     }
 
-    private String armarJSONComunidades(List<Comunidad> listaDeComunidades){
-        List<Map<String, Object>> jsonComunidades = new ArrayList<>();
 
-        listaDeComunidades.forEach(comunidad -> {
-        Map<String, Object> jsonMap = new HashMap<>();
 
-        jsonMap.put("id", comunidad.getId());
-        jsonMap.put("nombre", comunidad.getNombre());
+    public void mostrarComunidadesQuePertenece(Context context){
+        Map<String, Object> model = new HashMap<>();
 
-        jsonComunidades.add(jsonMap);
-        });
+        modificarModelSiEstaLogueado(context, model);
 
-        try {
+        Usuario usuarioActual = super.getUsuario(context);
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
-        return objectMapper.writeValueAsString(jsonComunidades);
+        List<Comunidad> comunidadesALasQuePertenece =
+                this.repoComunidades.obtenerTodos().stream().filter(c -> c.esMiembro(usuarioActual)).toList();
+        model.put("titulo", "Lista de comunidades a las que pertenece");
+        model.put("comunidades", comunidadesALasQuePertenece);
+        context.render("comunidades/listaComunidades.hbs", model);
+    }
 
-        } catch (Exception e) {
-        e.printStackTrace();
-        return "[]";
-        }
+    public void unirseAComunidad(Context context) {
+        Map<String, Object> model = new HashMap<>();
+
+        modificarModelSiEstaLogueado(context, model);
+
+        Long idComunidad = Long.valueOf(context.pathParam("id-comunidad"));
+        Comunidad comunidadAfectada = this.repoComunidades.buscarPorId(idComunidad);
+
+        Usuario user = this.getUsuario(context);
+
+        List<Persona> listaPersonas = FactoryRepositorios.get(Persona.class).obtenerTodos();
+        Persona persona = listaPersonas.stream().filter(p -> p.getUsername().equals(user.getUsername())).findFirst().get();
+
+        Miembro nuevoMiembro = new Miembro(persona, comunidadAfectada);
+        comunidadAfectada.getMiembros().add(nuevoMiembro);
+
+        this.repoComunidades.modificar(comunidadAfectada);
+
+        model.put("mensaje", "Se unio con exito a la comunidad");
+        context.render("mensaje.hbs", model);
     }
 }

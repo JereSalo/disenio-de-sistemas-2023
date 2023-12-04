@@ -1,0 +1,29 @@
+{{#partial "contenido" }}
+    <link rel = "stylesheet" href = "/css/listaComunidades.css">
+
+    <div class = "table-container">
+        <div class ="table-title-container">
+                <h3>{{titulo}}</h3>
+        </div>
+        <table class="lista-table">
+            <tr>
+                <th>Nombre</th>
+            </tr>
+            <tbody>
+            {{#each comunidades}}
+                <tr>
+                    <td>{{this.nombre}}</td>
+                    <td>
+                        <form action="/comunidades/unirme/{{this.id}}" method="POST">
+                            <input type="hidden" name="idGrupo" value="{{this.id}}">
+                            <button type="submit">Unirme</button>
+                        </form>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+     </div>
+
+{{/partial}}
+{{> templates/base }}

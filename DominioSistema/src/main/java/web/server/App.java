@@ -57,11 +57,8 @@ public class App {
 
     FactoryRepositorios.get(PrestacionServicio.class).agregar(prestacionServicio);
 
-
-    Comunidad comunidad = FactoryRepositorios.get(Comunidad.class).obtenerTodos().stream().findFirst().get();
-    Miembro creador = FactoryRepositorios.get(Miembro.class).obtenerTodos().stream().findFirst().get();
-    Entidad entidad = FactoryRepositorios.get(Entidad.class).obtenerTodos().stream().findFirst().get();
-
+    Comunidad comunidad = new Comunidad("Amantes del ascensor");
+    FactoryRepositorios.get(Comunidad.class).agregar(comunidad);
   }
 
 
@@ -81,7 +78,6 @@ public class App {
     Usuario usuarioAdminPlat = new Usuario("admin", "admin", "admin@gmail.com");
     Rol rolAdminPlat = new Rol("Administrador plataforma", TipoRol.ADMINISTRADOR_PLATAFORMA);
     usuarioAdminPlat.setRol(rolAdminPlat);
-
 
     Usuario usuarioOrganismo = new Usuario("organismo", "organismo", "organismo@gmail.com");
     Rol rolOrganismo = new Rol("Organismo de control", TipoRol.ORGANISMO_DE_CONTROL);
