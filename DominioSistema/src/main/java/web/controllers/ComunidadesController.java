@@ -72,6 +72,9 @@ public class ComunidadesController extends Controller {
         Miembro nuevoMiembro = new Miembro(persona, comunidadAfectada);
         comunidadAfectada.getMiembros().add(nuevoMiembro);
 
+        Repositorio<Miembro> repoMiembro = FactoryRepositorios.get(Miembro.class);
+        repoMiembro.agregar(nuevoMiembro);
+
         this.repoComunidades.modificar(comunidadAfectada);
 
         model.put("mensaje", "Se unio con exito a la comunidad");
