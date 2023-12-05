@@ -1,0 +1,84 @@
+/* Paleta de colores */
+:root {
+    --primary-bg-color: #a2a8d3;
+    --text-color: #113f67;
+    --button-bg-color: #113f67;
+    --button-text-color: white;
+    --button-hover-bg-color: white;
+    --button-hover-text-color: #113f67;
+}
+
+/* Estilos para el formulario */
+.form-container {
+    width: 80%;
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: var(--primary-bg-color);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el título del formulario */
+.form-title-container {
+    text-align: center;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+/* Estilos para los campos de entrada y etiquetas */
+.form-input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos horizontalmente */
+    gap: 15px;
+    color: var(--text-color);
+}
+
+/* Estilos para etiquetas de entrada */
+label {
+    font-weight: bold;
+    text-align: left; /* Centra los labels a la izquierda */
+}
+
+/* Estilos para los campos de entrada */
+input[class="campo_entrada"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Estilos para el botón */
+.form-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+    transition-duration: 0.4s;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--button-hover-bg-color);
+    color: var(--button-hover-text-color);
+}
+
+/* Estilos para el fondo del formulario */
+body {
+    background-color: #f0f0f0;
+}

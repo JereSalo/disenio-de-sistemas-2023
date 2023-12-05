@@ -1,0 +1,38 @@
+{{#partial "contenido" }}
+    <link rel="stylesheet" href="/css/administracionComunidades.css">
+
+<!--    Quiero hacer un botón para crear una comunidad -->
+    <div class = "boton-crear-comunidad">
+        <a href="/administracion/crear/comunidad">
+            <button class = "boton-crear-comunidad">Crear comunidad</button>
+        </a>
+    </div>
+    <div class = "table-container">
+        <table class="lista-table">
+            <tr>
+                <th>Nombre</th>
+            </tr>
+            <tbody>
+            {{#each comunidades}}
+            {{#if this.activa}}
+                <tr>
+                    <td>{{this.nombre}}</td>
+                    <td><a href="/administracion/comunidades/{{this.id}}">
+                        <img src="/archivos/editIcon.png" alt="Icono para editar la foto" class = "imagen-icono">
+                    </a>
+                    </td>
+                    <td>
+                        <a href="/administracion/comunidades/{{this.id}}" onclick="eliminarComunidad({{this.id}}); return false;" style="cursor: pointer;">
+                            <img src="/archivos/deleteIcon.png" alt="Icono para borrar" class="imagen-icono">
+                        </a>
+                    </td>
+                </tr>
+            {{/if}}
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="/js/administracion-comunidades.js"></script>
+{{/partial}}
+{{> templates/base }}

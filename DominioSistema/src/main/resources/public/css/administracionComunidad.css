@@ -1,0 +1,66 @@
+/* Estilo para el formulario de administración de usuario */
+#form-comunidad {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #e7eaf6;
+    width: 400px; /* Ancho fijo para el formulario */
+}
+
+/* Estilo para el título "Datos usuario" */
+h2 {
+    color: #38598b; /* Utiliza el color del header como el color del título */
+}
+
+/* Estilo para las etiquetas de los campos de entrada */
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+/* Estilo para los campos de entrada */
+input[type="text"],
+input[type="email"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilo para el botón de "Actualizar" */
+input[type="submit"] {
+    background-color: #38598b; /* Utiliza el color del header como el color de fondo del botón */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilo para el botón de "Actualizar" al pasar el cursor sobre él */
+input[type="submit"]:hover {
+    background-color: #113f67; /* Color más oscuro al pasar el cursor */
+}
+
+/* Estilo para el formulario select */
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilo para los option del select */
+select option {
+    background-color: #ffffff; /* Color de fondo de las opciones del select */
+    color: #38598b; /* Color del texto de las opciones del select */
+}
+
+/* Estilo para los option seleccionados del select */
+select option:checked {
+    background-color: #38598b; /* Color de fondo de la opción seleccionada */
+    color: white; /* Color del texto de la opción seleccionada */
+}
