@@ -52,4 +52,8 @@ public class Comunidad extends Persistente {
     return miembros.stream().filter(miembro -> miembro.estaAfectado(incidente.getPrestacionDeServicio().getServicio())).count();
   }
 
+  public long cantMiembros(){
+    return miembros.size();
+  }
+
 }

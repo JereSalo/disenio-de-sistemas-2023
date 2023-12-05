@@ -8,15 +8,18 @@
         </a>
     </div>
     <div class = "table-container">
+<!--        Mostrar tabla solo si hay elementos en la lista comunidades-->
+        {{#if comunidades}}
         <table class="lista-table">
             <tr>
                 <th>Nombre</th>
+                <th>Miembros</th>
             </tr>
             <tbody>
             {{#each comunidades}}
-            {{#if this.activa}}
                 <tr>
                     <td>{{this.nombre}}</td>
+                    <td>{{this.cantMiembros}}</td>
                     <td><a href="/administracion/comunidades/{{this.id}}">
                         <img src="/archivos/editIcon.png" alt="Icono para editar la foto" class = "imagen-icono">
                     </a>
@@ -28,10 +31,12 @@
 
                     </td>
                 </tr>
-            {{/if}}
             {{/each}}
             </tbody>
         </table>
+        {{else}}
+            <h3>No hay comunidades para mostrar. Que tenga un lindo día</h3>
+        {{/if}}
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

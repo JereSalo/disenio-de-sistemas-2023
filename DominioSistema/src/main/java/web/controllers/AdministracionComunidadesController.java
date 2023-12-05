@@ -27,6 +27,8 @@ public class AdministracionComunidadesController {
 
         List<Comunidad> listaComunidades = this.repoDeComunidades.obtenerTodos();
 
+        listaComunidades.removeIf(comunidad -> !comunidad.isActiva());
+
         model.put("comunidades", listaComunidades);
 
         context.render("comunidades/administracionComunidades.hbs", model);
