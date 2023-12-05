@@ -58,6 +58,8 @@ public class IncidentesController extends Controller {
     else if (context.queryParamMap().containsKey("estado") && context.queryParam("estado").equals("cerrado")) {
       listaDeIncidentes.removeIf(incidente -> incidente.abierto());
     }
+
+    listaDeIncidentes.removeIf(incidente -> !incidente.getComunidad().isActiva());
   }
 
   public void cerrarIncidente(Context context){
@@ -96,7 +98,7 @@ public class IncidentesController extends Controller {
     Repositorio<Comunidad> repoDeComunidades = FactoryRepositorios.get(Comunidad.class);
     Repositorio<Entidad> repoDeEntidades = FactoryRepositorios.get(Entidad.class);
 
-    model.put("comunidades", repoDeComunidades.obtenerTodos().stream().filter(comunidad -> comunidad.esMiembro(super.getUsuario(context))).toList());
+    model.put("comunidades", repoDeComunidades.obtenerTodos().stream().filter(comunidad -> comunidad.esMiembro(super.getUsuario(context)) && comunidad.isActiva()).toList());
     model.put("entidades", repoDeEntidades.obtenerTodos());
 
     context.render("incidentes/abrir-incidente.hbs", model);

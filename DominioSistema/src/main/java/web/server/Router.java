@@ -54,6 +54,22 @@ public class Router {
 
       post("administracion/usuarios/{id-usuario}", ((AdministracionUsuariosController) FactoryController.controller("AdministracionUsuarios"))::actualizarDetalleUsuario, TipoRol.ADMINISTRADOR_PLATAFORMA);
 
+      get("administracion/comunidades", ((AdministracionComunidadesController) FactoryController.controller("AdministracionComunidades"))::mostrarComunidades, TipoRol.ADMINISTRADOR_PLATAFORMA);
+
+      get("administracion/comunidades/{id-comunidad}", ((AdministracionComunidadesController) FactoryController.controller("AdministracionComunidades"))::mostrarDetalleComunidad , TipoRol.ADMINISTRADOR_PLATAFORMA);
+
+      post("administracion/comunidades/{id-comunidad}", ((AdministracionComunidadesController) FactoryController.controller("AdministracionComunidades"))::actualizarDetalleComunidad , TipoRol.ADMINISTRADOR_PLATAFORMA);
+
+      delete("administracion/comunidades/{id-comunidad}", ((AdministracionComunidadesController) FactoryController.controller("AdministracionComunidades"))::eliminarComunidad , TipoRol.ADMINISTRADOR_PLATAFORMA);
+
+
+      get("administracion/crear/comunidad", ((AdministracionComunidadesController) FactoryController.controller("AdministracionComunidades"))::mostrarCreacionComunidad , TipoRol.ADMINISTRADOR_PLATAFORMA);
+
+
+      post("administracion/crear/comunidad", ((AdministracionComunidadesController) FactoryController.controller("AdministracionComunidades"))::crearComunidad , TipoRol.ADMINISTRADOR_PLATAFORMA);
+
+      post("administracion/comunidades/{id-comunidad}/borrar", ((AdministracionComunidadesController) FactoryController.controller("AdministracionComunidades"))::crearComunidad , TipoRol.ADMINISTRADOR_PLATAFORMA);
+
       get("rankings", ((RankingsController) FactoryController.controller("Ranking"))::mostrarRankings, TipoRol.ORGANISMO_DE_CONTROL, TipoRol.PRESTADORA_DE_SERVICIO);
 
     });

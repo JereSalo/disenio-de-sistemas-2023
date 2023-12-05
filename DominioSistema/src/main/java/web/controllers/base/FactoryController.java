@@ -23,6 +23,7 @@ public class FactoryController {
       case "OrganismoDeControl": controller = new OrganismosDeControlController(FactoryRepositorios.get(OrganismoDeControl.class)); break;
       case "PrestadoraDeServicio": controller = new PrestadorasDeServiciosController(FactoryRepositorios.get(PrestadoraDeServicio.class)); break;
       case "Comunidad": controller = new ComunidadesController(FactoryRepositorios.get(Comunidad.class)); break;
+      case "AdministracionComunidades": controller = new AdministracionComunidadesController(FactoryRepositorios.get(Comunidad.class)); break;
     }
     return controller;
   }

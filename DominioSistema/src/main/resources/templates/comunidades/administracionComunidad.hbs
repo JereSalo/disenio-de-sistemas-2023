@@ -1,0 +1,12 @@
+{{#partial "contenido" }}
+    <link rel="stylesheet" href="/css/administracionComunidad.css">
+
+    <form id="form-comunidad" method="POST" action="/administracion/comunidades/{{comunidad.id}}">
+
+        <label for="nombre">Nombre de comunidad</label>
+        <input type="text" id="nombre" name="nombre" value="{{comunidad.nombre}}" required>
+
+        <input type="submit" value="Actualizar" id="submit-button">
+    </form>
+{{/partial}}
+{{> templates/base }}

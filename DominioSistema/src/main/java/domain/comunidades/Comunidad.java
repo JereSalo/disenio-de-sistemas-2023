@@ -31,8 +31,13 @@ public class Comunidad extends Persistente {
   @OneToMany(mappedBy = "comunidad", fetch = FetchType.EAGER)
   private Set<Incidente> incidentes;
 
+  // poner un atributo que indique si está activa o no
+  @Column(name = "activa")
+  private boolean activa;
+
   public Comunidad(String nombre) {
     this.nombre = nombre;
+    this.activa = true;
   }
 
   public Comunidad() {
