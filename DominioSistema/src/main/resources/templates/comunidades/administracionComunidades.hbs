@@ -22,9 +22,10 @@
                     </a>
                     </td>
                     <td>
-                        <a href="/administracion/comunidades/{{this.id}}" onclick="eliminarComunidad({{this.id}}); return false;" style="cursor: pointer;">
+                        <a onclick="eliminarComunidad({{this.id}}); return false;" style="cursor: pointer;">
                             <img src="/archivos/deleteIcon.png" alt="Icono para borrar" class="imagen-icono">
                         </a>
+
                     </td>
                 </tr>
             {{/if}}
@@ -33,6 +34,7 @@
         </table>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/administracion-comunidades.js"></script>
 {{/partial}}
 {{> templates/base }}

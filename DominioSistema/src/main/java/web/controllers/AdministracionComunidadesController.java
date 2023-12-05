@@ -89,8 +89,12 @@ public class AdministracionComunidadesController {
     public void eliminarComunidad(Context context) {
         Comunidad comunidad = this.repoDeComunidades.buscarPorId(Long.parseLong(context.pathParam("id-comunidad")));
 
-        comunidad.setActiva(false);
+        // poner activa en false, si ya estaba en false entonces tirar error
+        if (!comunidad.isActiva()) throw new RuntimeException("La comunidad ya está desactivada");
+        else {
+            comunidad.setActiva(false);
 
-        this.repoDeComunidades.modificar(comunidad);
+            this.repoDeComunidades.modificar(comunidad);
+        }
     }
 }
