@@ -43,8 +43,8 @@ public class Comunidad extends Persistente {
     return miembros.stream().anyMatch(miembro -> miembro.getUsuario() == usuario);
   }
 
-  public long cuantosAfectados(Incidente incidente){
-    return miembros.stream().filter(miembro -> miembro.estaAfectado(incidente.getPrestacionDeServicio().getServicio())).count();
+  public long cuantosAfectados(){
+    return miembros.stream().filter(miembro -> miembro.estaAfectado()).count();
   }
 
 }

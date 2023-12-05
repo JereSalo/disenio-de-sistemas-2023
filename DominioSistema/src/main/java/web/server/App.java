@@ -113,7 +113,7 @@ public class App {
 
     Comunidad comunidad = new Comunidad("Comunidad 1");
 
-    Miembro miembro = new Miembro(persona, comunidad);
+    Miembro miembro = new Miembro(persona, comunidad, true);
 
     FactoryRepositorios.get(Comunidad.class).agregar(comunidad);
 

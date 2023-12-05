@@ -64,12 +64,14 @@ public class ComunidadesController extends Controller {
         Long idComunidad = Long.valueOf(context.pathParam("id-comunidad"));
         Comunidad comunidadAfectada = this.repoComunidades.buscarPorId(idComunidad);
 
+        boolean afectado = context.pathParam("rol").equals("Afectado");
+
         Usuario user = this.getUsuario(context);
 
         List<Persona> listaPersonas = FactoryRepositorios.get(Persona.class).obtenerTodos();
         Persona persona = listaPersonas.stream().filter(p -> p.getUsername().equals(user.getUsername())).findFirst().get();
 
-        Miembro nuevoMiembro = new Miembro(persona, comunidadAfectada);
+        Miembro nuevoMiembro = new Miembro(persona, comunidadAfectada, afectado);
         comunidadAfectada.getMiembros().add(nuevoMiembro);
 
         this.repoComunidades.modificar(comunidadAfectada);
