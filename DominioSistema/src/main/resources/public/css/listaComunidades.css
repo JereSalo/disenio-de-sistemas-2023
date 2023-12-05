@@ -112,3 +112,21 @@ form button[type="submit"] {
 form button[type="submit"]:hover {
     background-color: #0056b3; /* Cambiar el color de fondo al pasar el cursor */
 }
+
+
+a.button-like {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none; /* Quita el subrayado predeterminado */
+}
+
+a.button-like:hover {
+  background-color: #45a049;
+}
+

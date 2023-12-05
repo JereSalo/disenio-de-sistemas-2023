@@ -111,7 +111,7 @@ public class App {
 
     persona.setNotificador(CorreoElectronico.obtenerInstancia());
 
-    Comunidad comunidad = new Comunidad("Comunidad 1");
+    Comunidad comunidad = new Comunidad("Fundamentalistas de la escalera mecánica");
 
     Miembro miembro = new Miembro(persona, comunidad, true);
 

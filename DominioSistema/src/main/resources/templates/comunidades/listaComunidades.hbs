@@ -14,10 +14,7 @@
                 <tr>
                     <td>{{this.nombre}}</td>
                     <td>
-                        <form action="/comunidades/unirme/{{this.id}}" method="POST">
-                            <input type="hidden" name="idGrupo" value="{{this.id}}">
-                            <button type="submit">Unirme</button>
-                        </form>
+                        <a href="/comunidades/unirme/{{this.id}}" class="button-like">Unirse</a>
                     </td>
                 </tr>
             {{/each}}

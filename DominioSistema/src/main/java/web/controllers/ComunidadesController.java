@@ -56,6 +56,20 @@ public class ComunidadesController extends Controller {
         context.render("comunidades/listaComunidades.hbs", model);
     }
 
+    public void mostrarFormUnirseAComunidad(Context context){
+        Map<String, Object> model = new HashMap<>();
+
+        modificarModelSiEstaLogueado(context, model);
+
+        Long idComunidad = Long.valueOf(context.pathParam("id-comunidad"));
+        Comunidad comunidadAfectada = this.repoComunidades.buscarPorId(idComunidad);
+
+        model.put("id-comunidad", idComunidad);
+        model.put("nombre-comunidad", comunidadAfectada.getNombre());
+
+        context.render("comunidades/unirseComunidad.hbs", model);
+    }
+
     public void unirseAComunidad(Context context) {
         Map<String, Object> model = new HashMap<>();
 
@@ -64,7 +78,7 @@ public class ComunidadesController extends Controller {
         Long idComunidad = Long.valueOf(context.pathParam("id-comunidad"));
         Comunidad comunidadAfectada = this.repoComunidades.buscarPorId(idComunidad);
 
-        boolean afectado = context.pathParam("rol").equals("Afectado");
+        boolean afectado = context.formParam("rol").equals("Afectado");
 
         Usuario user = this.getUsuario(context);
 
@@ -72,9 +86,8 @@ public class ComunidadesController extends Controller {
         Persona persona = listaPersonas.stream().filter(p -> p.getUsername().equals(user.getUsername())).findFirst().get();
 
         Miembro nuevoMiembro = new Miembro(persona, comunidadAfectada, afectado);
-        comunidadAfectada.getMiembros().add(nuevoMiembro);
 
-        this.repoComunidades.modificar(comunidadAfectada);
+        FactoryRepositorios.get(Miembro.class).agregar(nuevoMiembro);
 
         model.put("mensaje", "Se unio con exito a la comunidad");
         context.render("mensaje.hbs", model);
