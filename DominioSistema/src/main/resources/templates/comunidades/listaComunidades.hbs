@@ -3,24 +3,33 @@
 
     <div class = "table-container">
         <div class ="table-title-container">
-                <h3>{{titulo}}</h3>
+                <h3>Lista de comunidades</h3>
         </div>
         <table class="lista-table">
             <tr>
                 <th>Nombre</th>
+                <th>Accion</th>
             </tr>
             <tbody>
-            {{#each comunidades}}
+            {{#each comunidadesQuePertenece}}
                 <tr>
                     <td>{{this.nombre}}</td>
-                    <td>
-                        <form action="/comunidades/unirme/{{this.id}}" method="POST">
-                            <input type="hidden" name="idGrupo" value="{{this.id}}">
-                            <button type="submit">Unirme</button>
-                        </form>
-                    </td>
+                    <td><a href="/comunidades/{{this.id}}" class = "a-simil-boton">Ver</a></td>
                 </tr>
             {{/each}}
+
+            {{#each comunidadesQueNoPertenece}}
+                            <tr>
+                                <td>{{this.nombre}}</td>
+                                <td>
+                                    <form action="/comunidades/{{this.id}}/unirse" method="POST">
+                                        <input type="hidden" name="idComunidad" value="{{this.id}}">
+                                        <button type="submit">Unirme</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {{/each}}
+
             </tbody>
         </table>
      </div>

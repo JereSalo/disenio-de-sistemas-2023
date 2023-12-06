@@ -26,7 +26,7 @@ public class Router {
 
 
       // Rutas Comunidades
-      get("comunidades/unirme", ((ComunidadesController) FactoryController.controller("Comunidad"))::mostrarComunidadesQueNoPertenece, TipoRol.MIEMBRO);
+      get("comunidades", ((ComunidadesController) FactoryController.controller("Comunidad"))::mostrarComunidades, TipoRol.MIEMBRO);
       post("comunidades/unirme/{id-comunidad}", ((ComunidadesController) FactoryController.controller("Comunidad"))::unirseAComunidad, TipoRol.MIEMBRO);
 
       get("organismos-de-control", ((OrganismosDeControlController) FactoryController.controller("OrganismoDeControl"))::obtenerOrganismos, TipoRol.ADMINISTRADOR_PLATAFORMA);

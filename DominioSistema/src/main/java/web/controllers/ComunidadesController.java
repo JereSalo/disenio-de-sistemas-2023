@@ -1,19 +1,14 @@
 package web.controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import domain.comunidades.Comunidad;
 import domain.comunidades.Miembro;
 import domain.usuarios.Persona;
 import domain.usuarios.Usuario;
 import io.javalin.http.Context;
-import org.eclipse.jetty.security.UserAuthentication;
-import org.jetbrains.annotations.NotNull;
 import persistence.repositories.FactoryRepositorios;
 import persistence.repositories.Repositorio;
 import web.controllers.base.Controller;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,35 +21,23 @@ public class ComunidadesController extends Controller {
         this.repoComunidades = repoComunidades;
     }
     
-    public void mostrarComunidadesQueNoPertenece(Context context) {
+    public void mostrarComunidades(Context context) {
         Map<String, Object> model = new HashMap<>();
 
         modificarModelSiEstaLogueado(context, model);
 
         Usuario usuarioActual = this.getUsuario(context);
 
-        List<Comunidad> comunidadesALasQueNoPertenece =
-                this.repoComunidades.obtenerTodos().stream().filter(c -> !c.esMiembro(usuarioActual)).toList();
-        model.put("titulo", "Lista de comunidades a las que no pertenece");
-        model.put("comunidades", comunidadesALasQueNoPertenece);
-        context.render("comunidades/listaComunidades.hbs", model);
-    }
-
-
-
-    public void mostrarComunidadesQuePertenece(Context context){
-        Map<String, Object> model = new HashMap<>();
-
-        modificarModelSiEstaLogueado(context, model);
-
-        Usuario usuarioActual = super.getUsuario(context);
-
         List<Comunidad> comunidadesALasQuePertenece =
                 this.repoComunidades.obtenerTodos().stream().filter(c -> c.esMiembro(usuarioActual)).toList();
-        model.put("titulo", "Lista de comunidades a las que pertenece");
-        model.put("comunidades", comunidadesALasQuePertenece);
+        List<Comunidad> comunidadesALasQueNoPertenece =
+                this.repoComunidades.obtenerTodos().stream().filter(c -> !c.esMiembro(usuarioActual)).toList();
+
+        model.put("comunidadesQuePertenece", comunidadesALasQuePertenece);
+        model.put("comunidadesQueNoPertenece", comunidadesALasQueNoPertenece);
         context.render("comunidades/listaComunidades.hbs", model);
     }
+
 
     public void unirseAComunidad(Context context) {
         Map<String, Object> model = new HashMap<>();

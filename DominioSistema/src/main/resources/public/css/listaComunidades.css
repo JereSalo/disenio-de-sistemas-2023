@@ -15,7 +15,7 @@
 
 .filtros-table th, .filtros-table td {
     padding: 10px 15px;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -80,9 +80,9 @@
 .lista-table th, .lista-table td {
     text-align: center;
     padding: 12px; /* Aumentar el espaciado dentro de las celdas */
-    border: 1px solid #ccc; /* Utilizar un borde más suave */
+    border: 1px solid #ccf; /* Utilizar un borde más suave */
     font-family: 'Open Sans', sans-serif; /* Aplicar la fuente Open Sans a las celdas */
-    color: white;
+    color: black;
 }
 
 .lista-table th {
@@ -111,4 +111,40 @@ form button[type="submit"] {
 /* Estilos adicionales para el botón al pasar el cursor sobre él */
 form button[type="submit"]:hover {
     background-color: #0056b3; /* Cambiar el color de fondo al pasar el cursor */
+}
+
+
+.a-simil-boton {
+    background-color: #007bff;
+    color: #fff;
+
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    margin: 10px;
+
+    appearance: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0em;
+    padding-block: 1px;
+    padding-inline: 6px;
+
+    padding: 10px 20px;
+    font-size: 13px;
+    width: 93px;
+}
+
+.a-simil-boton:hover {
+    background-color: #0056b3; /* Celeste más oscuro al pasar el mouse */
+    color: #ffffff;
 }
