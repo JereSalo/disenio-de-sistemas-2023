@@ -31,7 +31,7 @@ public class IncidentesController extends Controller {
 
     List<Incidente> listaDeIncidentes = this.repositorioDeIncidentes.obtenerTodos();
 
-    listaDeIncidentes.removeIf(incidente -> !incidente.getComunidad().esMiembro(super.getUsuario(context)));
+    listaDeIncidentes.removeIf(incidente -> !incidente.getComunidad().esMiembro(super.getUsuario(context)) || !incidente.getComunidad().isActiva());
 
     this.filtrarIncidentes(listaDeIncidentes, context);
 

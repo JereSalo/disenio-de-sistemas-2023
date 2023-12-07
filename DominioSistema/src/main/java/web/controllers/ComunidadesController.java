@@ -29,9 +29,9 @@ public class ComunidadesController extends Controller {
         Usuario usuarioActual = this.getUsuario(context);
 
         List<Comunidad> comunidadesALasQuePertenece =
-                this.repoComunidades.obtenerTodos().stream().filter(c -> c.esMiembro(usuarioActual)).toList();
+                this.repoComunidades.obtenerTodos().stream().filter(c -> c.esMiembro(usuarioActual) && c.isActiva()).toList();
         List<Comunidad> comunidadesALasQueNoPertenece =
-                this.repoComunidades.obtenerTodos().stream().filter(c -> !c.esMiembro(usuarioActual)).toList();
+                this.repoComunidades.obtenerTodos().stream().filter(c -> !c.esMiembro(usuarioActual) && c.isActiva()).toList();
 
         model.put("comunidadesQuePertenece", comunidadesALasQuePertenece);
         model.put("comunidadesQueNoPertenece", comunidadesALasQueNoPertenece);
