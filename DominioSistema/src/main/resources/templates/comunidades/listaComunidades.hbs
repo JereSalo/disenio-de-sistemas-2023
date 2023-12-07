@@ -3,7 +3,7 @@
 
     <div class = "table-container">
         <div class ="table-title-container">
-                <h3>Lista de comunidades</h3>
+                <h3>Lista de comunidades a las que pertenece</h3>
         </div>
         <table class="lista-table">
             <tr>
@@ -20,18 +20,30 @@
                 </tr>
             {{/each}}
 
-            {{#each comunidadesQueNoPertenece}}
-                            <tr>
-                                <td>{{this.nombre}}</td>
-                                <td>
-                                    <a href="/comunidades/unirme/{{this.id}}" class="a-simil-boton">Unirse</a>
-                                </td>
-                            </tr>
-                        {{/each}}
-
             </tbody>
         </table>
      </div>
+    <div class = "table-container">
+        <div class ="table-title-container">
+            <h3>Lista de comunidades a las que no pertenece</h3>
+        </div>
+        <table class="lista-table">
+            <tr>
+                <th>Nombre</th>
+                <th>Accion</th>
+            </tr>
+            <tbody>
+            {{#each comunidadesQueNoPertenece}}
+                <tr>
+                    <td>{{this.nombre}}</td>
+                    <td>
+                        <a href="/comunidades/unirme/{{this.id}}" class="a-simil-boton">Unirse</a>
+                    </td>
+                </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
 
 {{/partial}}
 {{> templates/base }}
