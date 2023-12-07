@@ -1,0 +1,36 @@
+{{#partial "contenido" }}
+    <link rel = "stylesheet" href = "/css/unirseComunidad.css">
+
+    <div class = "form-container">
+        <div class ="form-title-container">
+            <h3>Unirse a comunidad</h3>
+        </div>
+
+        <form action="/comunidades/unirme/{{id-comunidad}}" method = "post">
+
+            <div class ="form-input-container">
+
+                <label><b>Comunidad</b></label>
+
+                <select name="comunidad" id="comunidad" required>
+                    <option selected disabled>{{nombre-comunidad}}</option>
+                </select>
+
+                <label><b>Rol</b></label>
+
+                <select name="rol" id="rol" required>
+                    <option value="Afectado">Afectado</option>
+                    <option value="Observador">Observador</option>
+                </select>
+
+            </div>
+
+            <div class = "form-button-container">
+                <button type="submit">Unirse</button>
+            </div>
+
+        </form>
+    </div>
+
+{{/partial}}
+{{> templates/base }}

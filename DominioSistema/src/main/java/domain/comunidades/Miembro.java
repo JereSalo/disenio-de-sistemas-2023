@@ -21,9 +21,9 @@ public class Miembro extends Persistente {
   @ManyToOne
   @JoinColumn(name = "persona_id", referencedColumnName = "id")
   private Persona persona;
-  
-  @OneToMany(mappedBy = "miembro")
-  private List<RolMiembroServicio> rolesPorServicio;
+
+  @Column(name="afectado")
+  private boolean afectado;
 
   @ManyToOne
   @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
@@ -33,9 +33,10 @@ public class Miembro extends Persistente {
     this.persona = persona;
   }
 
-  public Miembro(Persona persona, Comunidad comunidad) {
+  public Miembro(Persona persona, Comunidad comunidad, boolean afectado) {
     this.persona = persona;
     this.comunidad = comunidad;
+    this.afectado = afectado;
   }
 
   public Miembro() {
@@ -52,8 +53,7 @@ public class Miembro extends Persistente {
     return this.persona.getUsuario();
   }
 
-  public boolean estaAfectado(Servicio servicio) {
-    return rolesPorServicio.stream().
-                            anyMatch(rolMiembroServicio -> rolMiembroServicio.getServicio().equals(servicio)
-                                    && rolMiembroServicio.getAfectado()); }
+  public boolean estaAfectado() {
+    return this.afectado;
+  }
 }

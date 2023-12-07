@@ -34,7 +34,7 @@ public class DaoHibernate<T> implements WithSimplePersistenceUnit, Dao<T>{
 
         T t =  this.entityManager().find(type, id);
 
-        entityManager().refresh(t);
+        if (t != null) entityManager().refresh(t);
 
         return t;
     }

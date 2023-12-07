@@ -1,0 +1,37 @@
+{{#partial "contenido" }}
+    <link rel = "stylesheet" href = "/css/listaComunidades.css">
+
+    <div class = "table-container">
+        <div class ="table-title-container">
+                <h3>Lista de comunidades</h3>
+        </div>
+        <table class="lista-table">
+            <tr>
+                <th>Nombre</th>
+                <th>Accion</th>
+            </tr>
+            <tbody>
+            {{#each comunidadesQuePertenece}}
+                <tr>
+                    <td>{{this.nombre}}</td>
+                    <td>
+                        <a href="/comunidades/{{this.id}}" class = "a-simil-boton">Ver</a>
+                    </td>
+                </tr>
+            {{/each}}
+
+            {{#each comunidadesQueNoPertenece}}
+                            <tr>
+                                <td>{{this.nombre}}</td>
+                                <td>
+                                    <a href="/comunidades/unirme/{{this.id}}" class="a-simil-boton">Unirse</a>
+                                </td>
+                            </tr>
+                        {{/each}}
+
+            </tbody>
+        </table>
+     </div>
+
+{{/partial}}
+{{> templates/base }}

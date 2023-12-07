@@ -13,6 +13,6 @@ public class GradoDeImpacto implements Ranking{
   }
 
   private float calcularGradoDeImpacto(Incidente incidente){
-    return incidente.getComunidad().cuantosAfectados(incidente);
+    return incidente.getComunidad().cuantosAfectados();
   }
 }

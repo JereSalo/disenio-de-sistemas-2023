@@ -1,0 +1,149 @@
+.table-title {
+    text-align: left; /* Alinea el título a la izquierda */
+    font-size: 20px;
+    margin-bottom: 10px; /* Agrega un espacio inferior */
+    background-color: #a2a8d3; /* Color de fondo del título */
+    padding: 10px 15px; /* Añade un espaciado alrededor del título */
+}
+
+.filtros-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.filtros-table th, .filtros-table td {
+    padding: 10px 15px;
+    border: 1px solid black;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.filtros-table th {
+    background-color: #a2a8d3;
+    color: #fff;
+    font-weight: bold;
+}
+
+.filtros-table h3 {
+    font-weight: bold;
+    font-size: 24px;
+    margin: 0;
+}
+
+.filtros-table a {
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+.filtros-table a:hover {
+    background-color: #f2f2f2;
+}
+
+.filtro-seleccionado {
+    background-color: #8fd3fe;
+    color: #45b6fe;
+    font-weight: bold;
+}
+
+.table-container {
+    width: 80%;
+    padding: 60px;
+    margin-top: 200px;
+    background-color: #a2a8d3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: inline-block;
+    max-width: 100%; /* Ajusta el ancho máximo según tus necesidades */
+    max-height: 100vh; /* Ajusta la altura máxima según tus necesidades, 100vh significa el 100% del alto del viewport */
+    overflow: auto; /* Agrega una barra de desplazamiento si la tabla es demasiado grande */
+
+}
+
+.table-title-container {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Estilos mejorados para la tabla */
+.lista-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.lista-table th, .lista-table td {
+    text-align: center;
+    padding: 12px; /* Aumentar el espaciado dentro de las celdas */
+    border: 1px solid #ccf; /* Utilizar un borde más suave */
+    font-family: 'Open Sans', sans-serif; /* Aplicar la fuente Open Sans a las celdas */
+    color: black;
+}
+
+.lista-table th {
+    background-color: #a2a8d3;
+    color: #fff;
+    font-weight: bold;
+}
+
+.lista-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+/* Estilos para el botón en el formulario */
+form button[type="submit"] {
+    background-color: #007bff; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    border: none; /* Eliminar el borde del botón */
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer; /* Cambiar el cursor al pasar el ratón sobre el botón */
+    font-family: 'Open Sans', sans-serif; /* Aplicar la fuente Open Sans al botón */
+    font-weight: bold; /* Texto en negrita */
+}
+
+/* Estilos adicionales para el botón al pasar el cursor sobre él */
+form button[type="submit"]:hover {
+    background-color: #0056b3; /* Cambiar el color de fondo al pasar el cursor */
+}
+
+.a-simil-boton {
+    background-color: #007bff;
+    color: #fff;
+
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    margin: 10px;
+
+    appearance: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0em;
+    padding-block: 1px;
+    padding-inline: 6px;
+
+    padding: 10px 20px;
+    font-size: 13px;
+    width: 93px;
+}
+
+.a-simil-boton:hover {
+    background-color: #0056b3; /* Celeste más oscuro al pasar el mouse */
+    color: #ffffff;
+}
