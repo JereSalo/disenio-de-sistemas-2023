@@ -191,7 +191,7 @@
 
 /* ==================================  DESPLEGABLE ==================================================*/
 
-.sub-menu {
+.sub-menu2 {
     display: none;
     position: absolute;
     border: 1px solid #ccc;
@@ -200,11 +200,11 @@
     padding: 0;
 }
 
-.menu-item:hover .sub-menu {
+.menu-item2:hover .sub-menu2 {
     display: block;
 }
 
-.menu-item {
+.menu-item2 {
     position: relative;
     display: inline-block;
     float: right;
