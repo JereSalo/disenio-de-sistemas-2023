@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import persistence.repositories.FactoryRepositorios;
 import persistence.repositories.Repositorio;
 import web.controllers.base.Controller;
+import web.exceptions.AccessDeniedException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -86,6 +87,11 @@ public class ComunidadesController extends Controller {
         modificarModelSiEstaLogueado(context, model);
 
         Comunidad comunidad = this.repoComunidades.buscarPorId(Long.parseLong(context.pathParam("id")));
+
+        Usuario usuario = this.getUsuario(context);
+        if(!comunidad.esMiembro(usuario) || !comunidad.estaActivo(usuario)){
+            throw new AccessDeniedException();
+        }
 
         if (context.queryParamMap().containsKey("ver") && context.queryParam("ver").equals("incidentes")){
             model.put("mostrarIncidentes", true);
