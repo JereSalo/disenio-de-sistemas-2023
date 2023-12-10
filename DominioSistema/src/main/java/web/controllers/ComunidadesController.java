@@ -72,10 +72,17 @@ public class ComunidadesController extends Controller {
         List<Persona> listaPersonas = FactoryRepositorios.get(Persona.class).obtenerTodos();
         Persona persona = listaPersonas.stream().filter(p -> p.getUsername().equals(user.getUsername())).findFirst().get();
 
-        Miembro nuevoMiembro = new Miembro(persona, comunidadAfectada, afectado);
+        List<Miembro> todosLosMiembros = FactoryRepositorios.get(Miembro.class).obtenerTodos();
 
-        FactoryRepositorios.get(Miembro.class).agregar(nuevoMiembro);
+        if (todosLosMiembros.stream().anyMatch(m -> m.getComunidad() == comunidadAfectada
+        && m.getPersona() == persona)){
+            todosLosMiembros.stream().filter(m -> m.getComunidad() == comunidadAfectada && m.getPersona() == persona).findFirst().get().setActivo(true);
+        }
+        else {
+            Miembro nuevoMiembro = new Miembro(persona, comunidadAfectada, afectado);
 
+            FactoryRepositorios.get(Miembro.class).agregar(nuevoMiembro);
+        }
         model.put("mensaje", "Se unio con exito a la comunidad");
         context.render("mensaje.hbs", model);
     }
@@ -126,7 +133,7 @@ public class ComunidadesController extends Controller {
             miembro.setActivo(false);
             FactoryRepositorios.get(Miembro.class).modificar(miembro);
 
-            comunidad.getMiembros().remove(miembro);
+            //comunidad.getMiembros().remove(miembro);
             this.repoComunidades.modificar(comunidad);
         }
 

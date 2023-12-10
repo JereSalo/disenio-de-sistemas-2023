@@ -31,7 +31,7 @@ public class IncidentesController extends Controller {
 
     List<Incidente> listaDeIncidentes = this.repositorioDeIncidentes.obtenerTodos();
 
-    listaDeIncidentes.removeIf(incidente -> !incidente.getComunidad().esMiembro(super.getUsuario(context)) || !incidente.getComunidad().isActiva());
+    listaDeIncidentes.removeIf(incidente -> !incidente.getComunidad().esMiembro(super.getUsuario(context)) || !incidente.getComunidad().estaActivo(super.getUsuario(context)) || !incidente.getComunidad().isActiva());
 
     this.filtrarIncidentes(listaDeIncidentes, context);
 
@@ -98,7 +98,7 @@ public class IncidentesController extends Controller {
     Repositorio<Comunidad> repoDeComunidades = FactoryRepositorios.get(Comunidad.class);
     Repositorio<Entidad> repoDeEntidades = FactoryRepositorios.get(Entidad.class);
 
-    model.put("comunidades", repoDeComunidades.obtenerTodos().stream().filter(comunidad -> comunidad.esMiembro(super.getUsuario(context)) && comunidad.isActiva()).toList());
+    model.put("comunidades", repoDeComunidades.obtenerTodos().stream().filter(comunidad -> comunidad.esMiembro(super.getUsuario(context)) && comunidad.isActiva() && comunidad.estaActivo(this.getUsuario(context))).toList());
     model.put("entidades", repoDeEntidades.obtenerTodos());
 
     context.render("incidentes/abrir-incidente.hbs", model);
