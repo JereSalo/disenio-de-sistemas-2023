@@ -13,6 +13,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import javax.persistence.*;
 
 @Entity
@@ -64,6 +65,26 @@ public class Incidente extends Persistente{
 
     this.cerrador = cerrador;
     this.fechaDeCierre = LocalDateTime.now();
+  }
+
+
+  public String fechaCreacionFormateada() {
+    return formatearFecha(fechaDeCreacion);
+  }
+
+  public String fechaCierreFormateada() {
+    return formatearFecha(fechaDeCierre);
+  }
+
+  public String formatearFecha(LocalDateTime fecha) {
+    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+    if(fecha != null){
+      return fecha.format(formato);
+    }
+    else{
+      return "";
+    }
   }
 
   public boolean abierto() {
