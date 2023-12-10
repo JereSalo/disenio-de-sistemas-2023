@@ -53,7 +53,7 @@ public class Comunidad extends Persistente {
   }
 
   public long cantMiembros(){
-    return miembros.size();
+    return miembros.stream().filter(miembro -> miembro.isActivo()).count();
   }
 
   public boolean estaActivo(Usuario usuario) {

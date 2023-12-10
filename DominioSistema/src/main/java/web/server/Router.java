@@ -81,9 +81,6 @@ public class Router {
 
       delete("administracion/comunidades/{id-comunidad}", ((AdministracionComunidadesController) FactoryController.controller("AdministracionComunidades"))::eliminarComunidad , TipoRol.ADMINISTRADOR_PLATAFORMA);
 
-
-//      post("administracion/comunidades/{id-comunidad}/borrar", ((AdministracionComunidadesController) FactoryController.controller("AdministracionComunidades"))::crearComunidad , TipoRol.ADMINISTRADOR_PLATAFORMA);
-
       get("rankings", ((RankingsController) FactoryController.controller("Ranking"))::mostrarRankings, TipoRol.ORGANISMO_DE_CONTROL, TipoRol.PRESTADORA_DE_SERVICIO);
 
     });
