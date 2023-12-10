@@ -1,0 +1,231 @@
+
+.info-container{
+    width: 50%;
+    padding: 20px;
+    margin-top: 60px;
+    background-color: #a2a8d3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: inline-block;
+    max-width: 100%; /* Ajusta el ancho máximo según tus necesidades */
+    max-height: 100vh; /* Ajusta la altura máxima según tus necesidades, 100vh significa el 100% del alto del viewport */
+    overflow: auto; /* Agrega una barra de desplazamiento si la tabla es demasiado grande */
+}
+
+.inline_container{
+    width: 100%;
+    padding: 0px;
+}
+
+.title-container{
+    text-align: left;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: 'Open Sans', sans-serif;
+    display: inline-block;
+}
+
+.estado{
+    margin-top: 5px;
+    font-weight: semi-bold;
+    align-items: center;
+    align: center;
+}
+
+.container_division{
+    height: 1px;
+    margin-top: 20px;
+    background-color: #1b0417;
+    align-items: center;
+    display: block;
+}
+
+/* ==================================  TABLA ==================================================*/
+
+.table-container {
+    width: 45%;
+    padding: 40px;
+    margin-top: 50px;
+    background-color: #a2a8d3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: inline-block;
+    max-width: 100%; /* Ajusta el ancho máximo según tus necesidades */
+    max-height: 100vh; /* Ajusta la altura máxima según tus necesidades, 100vh significa el 100% del alto del viewport */
+    overflow: auto; /* Agrega una barra de desplazamiento si la tabla es demasiado grande */
+}
+
+.miembro-table-container { /*BUSCAR COMO HEREDAR CLASES DE CSS*/
+    width: 30%;
+    padding: 40px;
+    margin-top: 50px;
+    background-color: #a2a8d3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: inline-block;
+    max-width: 100%;
+    max-height: 100vh;
+    overflow: auto;
+}
+
+.table-title-container {
+    text-align: left;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: 'Open Sans', sans-serif;
+    display: inline-block;
+}
+
+/* Estilos mejorados para la tabla */
+.lista-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.lista-table th, .lista-table td {
+    text-align: center;
+    padding: 12px; /* Aumentar el espaciado dentro de las celdas */
+    border: 1px solid #ccc; /* Utilizar un borde más suave */
+    font-family: 'Open Sans', sans-serif; /* Aplicar la fuente Open Sans a las celdas */
+}
+
+.lista-table td {
+    background-color: #E7E5E5;
+    color: #000000;
+    font_weight: semi-bold;
+}
+
+.lista-table th {
+    background-color: #E7E5E5;
+    color: #000000;
+    font-weight: bold;
+}
+
+.lista-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* ==================================  BOTON ==================================================*/
+
+.a-simil-boton {
+    background-color: #ff0000;
+    color: #fff;
+
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+
+
+    appearance: auto;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0em;
+    padding-block: 1px;
+    padding-inline: 6px;
+    float: right;
+
+    padding: 5px 10px;
+    font-size: 13px;
+    width: 93px;
+}
+
+.a-simil-boton:hover {
+    background-color: #9f0000;
+    color: #ffffff;
+}
+
+
+/* ==================================  FILTROS ==================================================*/
+
+.filtros-table {
+    width: 30%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    text-align: left;
+    float: left;
+}
+
+.filtros-table th, .filtros-table td {
+    border: hidden;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.filtros-table th {
+    color: #000000;
+    font-weight: bold;
+}
+
+.filtro-seleccionado{
+    color: #0000ff;
+    text-decoration: underline blue;
+    font-weight: bold;
+}
+
+.filtros-table a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.filtros-table a:hover {
+    background-color: #f2f2f2;
+}
+
+
+/* ==================================  DESPLEGABLE ==================================================*/
+
+.sub-menu {
+    display: none;
+    position: absolute;
+    border: 1px solid #ccc;
+    background-color: #E7E5E5;
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu-item:hover .sub-menu {
+    display: block;
+}
+
+.menu-item {
+    position: relative;
+    display: inline-block;
+    float: right;
+    font_weight: bold;
+}
+
+.desplegable_container{
+    display: inline-block;
+    float: right;
+    background-color: #E7E5E5;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.item {
+    color: #000000;
+}
+
+
+.list_item {
+    margin: 5px;
+    padding: 5px;
+}
+

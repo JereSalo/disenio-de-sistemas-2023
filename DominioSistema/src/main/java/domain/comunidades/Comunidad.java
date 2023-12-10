@@ -56,4 +56,7 @@ public class Comunidad extends Persistente {
     return miembros.size();
   }
 
+  public boolean estaActivo(Usuario usuario) {
+    return miembros.stream().filter(miembro -> miembro.getUsuario() == usuario).findFirst().get().isActivo();
+  }
 }

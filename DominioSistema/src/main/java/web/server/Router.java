@@ -9,7 +9,9 @@ public class Router {
   public static void init() {
 
     Server.app().routes(() -> {
-      
+
+      // RUTAS LOGIN/REGISTER
+
       get("", ctx -> ctx.redirect("home"));
 
       get("home",  ((LoginController) FactoryController.controller("Login"))::home);
@@ -25,7 +27,7 @@ public class Router {
       post("registrarse", ((RegistroController) FactoryController.controller("Registro"))::registrarUsuario);
 
 
-      // Rutas Comunidades
+      // RUTAS COMUNIDADES
 
       get("comunidades/unirme/{id-comunidad}", ((ComunidadesController) FactoryController.controller("Comunidad"))::mostrarFormUnirseAComunidad, TipoRol.MIEMBRO);
 
@@ -33,11 +35,18 @@ public class Router {
       
       post("comunidades/unirme/{id-comunidad}", ((ComunidadesController) FactoryController.controller("Comunidad"))::unirseAComunidad, TipoRol.MIEMBRO);
 
+      get("comunidades/{id}", ((ComunidadesController) FactoryController.controller("Comunidad"))::mostrarComunidad, TipoRol.MIEMBRO);
+
+      post("comunidades/{id}/salir", ((ComunidadesController) FactoryController.controller("Comunidad"))::salirDeComunidad, TipoRol.MIEMBRO);
+
+
+
       get("organismos-de-control", ((OrganismosDeControlController) FactoryController.controller("OrganismoDeControl"))::obtenerOrganismos, TipoRol.ADMINISTRADOR_PLATAFORMA);
 
       get("prestadoras-de-servicios", ((PrestadorasDeServiciosController) FactoryController.controller("PrestadoraDeServicio"))::obtenerPrestadoras, TipoRol.ADMINISTRADOR_PLATAFORMA);
 
-      // Rutas incidentes
+      // RUTAS INCIDENTES
+
       get("incidentes/abrir", ((IncidentesController) FactoryController.controller("Incidentes"))::mostrarFormAbrirIncidente, TipoRol.MIEMBRO);
       post("incidentes/abrir", ((IncidentesController) FactoryController.controller("Incidentes"))::abrirIncidente, TipoRol.MIEMBRO);
       get("incidentes", ((IncidentesController) FactoryController.controller("Incidentes"))::listarIncidentes);

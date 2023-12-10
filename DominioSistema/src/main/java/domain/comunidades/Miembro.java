@@ -29,6 +29,9 @@ public class Miembro extends Persistente {
   @JoinColumn(name = "comunidad_id", referencedColumnName = "id")
   private Comunidad comunidad;
 
+  @Column(name = "activo")
+  private boolean activo;
+
   public Miembro(Persona persona) {
     this.persona = persona;
   }
@@ -37,6 +40,7 @@ public class Miembro extends Persistente {
     this.persona = persona;
     this.comunidad = comunidad;
     this.afectado = afectado;
+    this.activo = true;
   }
 
   public Miembro() {

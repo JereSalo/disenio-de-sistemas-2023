@@ -1,0 +1,100 @@
+{{#partial "contenido" }}
+    <link rel="stylesheet" href="/css/mostrarComunidad.css">
+
+    <div class = "info-container">
+        <div class = "inline_container">
+            <div class ="title-container">
+                <h3>{{comunidad.nombre}}</h3>
+            </div>
+
+            <form method="POST" action="/comunidades/{{comunidad.id}}/salir">
+                <button class ="a-simil-boton" type="submit" >Salir</button>
+            </form>
+        </div>
+
+
+        <div class ="estado">
+            <h3>Estado: {{#if comunidad.activa}} Activa {{else}} Inactiva {{/if}} </h3>
+        </div>
+
+        <div class = "container_division"></div>
+
+        <table class = "filtros-table">
+            <tbody>
+            <tr>
+                <td><a href="/comunidades/{{comunidad.id}}?ver=incidentes" {{#if mostrarIncidentes}} class="filtro-seleccionado"{{/if}}> Incidentes </a></td>
+                <td><a href="/comunidades/{{comunidad.id}}?ver=miembros" {{#if mostrarMiembros}} class="filtro-seleccionado"{{/if}}> Miembros </a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {{#if mostrarIncidentes}}
+        <div class = "table-container">
+
+            <div class = "inline_container">
+                <div class ="table-title-container">
+                    <h3>Incidentes de la comunidad</h3>
+                </div>
+                <div class = "desplegable_container">
+                    <li class="menu-item">Filtrar Estado
+                        <ul class="sub-menu">
+                            <li class = "list_item"><a href="/comunidades/{{comunidad.id}}?ver=incidentes&estado=abierto" class="item">Abierto</a></li>
+                            <li class = "list_item"><a href="/comunidades/{{comunidad.id}}?ver=incidentes&estado=cerrado" class="item">Cerrado</a></li>
+                            <li class = "list_item"><a href="/comunidades/{{comunidad.id}}?ver=incidentes" class="item">Todos</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+
+            <div class = "container_division"></div>
+
+            <table class="lista-table">
+                <tr>
+                    <th>Entidad</th>
+                    <th>Establecimiento</th>
+                    <th>Servicio</th>
+                    <th>Fecha de Creación</th>
+                    <th>Fecha de Cierre</th>
+                    <th>Observaciones</th>
+                </tr>
+                <tbody>{{#each incidentes}}
+                    <tr>
+                        <td>{{this.entidad.nombre}}</td>
+                        <td>{{this.establecimiento.nombre}}</td>
+                        <td>{{this.prestacionDeServicio.servicio.descripcion}}</td>
+                        <td>{{this.fechaDeCreacion}}</td>
+                        <td>{{this.fechaDeCierre}}</td>
+                        <td>{{this.observaciones}}</td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    {{/if}}
+
+    {{#if mostrarMiembros}}
+        <div class = "miembro-table-container">
+            <div class ="table-title-container">
+                <h3>Miembros de la comunidad</h3>
+            </div>
+
+            <div class = "container_division"></div>
+
+            <table class="lista-table">
+                <tr>
+                    <th>Usuario</th>
+                    <th>Situacion</th>
+                </tr>
+                <tbody>{{#each miembros}}
+                    <tr>
+                        <td>{{this.getUsername}}</td>
+                        <td>{{#if this.estaAfectado}} Afectado {{else}} Observador {{/if}}</td>
+                    </tr>
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    {{/if}}
+{{/partial}}
+{{> templates/base }}
